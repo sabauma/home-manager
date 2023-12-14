@@ -1,22 +1,6 @@
 { config, pkgs, lib, ... }:
 
-let
-  # Wrap commands with nixGL to get GPU acceleration
-  # nixGL = import <nixgl> {};
-  # nixGLWrap = pkg: pkgs.runCommand "${pkg.name}-nixgl-wrapper" {} ''
-  #   mkdir $out
-  #   ln -s ${pkg}/* $out
-  #   rm $out/bin
-  #   mkdir $out/bin
-  #   for bin in ${pkg}/bin/*; do
-  #     wrapped_bin=$out/bin/$(basename $bin)
-  #     echo "exec ${lib.getExe nixGL.auto.nixGLDefault} $bin \$@" > $wrapped_bin
-  #     chmod +x $wrapped_bin
-  #   done
-  # '';
-in
 {
-
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
       url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
@@ -163,7 +147,11 @@ in
     rofi = {
       enable = true;
       theme = "gruvbox-dark-soft";
+<<<<<<< HEAD
       font = "Berkeley Mono 12";
+=======
+      font = "Berkeley Mono 16";
+>>>>>>> 7b95f29 (Initial commit)
       extraConfig = {
         sidebar-mode = true;
         sorting-method  = "fzf";
@@ -257,7 +245,10 @@ in
       keyMode = "vi";
       mouse = true;
       terminal = "xterm-256color";
+<<<<<<< HEAD
       shell = "${pkgs.fish}/bin/fish";
+=======
+>>>>>>> 7b95f29 (Initial commit)
 
       plugins = with pkgs.tmuxPlugins; [
         gruvbox
@@ -291,8 +282,17 @@ in
       enable = true;
       plugins = [
         { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
+<<<<<<< HEAD
         { name = "z"; src = pkgs.fishPlugins.z.src; }
       ];
+=======
+      ];
+
+      shellInit = ''
+      set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME
+      test -f /home/spenser/.ghcup/env ; and set -gx PATH $HOME/.cabal/bin /home/spenser/.ghcup/bin $PATH
+      '';
+>>>>>>> 7b95f29 (Initial commit)
     };
 
     neovim = {
@@ -338,10 +338,6 @@ in
                         , "-i", "<fc=#006000>Charged</fc>"
                         ] 50,
 
-            Run StdinReader
-        ],
-        sepChar = "%",
-        alignSep = "}{",
         template = "%StdinReader% }{ <fc=#b16286>[</fc>%cpu%<fc=#b16286>]·[</fc>%memory%<fc=#b16286>]·[</fc>%battery%<fc=#b16286>]·[</fc>%dynnetwork%<fc=#b16286>]·[</fc>%date%<fc=#b16286>]</fc>"
       }
       '';
