@@ -147,11 +147,7 @@
     rofi = {
       enable = true;
       theme = "gruvbox-dark-soft";
-<<<<<<< HEAD
       font = "Berkeley Mono 12";
-=======
-      font = "Berkeley Mono 16";
->>>>>>> 7b95f29 (Initial commit)
       extraConfig = {
         sidebar-mode = true;
         sorting-method  = "fzf";
@@ -246,10 +242,7 @@
       keyMode = "vi";
       mouse = true;
       terminal = "xterm-256color";
-<<<<<<< HEAD
       shell = "${pkgs.fish}/bin/fish";
-=======
->>>>>>> 7b95f29 (Initial commit)
 
       plugins = with pkgs.tmuxPlugins; [
         gruvbox
@@ -283,17 +276,8 @@
       enable = true;
       plugins = [
         { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
-<<<<<<< HEAD
         { name = "z"; src = pkgs.fishPlugins.z.src; }
       ];
-=======
-      ];
-
-      shellInit = ''
-      set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME
-      test -f /home/spenser/.ghcup/env ; and set -gx PATH $HOME/.cabal/bin /home/spenser/.ghcup/bin $PATH
-      '';
->>>>>>> 7b95f29 (Initial commit)
     };
 
     neovim = {
@@ -346,9 +330,10 @@
 
     alacritty = {
       enable = true;
-      package = (nixGLWrap pkgs.alacritty);
+      package = pkgs.alacritty;
       settings = {
         font = {
+          size = 8;
           normal = {
             family = "Development";
             style = "Regular";
