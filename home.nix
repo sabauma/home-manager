@@ -311,41 +311,7 @@
 
     xmobar = {
       enable = true;
-      extraConfig = ''
-      Config {
-        font = "Berkeley Mono Regular 14",
-        additionalFonts = ["Symbols Nerd Font Mono 14", "Fira Mono 14"],
-        bgColor = "#1d2021",
-        fgColor = "#a89984",
-        position = TopH 25,
-        lowerOnStart = True,
-        commands = [
-            Run Cpu ["-L","3","-H","50", "-l", "#b8bb26", "--normal","#458588","--high","#fb4934","-p","3"] 10,
-            Run Memory ["-t","Mem: <usedratio>%","-H","8192","-L","4096","-h","#fb4934","-l","#b8bb26","-n","#458588", "-p","3"] 10,
-            Run Swap ["-t","Swap: <usedratio>%","-H","1024","-L","512","-h","#fb4934","-l","#b8bb26","-n","#458588", "-p","3"] 10,
-            Run DynNetwork ["-H","200","-L","10","-h","#fb4934","-l","#b8bb26","-n","#458588","-m","4"] 10,
-            Run Date "%b %_d %H:%M" "date" 10,
-
-            Run Battery [ "--template" , "Batt: <acstatus>"
-                        , "--Low"      , "10"        -- units: %
-                        , "--High"     , "80"        -- units: %
-                        , "--low"      , "#fb4934"
-                        , "--normal"   , "#b8bb26"
-                        , "--high"     , "#458588"
-                        , "--" -- battery specific options
-                        -- discharging status
-                        , "-o", "<left>% (<timeleft>)"
-                        -- AC "on" status
-                        , "-O", "<fc=#dAA520>Charging</fc>"
-                        -- charged status
-                        , "-i", "<fc=#006000>Charged</fc>"
-                        ] 50,
-            Run StdinReader
-        ],
-
-        template = "%StdinReader% }{ <fc=#b16286>[</fc>%cpu%<fc=#b16286>]·[</fc>%memory%<fc=#b16286>]·[</fc>%battery%<fc=#b16286>]·[</fc>%dynnetwork%<fc=#b16286>]·[</fc>%date%<fc=#b16286>]</fc>"
-      }
-      '';
+      extraConfig = builtins.readFile ./xmobarrc;
     };
 
     alacritty = {
