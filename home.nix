@@ -296,11 +296,6 @@ in
       plugins = [
         { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
       ];
-
-      shellInit = ''
-      set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME
-      test -f /home/spenser/.ghcup/env ; and set -gx PATH $HOME/.cabal/bin /home/spenser/.ghcup/bin $PATH
-      '';
     };
 
     neovim = {
@@ -316,53 +311,7 @@ in
 
     xmobar = {
       enable = true;
-      extraConfig = ''
-      Config {
-        font = "Berkeley Mono Regular 20",
-        additionalFonts = ["Symbols Nerd Font Mono 20", "Fira Mono 20"],
-        bgColor = "#1d2021",
-        fgColor = "#a89984",
-        position = TopH 35,
-        lowerOnStart = True,
-        commands = [
-            Run Cpu [
-              "-L", "3",
-              "-H", "50",
-              "-l", "#b8bb26",
-              "--normal", "#458588",
-              "--high", "#fb4934",
-              "-p", "3"] 10,
-            Run Memory [
-              "-t", "Mem: <usedratio>%",
-              "-H", "8192",
-              "-L", "4096",
-              "-h", "#fb4934",
-              "-l", "#b8bb26",
-              "-n", "#458588",
-              "-p", "3"] 10,
-            Run Swap [
-              "-t", "Swap: <usedratio>%",
-              "-H", "1024",
-              "-L", "512",
-              "-h", "#fb4934",
-              "-l", "#b8bb26",
-              "-n", "#458588",
-              "-p", "3"] 10,
-            Run DynNetwork [
-              "-H", "200",
-              "-L", "10",
-              "-h", "#fb4934",
-              "-l", "#b8bb26",
-              "-n", "#458588",
-              "-m", "8"] 10,
-            Run Date "%a %b %_d %H:%M" "date" 10,
-            Run StdinReader
-        ],
-        sepChar = "%",
-        alignSep = "}{",
-        template = "%StdinReader% }{ <fc=#b16286>[</fc>%cpu%<fc=#b16286>]·[</fc>%memory%<fc=#b16286>]·[</fc>%swap%<fc=#b16286>]·[</fc>%dynnetwork%<fc=#b16286>]·[</fc>%date%<fc=#b16286>]</fc>"
-      }
-      '';
+      extraConfig = builtins.readFile ./xmobarrc;
     };
 
     alacritty = {
