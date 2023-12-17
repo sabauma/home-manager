@@ -41,7 +41,7 @@ in
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
-  home.stateVersion = "23.05"; # Please read the comment before changing.
+  home.stateVersion = "23.11"; # Please read the comment before changing.
 
   # Allow unfree software to be installed
   nixpkgs.config.allowUnfree = true;
@@ -178,6 +178,7 @@ in
     fzf = {
       enable = true;
       enableFishIntegration = true;
+      enableBashIntegration = true;
 
       defaultOptions = [ ];
     };
@@ -336,6 +337,60 @@ in
         template = "%StdinReader% }{ <fc=#b16286>[</fc>%cpu%<fc=#b16286>]·[</fc>%memory%<fc=#b16286>]·[</fc>%swap%<fc=#b16286>]·[</fc>%dynnetwork%<fc=#b16286>]·[</fc>%date%<fc=#b16286>]</fc>"
       }
       '';
+    };
+
+    alacritty = {
+      enable = true;
+      package = (nixGLWrap pkgs.alacritty);
+      settings = {
+        font = {
+          normal = {
+            family = "Development";
+            style = "Regular";
+          };
+          bold = {
+            family = "Development";
+            style = "Bold";
+          };
+          italic = {
+            family = "Development";
+            style = "Italic";
+          };
+          bold_italic = {
+            family = "Development";
+            style = "Bold Italic";
+          };
+        };
+
+        draw_bold_text_with_bright_colors = false;
+
+        colors.primary = {
+          background = "0x1d2021";
+          foreground = "0xebdbb2";
+        };
+
+        colors.normal = {
+          black   = "0x282828";
+          red     = "0xcc241d";
+          green   = "0x98971a";
+          yellow  = "0xd79921";
+          blue    = "0x458588";
+          magenta = "0xb16286";
+          cyan    = "0x689d6a";
+          white   = "0xa89984";
+        };
+
+        colors.bright = {
+          black   = "0x928374";
+          red     = "0xfb4934";
+          green   = "0xb8bb26";
+          yellow  = "0xfabd2f";
+          blue    = "0x83a598";
+          magenta = "0xd3869b";
+          cyan    = "0x8ec07c";
+          white   = "0xebdbb2";
+        };
+      };
     };
   };
 
