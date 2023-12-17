@@ -331,7 +331,8 @@
                         , "-O", "<fc=#dAA520>Charging</fc>"
                         -- charged status
                         , "-i", "<fc=#006000>Charged</fc>"
-                        ] 50
+                        ] 50,
+            Run StdinReader
         ],
 
         template = "%StdinReader% }{ <fc=#b16286>[</fc>%cpu%<fc=#b16286>]·[</fc>%memory%<fc=#b16286>]·[</fc>%battery%<fc=#b16286>]·[</fc>%dynnetwork%<fc=#b16286>]·[</fc>%date%<fc=#b16286>]</fc>"
