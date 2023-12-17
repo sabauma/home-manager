@@ -310,10 +310,58 @@ in
       enable = true;
       package = pkgs.neovim-nightly;
 
+      extraConfig = builtins.readFile ./nvim/init.vim;
+      extraLuaConfig = builtins.readFile ./nvim/config.lua;
+
       # Manage treesitter parsers through nix to avoid issues with libc
-      plugins = with pkgs; [
-        vimPlugins.nvim-treesitter.withAllGrammars
-        vimPlugins.vim-plug
+      plugins = with pkgs.vimPlugins; [
+        # Vim Plugins
+        a-vim
+        nerdcommenter
+        tabular
+        undotree
+        vim-fugitive
+        vim-indent-object
+        vim-obsession
+        vim-repeat
+        vim-surround
+        vim-vinegar
+
+        # Treesitter
+        nvim-treesitter.withAllGrammars
+
+        # Colorschemes
+        gruvbox-material
+        everforest
+
+        # nvim-cmp
+        nvim-cmp
+        cmp-buffer
+        cmp-cmdline
+        cmp-nvim-lsp
+        cmp-path
+
+        # LSP
+        nvim-lspconfig
+        lspkind-nvim
+
+        # Lualine
+        lualine-nvim
+
+        # Telescope
+        telescope-nvim
+        telescope-fzf-native-nvim
+
+        # Neorg
+        neorg
+        neorg-telescope
+        zen-mode-nvim
+
+        # Nice popup messages
+        popup-nvim
+
+        # Oil file manager
+        oil-nvim
       ];
     };
 
