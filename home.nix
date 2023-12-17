@@ -126,6 +126,8 @@
 
     # Link in the fonts directory with personal fonts
     ".fonts/".source = ./fonts;
+
+    "Pictures/wallpapers/".source = ./wallpapers;
   };
 
   fonts.fontconfig.enable = true;
