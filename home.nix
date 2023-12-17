@@ -344,6 +344,7 @@ in
       package = (nixGLWrap pkgs.alacritty);
       settings = {
         font = {
+          size = 16;
           normal = {
             family = "Development";
             style = "Regular";
