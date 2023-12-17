@@ -93,10 +93,8 @@ in
     (nixGLWrap chromium)
     (nixGLWrap discord)
     (nixGLWrap latest.firefox-beta-bin)
-    # (nixGLWrap firefox)
     (nixGLWrap kitty)
     (nixGLWrap picom)
-    # (nixGLWrap teams)
     (nixGLWrap vlc)
     (nixGLWrap wezterm)
     (nixGLWrap calibre)
@@ -136,6 +134,8 @@ in
 
     # Link in the fonts directory with personal fonts
     ".fonts/".source = ./fonts;
+
+    "Pictures/wallpapers/".source = ./wallpapers;
   };
 
   fonts.fontconfig.enable = true;
