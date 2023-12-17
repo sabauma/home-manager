@@ -109,6 +109,9 @@
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
+    # Define a fonts.conf file with a 'Development' font family which uses the
+    # preferred Berkeley Mono font while having a fallback font for Symbols not
+    # present in Berkeley Mono.
     ".fonts.conf".text = ''
     <alias>
     <family>Development</family>
@@ -117,10 +120,15 @@
     <prefer><family>Berkeley Mono</family></prefer>
 
     <!-- Use this font if a character isn't found in the above font. -->
-    <accept><family>Symbols Nerd Font Mono</family></accept>
+    <accept><family>Fira Mono Nerd Font</family></accept>
     </alias>
     '';
+
+    # Link in the fonts directory with personal fonts
+    ".fonts/".source = ./fonts;
   };
+
+  fonts.fontconfig.enable = true;
 
   # You can also manage environment variables but you will have to manually
   # source
