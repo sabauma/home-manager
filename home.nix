@@ -33,6 +33,16 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    (writeShellScriptBin "increment_brightness" ''
+     VAL=$("${pkgs.brightnessctl}/bin/brightnessctl" get)
+     "${pkgs.brightnessctl}/bin/brightnessctl" set $((VAL+1))
+     '')
+
+    (writeShellScriptBin "decrement_brightness" ''
+     VAL=$("${pkgs.brightnessctl}/bin/brightnessctl" get)
+     "${pkgs.brightnessctl}/bin/brightnessctl" set $((VAL-1))
+     '')
+
     # From github:sabauma/mlir-nix
     mlir
 
@@ -321,7 +331,8 @@
                         , "-O", "<fc=#dAA520>Charging</fc>"
                         -- charged status
                         , "-i", "<fc=#006000>Charged</fc>"
-                        ] 50,
+                        ] 50
+        ],
 
         template = "%StdinReader% }{ <fc=#b16286>[</fc>%cpu%<fc=#b16286>]·[</fc>%memory%<fc=#b16286>]·[</fc>%battery%<fc=#b16286>]·[</fc>%dynnetwork%<fc=#b16286>]·[</fc>%date%<fc=#b16286>]</fc>"
       }
