@@ -31,8 +31,8 @@ in
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "spenser";
-  home.homeDirectory = "/home/spenser";
+  home.username = "sbauman";
+  home.homeDirectory = "/home/sbauman";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -62,11 +62,12 @@ in
     cachix
     coreutils
     datamash
+    delta
     eza
     fd
     ffmpeg
     fzf
-    git
+    gitFull
     htop
     hyperfine
     mosh
@@ -74,6 +75,7 @@ in
     newsboat
     openconnect
     pyright
+    python3Packages.python-lsp-server
     ranger
     ripgrep
     starship
@@ -81,6 +83,7 @@ in
     vim_configurable
     xmobar
     yt-dlp
+    yazi
 
     ccache
     clang-tools_17
@@ -91,22 +94,14 @@ in
     # Graphical programs
     (nixGLWrap alacritty)
     (nixGLWrap chromium)
-    (nixGLWrap discord)
     (nixGLWrap latest.firefox-beta-bin)
     (nixGLWrap kitty)
     (nixGLWrap picom)
     (nixGLWrap vlc)
     (nixGLWrap wezterm)
-    (nixGLWrap calibre)
-    (nixGLWrap steam)
     rofi
-    yazi
     zathura
     zotero
-
-    # Getting annoying glibc issues when trying to start gnome-control-center
-    # from rofi using the ubuntu provided gnome-control-center
-    gnome.gnome-control-center
   ];
 
   home.pointerCursor = {
@@ -304,6 +299,53 @@ in
       plugins = [
         { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
       ];
+
+    functions = {
+      bac-clone = "mw -using Bmain sbs create -c $argv[1] -bac";
+
+      change = "p4 change (changes) $argv";
+
+      changes = ''
+      p4 opened -s | grep -o '\<[0-9][0-9]*\>' | sort --unique --numeric-sort --reverse |
+      fzf --preview 'p4 describe {} | bat --color=always --pager=never --decorations=never --language=COMMIT_EDITMSG' \
+          --preview-window=70%:wrap:rounded --cycle --phony --exit-0
+      '';
+
+      mktags = ''
+      fd --extension "hpp" --extension "cpp" \
+         --extension "c" --extension "h" \
+         --extension "cc" --extension "hh" \
+      | ctags --sort=foldcase --c++-kinds=+p --fields=+iaS --extra=+q -f ./tags -L- &;
+      '';
+
+      net-sandbox = ''
+      set -l cluster $argv[1]
+      set -l tag $argv[2]
+      set -l output (mktemp)
+
+      if test "$tag" = ""
+        mw -using $cluster sbs create -c $cluster | tee "$output"
+      else
+        mw -using $cluster sbs create -c $cluster -t $tag | tee "$output"
+      end
+
+      set -l dir (grep -o '/mathworks/devel/sbs/.*$' "$output")
+      rm "$output"
+
+      cd "$dir""/matlab/src"
+      mktags
+      '';
+
+      s = "cd (sandboxes) $argv";
+
+      sandboxes = ''
+      mw -using Bmain sbs list |
+        tail -n +3 |
+        awk '{print $3};' |
+        sort |
+        fzf --multi --preview "summarize-sandbox {}" --preview-window=up:70%:wrap:rounded --tac --cycle --exit-0 |
+        awk '{print $1}'
+      '';
     };
 
     neovim = {
