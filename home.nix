@@ -77,7 +77,7 @@
     yt-dlp
 
     ccache
-    clang-tools_16
+    clang-tools_17
 
     # Preferred shell
     fish
