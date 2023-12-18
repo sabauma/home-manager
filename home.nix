@@ -83,18 +83,16 @@
     fish
 
     # Graphical programs
-    (alacritty)
-    (chromium)
-    (discord)
-    (latest.firefox-beta-bin)
-    # (nixGLWrap firefox)
-    (kitty)
-    (picom)
-    # (nixGLWrap teams)
-    (vlc)
-    (wezterm)
-    (calibre)
-    (steam)
+    alacritty
+    chromium
+    discord
+    latest.firefox-beta-bin
+    kitty
+    picom
+    vlc
+    wezterm
+    calibre
+    steam
     rofi
     yazi
     zathura
