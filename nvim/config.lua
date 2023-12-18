@@ -1,7 +1,6 @@
 
--- vim.notify = require('notify')
+vim.notify = require('notify')
 
--- require('nvim-web-devicons').setup()
 
 -- Mappings.
 local on_attach = function(client, bufnr)
@@ -126,17 +125,33 @@ local lspkind = require('lspkind')
 
 cmp.setup {
   snippet = { },
-  formatting = {
-    format = lspkind.cmp_format(),
-  },
 
   window = {
-    completion = cmp.config.window.bordered({max_width = 65}),
-    documentation = cmp.config.window.bordered({max_width = 65}),
+    completion = cmp.config.window.bordered({
+      col_offset = -3,
+      side_padding = 0,
+    }),
+
+    documentation = cmp.config.window.bordered({
+      col_offset = -3,
+      side_padding = 0,
+    }),
+  },
+
+  formatting = {
+    fields = { "kind", "abbr", "menu" },
+    format = function(entry, vim_item)
+      local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 65 })(entry, vim_item)
+      local strings = vim.split(kind.kind, "%s", { trimempty = true })
+      kind.kind = " " .. (strings[1] or "") .. " "
+      kind.menu = "    (" .. (strings[2] or "") .. ")"
+
+      return kind
+    end,
   },
 
   mapping = cmp.mapping.preset.insert({
-    ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+    ['<C-y>'] = cmp.config.disable,
     ['<C-e>'] = cmp.mapping({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
@@ -145,10 +160,11 @@ cmp.setup {
 
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
+    { name = 'nvim_lsp_signature_help' },
     { name = 'neorg'    },
   }, {
-      { name = 'buffer' },
-    })
+    { name = 'buffer' },
+  })
 }
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
@@ -157,17 +173,18 @@ cmp.setup.cmdline(':', {
   sources = cmp.config.sources({
     { name = 'path' }
   }, {
-      { name = 'cmdline' }
+      { name = 'cmdline', option = { ignore_cmds = { 'Man', '!' } } }
     })
 })
 
-local previewers = require('telescope.previewers')
 require('telescope').setup {
   defaults = {
     layout_strategy = 'vertical',
     layout_config = { vertical = { width = 0.7 } },
   },
 }
+
+require('telescope').load_extension('fzf')
 
 require("zen-mode").setup {
   window = {
@@ -178,5 +195,17 @@ require("zen-mode").setup {
   }
 }
 
-require("lualine").setup()
+require("lualine").setup {
+  sections = {
+    lualine_c = {{ 'filename', path = 1, shortening_target=80 }}
+  },
+
+  -- tabline = {
+  --   lualine_a = {{'tabs', mode = 2, use_mode_colors = true}},
+  -- }
+}
+
+require("oil").setup()
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 

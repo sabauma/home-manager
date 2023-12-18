@@ -376,6 +376,9 @@ in
         gruvbox-material
         everforest
 
+        # Neovim-notify
+        nvim-notify
+
         # nvim-cmp
         nvim-cmp
         cmp-buffer
