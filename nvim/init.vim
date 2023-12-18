@@ -12,6 +12,7 @@ set termguicolors
 let g:gruvbox_material_foreground='original'
 let g:gruvbox_material_background='hard'
 let g:gruvbox_material_background='hard'
+let g:gruvbox_material_disable_italic_comment=1
 let g:gruvbox_material_enable_bold=1
 let g:gruvbox_material_enable_italic=0
 
@@ -54,7 +55,7 @@ set splitbelow
 set nostartofline
 
 " Configure diff algorithm to be a little more ergonomic
-set diffopt+=algorithm:histogram,indent-heuristic
+set diffopt+=algorithm:histogram,indent-heuristic,hiddenoff
 
 " Backup & Undo settings
 set undodir=~/.nvim/undodir//
@@ -72,7 +73,9 @@ map k gk
 
 " Fold based on the syntax of the file, but only fold the outer level
 set foldnestmax=1
-set foldmethod=syntax
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+set nofoldenable
 
 " Press Space to turn off highlighting and clear any message already displayed.
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
@@ -82,18 +85,19 @@ nnoremap ` '
 " Remove menu
 set go=c
 
+" Leader Mappings
+" Quick navigation of tabs
+map <leader>th :tabprev<CR>
+map <leader>tl :tabnext<CR>
+map <leader>tn :tabnew<CR>
+map <leader>td :tabclose<CR>
+
 " Faster way to switch between splits
 map <leader>w <C-w>w
 map <leader>h <C-w>h
 map <leader>j <C-w>j
 map <leader>k <C-w>k
 map <leader>l <C-w>l
-
-" Quick navigation of tabs
-map <leader>th :tabprev<CR>
-map <leader>tl :tabnext<CR>
-map <leader>tn :tabnew<CR>
-map <leader>td :tabclose<CR>
 
 " Remove trailing whitespace
 function! StripTrailingWhitespaces()
@@ -106,8 +110,8 @@ endfun
 map <silent> <leader>s :call StripTrailingWhitespaces() <CR>
 
 " Invoke telescope's live-grep
-map <silent> <leader>ff :lua require('telescope.builtin').find_files() <CR>
 map <silent> <leader>lg :lua require('telescope.builtin').live_grep() <CR>
+map <silent> <leader>ff :lua require('telescope.builtin').find_files() <CR>
 
 " Complete options (disable preview scratch window)
 set completeopt=menu,menuone,longest
@@ -138,7 +142,9 @@ set listchars=tab:>-,trail:·,extends:>,precedes:<
 digraph !? 8253
 digraph ?! 8253
 
+" CTAGS
 set tags=./tags;
 
+" Set filetype for mlir files
 autocmd BufNewFile,BufRead *.mlir set filetype=mlir
 
