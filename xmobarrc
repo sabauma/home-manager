@@ -1,9 +1,9 @@
 Config {
-  font = "Berkeley Mono Regular 20",
-  additionalFonts = ["Symbols Nerd Font Mono 20", "Fira Mono 20"],
+  font = "Berkeley Mono Regular 14",
+  additionalFonts = ["Symbols Nerd Font Mono 14", "Fira Mono 14"],
   bgColor = "#1d2021",
   fgColor = "#a89984",
-  position = TopH 35,
+  position = TopH 25,
   lowerOnStart = True,
   commands = [
       Run Cpu [
@@ -36,6 +36,22 @@ Config {
         "-l", "#b8bb26",
         "-n", "#458588",
         "-m", "8"] 10,
+
+      Run Battery [
+        "--template" , "Batt: <acstatus>"
+        , "--Low"      , "10"        -- units: %
+        , "--High"     , "80"        -- units: %
+        , "--low"      , "#fb4934"
+        , "--normal"   , "#b8bb26"
+        , "--high"     , "#458588"
+        , "--" -- battery specific options
+        -- discharging status
+        , "-o", "<left>% (<timeleft>)"
+        -- AC "on" status
+        , "-O", "<fc=#dAA520>Charging</fc>"
+        -- charged status
+        , "-i", "<fc=#006000>Charged</fc>"] 50,
+
       Run Date "%a %b %_d %H:%M" "date" 10,
       Run StdinReader
   ],
