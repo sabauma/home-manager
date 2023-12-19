@@ -421,7 +421,7 @@ in
       package = (nixGLWrap pkgs.alacritty);
       settings = {
         font = {
-          size = 16;
+          size = 11;
           normal = {
             family = "Development";
             style = "Regular";
@@ -468,6 +468,9 @@ in
           cyan    = "0x8ec07c";
           white   = "0xebdbb2";
         };
+
+        shell.program = "${pkgs.fish}/bin/fish";
+        env.TERM = "xterm-256color";
       };
     };
   };
