@@ -224,12 +224,14 @@ in
         };
 
         # Disable annoying features
+        c = { disabled = true; };
         cmd_duration = { disabled = true; };
-        python = { disabled = true; };
-        julia = { disabled = true; };
         conda = { disabled = true; };
-        vlang = { disabled = true; };
+        haskell = { disabled = true; };
+        julia = { disabled = true; };
         nodejs = { disabled = true; };
+        python = { disabled = true; };
+        vlang = { disabled = true; };
       };
     };
 
