@@ -428,6 +428,28 @@
     fade = false;
   };
 
+  xsession.windowManager.xmonad = {
+    enable = true;
+    enableContribAndExtras = true;
+    extraPackages = ps: with ps; [
+      xmonad
+      xmonad-contrib
+      xmonad-extras
+      hashable
+      text-icu
+      vector
+      xmobar
+    ];
+
+    config = ./xmonad/xmonad.hs;
+    libFiles = {
+      "FindEmptyWorkspace.hs" = ./xmonad/lib/FindEmptyWorkspace.hs;
+      "Gruvbox.hs" = ./xmonad/lib/Gruvbox.hs;
+      "PerWorkspaceDirs.hs" = ./xmonad/lib/PerWorkspaceDirs.hs;
+      "PromptConfig.hs" = ./xmonad/lib/PromptConfig.hs;
+    };
+  };
+
   targets.genericLinux.enable = true;
 
   # Let Home Manager install and manage itself.
