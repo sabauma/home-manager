@@ -477,6 +477,7 @@ in
 
   services.picom = {
     enable = true;
+    package = (nixGLWrap pkgs.picom);
     backend = "glx";
     fade = false;
   };
