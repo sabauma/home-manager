@@ -130,6 +130,10 @@ in
     # Link in the fonts directory with personal fonts
     ".fonts/".source = ./fonts;
 
+    # Xsession configuration
+    ".xsessionrc".source = ./xsessionrc;
+
+    # Wallpapers
     "Pictures/wallpapers/".source = ./wallpapers;
   };
 
