@@ -26,7 +26,7 @@ in
       url = https://github.com/mozilla/nixpkgs-mozilla/archive/master.tar.gz;
     }))
 
-    ((builtins.getFlake "github:sabauma/mlir.nix").overlay)
+    (builtins.getFlake "github:sabauma/mlir.nix").overlay
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
