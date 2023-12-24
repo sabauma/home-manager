@@ -107,10 +107,10 @@ spawnInCurDir c = currentWorkspace >>= getDir >>= spawnInDir c
 gridSelectConfig :: GSConfig Window
 gridSelectConfig =
   let config = def :: GSConfig Window
-  in config { gs_font        = myFont 12
+  in config { gs_font        = myFont 8
             , gs_colorizer   = Colors.colorizer
-            , gs_cellheight  = div (gs_cellheight config * 3) 2
-            , gs_cellwidth   = div (gs_cellwidth config * 3) 2
+            , gs_cellheight  = div (gs_cellheight config * 2) 2
+            , gs_cellwidth   = div (gs_cellwidth config * 2) 2
             , gs_bordercolor = Colors.background
             }
 
