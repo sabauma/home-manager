@@ -33,11 +33,13 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    # shell script to increase screen brightness
     (writeShellScriptBin "increment_brightness" ''
      VAL=$("${pkgs.brightnessctl}/bin/brightnessctl" get)
      "${pkgs.brightnessctl}/bin/brightnessctl" set $((VAL+1))
      '')
 
+    # shell script to decrease screen brightness
     (writeShellScriptBin "decrement_brightness" ''
      VAL=$("${pkgs.brightnessctl}/bin/brightnessctl" get)
      "${pkgs.brightnessctl}/bin/brightnessctl" set $((VAL-1))
@@ -297,6 +299,14 @@
         { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
         { name = "z"; src = pkgs.fishPlugins.z.src; }
       ];
+
+      functions = {
+        fish_user_key_bindings = ''
+          for mode in insert default visual
+              bind -M $mode \cf forward-char
+          end
+        '';
+      };
     };
 
     neovim = {
