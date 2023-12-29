@@ -3,7 +3,7 @@
 let
   # Wrap commands with nixGL to get GPU acceleration
   nixGL = import <nixgl> {};
-  nixGLWrap = pkg: pkgs.runCommand "${pkg.name}-nixgl-wrapper" {} ''
+  nixGLWrap = pkg: pkgs.runCommand "${pkg.name}-nixgl-wrapper" {inherit (pkg) version meta;} ''
     mkdir $out
     ln -s ${pkg}/* $out
     rm $out/bin
@@ -67,6 +67,7 @@ in
     fd
     ffmpeg
     fzf
+    gdb
     gitFull
     htop
     hyperfine
