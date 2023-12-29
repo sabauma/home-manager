@@ -3,17 +3,25 @@
 let
   # Wrap commands with nixGL to get GPU acceleration
   nixGL = import <nixgl> {};
-  nixGLWrap = pkg: pkgs.runCommand "${pkg.name}-nixgl-wrapper" {} ''
-    mkdir $out
-    ln -s ${pkg}/* $out
-    rm $out/bin
-    mkdir $out/bin
-    for bin in ${pkg}/bin/*; do
-      wrapped_bin=$out/bin/$(basename $bin)
-      echo "exec ${lib.getExe nixGL.auto.nixGLDefault} $bin \$@" > $wrapped_bin
-      chmod +x $wrapped_bin
-    done
-  '';
+  nixGLWrap = pkg:
+    let runGL = lib.getExe' nixGL.auto.nixGLDefault "nixGL";
+    in
+      pkgs.runCommand "${pkg.name}-nixgl-wrapper"
+      {
+        inherit (pkg) version;
+        meta.mainProgram = pkg.meta.mainProgram or (lib.getName pkg);
+      }
+      ''
+      mkdir $out
+      ln -s ${pkg}/* $out
+      rm $out/bin
+      mkdir $out/bin
+      for bin in ${pkg}/bin/*; do
+        wrapped_bin=$out/bin/$(basename $bin)
+        echo "exec ${runGL} $bin \$@" > $wrapped_bin
+        chmod +x $wrapped_bin
+      done
+      '';
 in
 {
 
