@@ -5,12 +5,11 @@ let
   nixGL = import <nixgl> {};
   nixGLWrap = pkg:
     let runGL = lib.getExe' nixGL.auto.nixGLDefault "nixGL";
-    in
-      pkgs.runCommand "${pkg.name}-nixgl-wrapper"
-      {
-        inherit (pkg) version;
-        meta.mainProgram = pkg.meta.mainProgram or (lib.getName pkg);
-      }
+    in pkgs.runCommand "${pkg.name}-nixgl-wrapper"
+       {
+         inherit (pkg) version;
+         meta.mainProgram = pkg.meta.mainProgram or (lib.getName pkg);
+       }
       ''
       mkdir $out
       ln -s ${pkg}/* $out
@@ -278,6 +277,7 @@ in
       keyMode = "vi";
       mouse = true;
       terminal = "xterm-256color";
+      shell = "${pkgs.fish}/bin/fish";
 
       plugins = with pkgs.tmuxPlugins; [
         gruvbox
@@ -439,6 +439,7 @@ in
 
   services.picom = {
     enable = true;
+    package = (nixGLWrap pkgs.picom);
     backend = "glx";
     fade = false;
   };
