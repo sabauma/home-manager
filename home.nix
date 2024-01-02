@@ -270,14 +270,16 @@ in
       enable = true;
 
       aggressiveResize = true;
-      customPaneNavigationAndResize = true;
       baseIndex = 1;
+      customPaneNavigationAndResize = true;
       escapeTime = 0;
       historyLimit = 50000;
       keyMode = "vi";
       mouse = true;
-      terminal = "xterm-256color";
       shell = "${pkgs.fish}/bin/fish";
+      terminal = "tmux-256color";
+
+      # secure socket breaks session restart
       secureSocket = false;
 
       plugins = with pkgs.tmuxPlugins; [
@@ -287,6 +289,9 @@ in
       ];
 
       extraConfig = ''
+      # Enable true color support
+      set -as terminal-overrides ",alacritty*:Tc"
+
       bind '"' split-window -c "#{pane_current_path}"
       bind % split-window -h -c "#{pane_current_path}"
 
@@ -435,6 +440,8 @@ in
           cyan    = "0x8ec07c";
           white   = "0xebdbb2";
         };
+
+        shell.program = "${pkgs.fish}/bin/fish";
       };
     };
   };
