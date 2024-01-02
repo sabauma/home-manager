@@ -350,6 +350,7 @@
         nvim-cmp
 
         # LSP
+        dressing-nvim
         nvim-lspconfig
         lspkind-nvim
 
