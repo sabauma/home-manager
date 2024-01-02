@@ -280,6 +280,7 @@ in
       keyMode = "vi";
       mouse = true;
       terminal = "xterm-256color";
+      shell = "${pkgs.fish}/bin/fish";
 
       plugins = with pkgs.tmuxPlugins; [
         gruvbox
