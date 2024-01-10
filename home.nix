@@ -4,7 +4,7 @@ let
   # Wrap commands with nixGL to get GPU acceleration
   nixGL = import <nixgl> {};
   nixGLWrap = pkg:
-    let runGL = lib.getExe' nixGL.auto.nixGLDefault "nixGL";
+    let runGL = lib.getExe' nixGL.nixGLIntel "nixGLIntel";
     in pkgs.runCommand "${pkg.name}-nixgl-wrapper"
        {
          inherit (pkg) version;
