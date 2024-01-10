@@ -1,26 +1,28 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, nixgl, ... }:
 
 let
   # Wrap commands with nixGL to get GPU acceleration
   nixGL = import <nixgl> {};
   nixGLWrap = pkg:
-    let runGL = lib.getExe' nixGL.nixGLIntel "nixGLIntel";
-    in pkgs.runCommand "${pkg.name}-nixgl-wrapper"
-       {
-         inherit (pkg) version;
-         meta.mainProgram = pkg.meta.mainProgram or (lib.getName pkg);
-       }
-      ''
-      mkdir $out
-      ln -s ${pkg}/* $out
-      rm $out/bin
-      mkdir $out/bin
-      for bin in ${pkg}/bin/*; do
-        wrapped_bin=$out/bin/$(basename $bin)
-        echo "exec ${runGL} $bin \$@" > $wrapped_bin
-        chmod +x $wrapped_bin
-      done
-      '';
+  let
+    bins = "${pkg}/bin";
+  in
+  pkgs.buildEnv {
+    name = "nixGL-${pkg.name}";
+    meta = pkg.meta;
+    passthru = {
+      inherit (pkg) version;
+    };
+    paths =
+      [ pkg ] ++
+      (map
+        (bin: pkgs.hiPrio (
+          pkgs.writeShellScriptBin bin ''
+            exec -a "$0" "${nixGL.nixGLIntel}/bin/nixGLIntel" "${bins}/${bin}" "$@"
+          ''
+        ))
+        (builtins.attrNames (builtins.readDir bins)));
+  };
 in
 {
 
