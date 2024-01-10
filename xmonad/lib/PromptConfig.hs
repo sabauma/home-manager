@@ -34,7 +34,7 @@ myPromptConfig = def { bgColor         = backgroundColor
                      , bgHLight        = Colors.darkBlue
                      , fgHLight        = backgroundColor
                      , alwaysHighlight = False
-                     , font            = myFont 16
+                     , font            = myFont 12
                      , height          = 36
                      , sorter          = fuzzySort
                      , searchPredicate = fuzzyMatch }

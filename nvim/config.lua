@@ -126,17 +126,17 @@ local lspkind = require('lspkind')
 cmp.setup {
   snippet = { },
 
-  window = {
-    completion = cmp.config.window.bordered({
-      col_offset = -3,
-      side_padding = 0,
-    }),
+  -- window = {
+  --   completion = cmp.config.window.bordered({
+  --     col_offset = -3,
+  --     side_padding = 0,
+  --   }),
 
-    documentation = cmp.config.window.bordered({
-      col_offset = -3,
-      side_padding = 0,
-    }),
-  },
+  --   documentation = cmp.config.window.bordered({
+  --     col_offset = -3,
+  --     side_padding = 0,
+  --   }),
+  -- },
 
   formatting = {
     fields = { "kind", "abbr", "menu" },
