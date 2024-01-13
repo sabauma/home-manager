@@ -354,11 +354,12 @@ in
         nvim-notify
 
         # nvim-cmp
-        nvim-cmp
         cmp-buffer
         cmp-cmdline
         cmp-nvim-lsp
+        cmp-nvim-lsp-signature-help
         cmp-path
+        nvim-cmp
 
         # LSP
         dressing-nvim
