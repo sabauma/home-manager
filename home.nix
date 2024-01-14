@@ -134,56 +134,6 @@
     # Link in the fonts directory with personal fonts
     ".fonts/".source = ./fonts;
     ".local/share/fonts".source = ./fonts;
-
-    "Pictures/wallpapers/".source = ./wallpapers;
-
-    ".config/monitors.xml".text = ''
-    <monitors version="2">
-    <configuration>
-      <logicalmonitor>
-        <x>0</x>
-        <y>0</y>
-        <scale>1</scale>
-        <transform>
-          <rotation>left</rotation>
-          <flipped>no</flipped>
-        </transform>
-        <monitor>
-          <monitorspec>
-            <connector>HDMI-1</connector>
-            <vendor>DEL</vendor>
-            <product>DELL P2415Q</product>
-            <serial>4NVYD4BK03RL</serial>
-          </monitorspec>
-          <mode>
-            <width>3840</width>
-            <height>2160</height>
-            <rate>29.981</rate>
-          </mode>
-        </monitor>
-      </logicalmonitor>
-      <logicalmonitor>
-        <x>2160</x>
-        <y>790</y>
-        <scale>1</scale>
-        <primary>yes</primary>
-        <monitor>
-          <monitorspec>
-            <connector>DP-3</connector>
-            <vendor>DEL</vendor>
-            <product>DELL U2720Q</product>
-            <serial>4ZZSTS2</serial>
-          </monitorspec>
-          <mode>
-            <width>3840</width>
-            <height>2160</height>
-            <rate>59.997</rate>
-          </mode>
-        </monitor>
-      </logicalmonitor>
-    </configuration>
-    </monitors>
-    '';
   };
 
   fonts.fontconfig.enable = true;
@@ -497,7 +447,14 @@
     fade = false;
   };
 
-  xsession.enable = true;
+  xsession = {
+    enable = true;
+
+    initExtra = ''
+    ${pkgs.feh}/bin/feh --bg-fill ${./wallpapers/occ384clcjg51.jpg}
+    '';
+  };
+
   xsession.windowManager.xmonad = {
     enable = true;
     enableContribAndExtras = true;
