@@ -1,9 +1,9 @@
 Config {
-  font = "Berkeley Mono Regular 14",
-  additionalFonts = ["Symbols Nerd Font Mono 14", "Fira Mono 14"],
+  font = "Berkeley Mono Regular 18",
+  additionalFonts = ["Symbols Nerd Font Mono 18", "Fira Mono 18"],
   bgColor = "#1d2021",
   fgColor = "#a89984",
-  position = TopH 25,
+  position = TopH 30,
   lowerOnStart = True,
   commands = [
       Run Cpu [
