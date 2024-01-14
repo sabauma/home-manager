@@ -40,6 +40,10 @@ in
   # Allow unfree software to be installed
   nixpkgs.config.allowUnfree = true;
 
+  home.sessionVariables = {
+    GTK_THEME = "Adwaita:dark";
+  };
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
@@ -114,8 +118,9 @@ in
   ];
 
   home.pointerCursor = {
-    package = pkgs.vanilla-dmz;
-    name = "Vanilla-DMZ";
+    name = "Adwaita";
+    package = pkgs.gnome.adwaita-icon-theme;
+    size = 12;
   };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -140,6 +145,54 @@ in
     ".local/share/fonts".source = ./fonts;
 
     "Pictures/wallpapers/".source = ./wallpapers;
+
+    ".config/monitors.xml".text = ''
+    <monitors version="2">
+    <configuration>
+      <logicalmonitor>
+        <x>0</x>
+        <y>0</y>
+        <scale>1</scale>
+        <transform>
+          <rotation>left</rotation>
+          <flipped>no</flipped>
+        </transform>
+        <monitor>
+          <monitorspec>
+            <connector>HDMI-1</connector>
+            <vendor>DEL</vendor>
+            <product>DELL P2415Q</product>
+            <serial>4NVYD4BK03RL</serial>
+          </monitorspec>
+          <mode>
+            <width>3840</width>
+            <height>2160</height>
+            <rate>29.981</rate>
+          </mode>
+        </monitor>
+      </logicalmonitor>
+      <logicalmonitor>
+        <x>2160</x>
+        <y>790</y>
+        <scale>1</scale>
+        <primary>yes</primary>
+        <monitor>
+          <monitorspec>
+            <connector>DP-3</connector>
+            <vendor>DEL</vendor>
+            <product>DELL U2720Q</product>
+            <serial>4ZZSTS2</serial>
+          </monitorspec>
+          <mode>
+            <width>3840</width>
+            <height>2160</height>
+            <rate>59.997</rate>
+          </mode>
+        </monitor>
+      </logicalmonitor>
+    </configuration>
+    </monitors>
+    '';
   };
 
   fonts.fontconfig.enable = true;
@@ -441,6 +494,8 @@ in
           cyan    = "0x8ec07c";
           white   = "0xebdbb2";
         };
+
+        shell = "fish";
       };
     };
   };
@@ -479,6 +534,12 @@ in
       "PerWorkspaceDirs.hs" = ./xmonad/lib/PerWorkspaceDirs.hs;
       "PromptConfig.hs" = ./xmonad/lib/PromptConfig.hs;
     };
+  };
+
+  dconf = {
+    enable = true;
+    settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
+    settings."org/gnome/desktop/interface".gtk-theme = "Adwaita";
   };
 
   targets.genericLinux.enable = true;
