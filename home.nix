@@ -76,6 +76,7 @@
     starship
     tmux
     vim_configurable
+    xclip
     xmobar
     yt-dlp
 
@@ -400,7 +401,7 @@
           };
         };
 
-        draw_bold_text_with_bright_colors = false;
+        colors.draw_bold_text_with_bright_colors = false;
 
         colors.primary = {
           background = "0x1d2021";
