@@ -137,7 +137,7 @@ in
     '';
 
     # Link in the fonts directory with personal fonts
-    ".fonts/".source = ./fonts;
+    ".local/share/fonts".source = ./fonts;
 
     "Pictures/wallpapers/".source = ./wallpapers;
   };
@@ -449,6 +449,14 @@ in
     enable = true;
     backend = "glx";
     fade = false;
+  };
+
+  xsession = {
+    enable = true;
+
+    initExtra = ''
+    ${pkgs.feh}/bin/feh --bg-fill ${./wallpapers/occ384clcjg51.jpg}
+    '';
   };
 
   xsession.windowManager.xmonad = {
