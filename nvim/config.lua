@@ -127,13 +127,13 @@ cmp.setup {
   snippet = { },
 
   window = {
-    completion = cmp.config.window.bordered({
-      border = "shadow"
-    }),
+    -- completion = cmp.config.window.bordered({
+    --   border = "shadow"
+    -- }),
 
-    documentation = cmp.config.window.bordered({
-      border = "shadow"
-    }),
+    -- documentation = cmp.config.window.bordered({
+    --   border = "shadow"
+    -- }),
   },
 
   formatting = {
