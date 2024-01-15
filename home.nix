@@ -496,6 +496,12 @@ in
         shell.program = "${pkgs.fish}/bin/fish";
       };
     };
+
+    direnv = {
+      enable = true;
+      enableBashIntegration = true;
+      nix-direnv.enable = true;
+    };
   };
 
   services.picom = {
