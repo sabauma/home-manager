@@ -61,6 +61,7 @@
     bottom
     broot
     cachix
+    cmake
     coreutils
     datamash
     eza
@@ -73,6 +74,7 @@
     mosh
     neovim-nightly
     newsboat
+    ninja
     openconnect
     pyright
     ranger
@@ -388,7 +390,7 @@
       package = pkgs.alacritty;
       settings = {
         font = {
-          size = 8;
+          size = 10;
           normal = {
             family = "Development";
             style = "Regular";
@@ -445,6 +447,7 @@
     enable = true;
     backend = "glx";
     fade = false;
+    vSync = true;
   };
 
   xsession = {
