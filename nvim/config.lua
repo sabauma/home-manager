@@ -126,21 +126,11 @@ local lspkind = require('lspkind')
 cmp.setup {
   snippet = { },
 
-  window = {
-    completion = cmp.config.window.bordered(),
-    documentation = cmp.config.window.bordered(),
-  },
+  window = { },
 
   formatting = {
     fields = { "kind", "abbr", "menu" },
-    format = function(entry, vim_item)
-      local kind = lspkind.cmp_format({ mode = "symbol_text", maxwidth = 65 })(entry, vim_item)
-      local strings = vim.split(kind.kind, "%s", { trimempty = true })
-      kind.kind = " " .. (strings[1] or "") .. " "
-      kind.menu = "    (" .. (strings[2] or "") .. ")"
-
-      return kind
-    end,
+    format = lspkind.cmp_format({ mode = "symbol", maxwidth = 65 }),
   },
 
   mapping = cmp.mapping.preset.insert({
