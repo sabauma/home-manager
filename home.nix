@@ -42,6 +42,8 @@ in
 
   home.sessionVariables = {
     GTK_THEME = "Adwaita:dark";
+
+    XDG_CURRENT_DESKTOP = "ubuntu:GNOME";
   };
 
   # The home.packages option allows you to install Nix packages into your
@@ -232,7 +234,7 @@ in
     rofi = {
       enable = true;
       theme = "gruvbox-dark-soft";
-      font = "Berkeley Mono 12";
+      font = "Berkeley Mono 14";
       extraConfig = {
         sidebar-mode = true;
         sorting-method  = "fzf";
@@ -497,6 +499,12 @@ in
 
         shell = "fish";
       };
+    };
+
+    direnv = {
+      enable = true;
+      enableBashIntegration = true;
+      nix-direnv.enable = true;
     };
   };
 
