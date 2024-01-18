@@ -108,16 +108,17 @@ in
 
     # Graphical programs
     alacritty
+    calibre
     chromium
     discord
     latest.firefox-beta-bin
     kitty
+    obsidian-patched
     picom
+    rofi
+    steam
     vlc
     wezterm
-    calibre
-    steam
-    rofi
     yazi
     zathura
     zotero
