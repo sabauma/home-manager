@@ -234,7 +234,7 @@ in
     rofi = {
       enable = true;
       theme = "gruvbox-dark-soft";
-      font = "Berkeley Mono 14";
+      font = "Berkeley Mono 12";
       extraConfig = {
         sidebar-mode = true;
         sorting-method  = "fzf";
