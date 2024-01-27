@@ -43,6 +43,8 @@ in
   nixpkgs.config.allowUnfree = true;
 
   home.sessionVariables = {
+    BROWSER = "firefox-beta";
+
     GTK_THEME = "Adwaita:dark";
 
     XDG_CURRENT_DESKTOP = "ubuntu:GNOME";
@@ -78,6 +80,7 @@ in
     cmake
     coreutils
     datamash
+    du-dust
     eza
     fd
     ffmpeg
@@ -226,7 +229,7 @@ in
           white   = "0xebdbb2";
         };
 
-        shell = "fish";
+        shell = "${pkgs.fish}/bin/fish";
       };
     };
 
@@ -315,6 +318,8 @@ in
         vim-repeat
         vim-surround
         vim-vinegar
+
+        nvim-bqf
 
         # Treesitter
         nvim-treesitter.withAllGrammars
@@ -479,6 +484,8 @@ in
     enable = true;
 
     initExtra = ''
+    nvidia-settings --assign CurrentMetaMode="DP-0: nvidia-auto-select +2160+840, HDMI-0: nvidia-auto-select +0+0 {rotation=left}"
+
     ${pkgs.feh}/bin/feh --bg-fill ${./wallpapers/occ384clcjg51.jpg}
     '';
   };
