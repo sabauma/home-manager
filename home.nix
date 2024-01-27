@@ -1,14 +1,12 @@
 { config, pkgs, lib, ... }:
 
 let
-  obsidian-patched = lib.throwIf (lib.versionOlder "1.4.16" pkgs.obsidian.version) "Obsidian no longer requires EOL Electron" (
-    pkgs.obsidian.override {
+  obsidian-patched = pkgs.obsidian.override {
       electron = pkgs.electron_25.overrideAttrs (_: {
         preFixup = "patchelf --add-needed ${pkgs.libglvnd}/lib/libEGL.so.1 $out/bin/electron"; # NixOS/nixpkgs#272912
         meta.knownVulnerabilities = [ ]; # NixOS/nixpkgs#273611
       });
-    }
-  );
+    };
 
 in
 
@@ -200,7 +198,7 @@ in
           };
         };
 
-        draw_bold_text_with_bright_colors = false;
+        colors.draw_bold_text_with_bright_colors = false;
 
         colors.primary = {
           background = "0x1d2021";
@@ -476,9 +474,8 @@ in
     vSync = true;
   };
 
-  services.ssh-agent = {
-    enable = true;
-  };
+  services.notify-osd.enable = true;
+  services.ssh-agent.enable = true;
 
   xsession = {
     enable = true;
