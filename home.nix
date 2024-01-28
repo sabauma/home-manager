@@ -23,6 +23,13 @@ let
         ))
         (builtins.attrNames (builtins.readDir bins)));
   };
+
+  obsidian-patched = (pkgs.obsidian.override {
+    electron = pkgs.electron_25.overrideAttrs (_: {
+      preFixup = "patchelf --add-needed ${pkgs.libglvnd}/lib/libEGL.so.1 $out/bin/electron"; # NixOS/nixpkgs#272912
+      meta.knownVulnerabilities = [ ]; # NixOS/nixpkgs#273611
+    });
+  });
 in
 {
 
@@ -104,8 +111,9 @@ in
     # Graphical programs
     (nixGLWrap alacritty)
     (nixGLWrap chromium)
-    (nixGLWrap latest.firefox-beta-bin)
     (nixGLWrap kitty)
+    (nixGLWrap latest.firefox-beta-bin)
+    (nixGLWrap obsidian-patched)
     (nixGLWrap picom)
     (nixGLWrap vlc)
     (nixGLWrap wezterm)
@@ -510,6 +518,11 @@ in
     backend = "glx";
     fade = false;
   };
+
+  services.ssh-agent = {
+    enable = true;
+  };
+
 
   xsession.windowManager.xmonad = {
     enable = true;
