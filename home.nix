@@ -19,8 +19,6 @@ in
     (import (builtins.fetchTarball {
       url = https://github.com/mozilla/nixpkgs-mozilla/archive/master.tar.gz;
     }))
-
-    ((builtins.getFlake "github:sabauma/mlir.nix").overlay)
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -62,7 +60,7 @@ in
      '')
 
     # From github:sabauma/mlir-nix
-    mlir
+    (builtins.getFlake "github:sabauma/mlir.nix").packages.${pkgs.system}.mlir
 
     nerdfonts
 
