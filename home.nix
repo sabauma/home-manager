@@ -15,10 +15,6 @@ in
     (import (builtins.fetchTarball {
       url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
     }))
-
-    (import (builtins.fetchTarball {
-      url = https://github.com/mozilla/nixpkgs-mozilla/archive/master.tar.gz;
-    }))
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -99,6 +95,9 @@ in
     xmobar
     yt-dlp
 
+    # Gnome tools
+    gnome.gnome-screenshot
+
     ccache
     clang-tools_17
 
@@ -110,7 +109,7 @@ in
     calibre
     chromium
     discord
-    latest.firefox-beta-bin
+    firefox-beta
     kitty
     obsidian-patched
     picom
