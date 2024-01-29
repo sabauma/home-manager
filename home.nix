@@ -18,7 +18,7 @@ let
       (map
         (bin: pkgs.hiPrio (
           pkgs.writeShellScriptBin bin ''
-            exec -a "$0" "${nixGL.nixGLIntel}/bin/nixGLIntel" "${bins}/${bin}" "$@"
+            exec -a "$0" "${nixGL.auto.nixGLNvidia}/bin/nixGL" "${bins}/${bin}" "$@"
           ''
         ))
         (builtins.attrNames (builtins.readDir bins)));
