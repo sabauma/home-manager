@@ -18,7 +18,7 @@ let
       (map
         (bin: pkgs.hiPrio (
           pkgs.writeShellScriptBin bin ''
-            exec -a "$0" "${nixGL.auto.nixGLNvidia}/bin/nixGL" "${bins}/${bin}" "$@"
+            exec -a "$0" "${nixGL.auto.nixGLDefault}/bin/nixGL" "${bins}/${bin}" "$@"
           ''
         ))
         (builtins.attrNames (builtins.readDir bins)));
@@ -36,10 +36,6 @@ in
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
       url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-    }))
-
-    (import (builtins.fetchTarball {
-      url = https://github.com/mozilla/nixpkgs-mozilla/archive/master.tar.gz;
     }))
   ];
 
@@ -100,6 +96,9 @@ in
     yt-dlp
     yazi
 
+    # Gnome tools
+    gnome.gnome-screenshot
+
     ccache
     clang-tools_17
 
@@ -110,7 +109,7 @@ in
     (nixGLWrap alacritty)
     (nixGLWrap chromium)
     (nixGLWrap kitty)
-    (nixGLWrap latest.firefox-beta-bin)
+    (nixGLWrap firefox-beta)
     (nixGLWrap obsidian-patched)
     (nixGLWrap picom)
     (nixGLWrap vlc)
