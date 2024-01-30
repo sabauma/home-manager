@@ -62,6 +62,8 @@ in
     # From github:sabauma/mlir-nix
     (builtins.getFlake "github:sabauma/mlir.nix").packages.${pkgs.system}.mlir
 
+    (pkgs.callPackage ./pkgs/netron.nix { inherit pkgs; })
+
     nerdfonts
 
     # Useful command line tools
@@ -519,7 +521,6 @@ in
   services.ssh-agent = {
     enable = true;
   };
-
 
   xsession.windowManager.xmonad = {
     enable = true;
