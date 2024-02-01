@@ -149,9 +149,6 @@ in
 
     # Xsession configuration
     ".xsessionrc".source = ./xsessionrc;
-
-    # Wallpapers
-    "Pictures/wallpapers/".source = ./wallpapers;
   };
 
   fonts.fontconfig.enable = true;
