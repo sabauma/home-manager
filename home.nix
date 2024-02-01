@@ -74,6 +74,7 @@ in
     coreutils
     datamash
     delta
+    du-dust
     eza
     fd
     ffmpeg
