@@ -71,7 +71,6 @@ in
     bitwarden-cli
     bottom
     broot
-    cachix
     coreutils
     datamash
     delta
