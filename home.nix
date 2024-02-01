@@ -407,6 +407,8 @@ in
         gruvbox-material
         everforest
 
+        nvim-bqf
+
         # Neovim-notify
         nvim-notify
 
@@ -520,6 +522,15 @@ in
 
   services.ssh-agent = {
     enable = true;
+  };
+
+
+  xsession = {
+    enable = true;
+
+    initExtra = ''
+    ${pkgs.feh}/bin/feh --bg-fill ${./wallpapers/occ384clcjg51.jpg}
+    '';
   };
 
   xsession.windowManager.xmonad = {
