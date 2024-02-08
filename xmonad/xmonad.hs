@@ -208,7 +208,7 @@ myKeys conf@XConfig {XMonad.modMask = modm} = M.fromList $
     -- Set working directory for a workspace
     , ((modm      , xK_d) , changeDirPrompt)
 
-    , ((mod4Mask  .|. shiftMask , xK_z  ) , spawn "betterlockscreen --lock" )
+    , ((mod4Mask  .|. shiftMask , xK_z  ) , spawn "gnome-screensaver-command --lock" )
     , ((mod4Mask                , xK_F1 ) , spawn "firefox"                          )
     , ((mod4Mask                , xK_F3 ) , spawnInCurDir "nautilus --no-desktop ."  )
     ]

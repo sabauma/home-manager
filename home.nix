@@ -394,6 +394,7 @@ in
         vim-indent-object
         vim-obsession
         vim-repeat
+        vim-colors-solarized
         vim-surround
         vim-vinegar
 
@@ -520,7 +521,6 @@ in
   services.ssh-agent = {
     enable = true;
   };
-
 
   xsession = {
     enable = true;
