@@ -62,7 +62,7 @@ in
     # From github:sabauma/mlir-nix
     (builtins.getFlake "github:sabauma/mlir.nix").packages.${pkgs.system}.mlir
 
-    (pkgs.callPackage ./pkgs/netron.nix { inherit pkgs; })
+    # (pkgs.callPackage ./pkgs/netron.nix { inherit pkgs; })
     (pkgs.callPackage ./pkgs/logline.nix { inherit pkgs; })
 
     nerdfonts
@@ -179,81 +179,6 @@ in
       };
     };
 
-    eza = {
-      enable = true;
-      icons = true;
-      extraOptions = ["--group-directories-first"];
-      enableAliases = true;
-    };
-
-    rofi = {
-      enable = true;
-      theme = "gruvbox-dark-soft";
-      font = "Berkeley Mono 16";
-      extraConfig = {
-        sidebar-mode = true;
-        sorting-method  = "fzf";
-        terminal = "alacritty";
-      };
-    };
-
-    fzf = {
-      enable = true;
-      enableFishIntegration = true;
-      enableBashIntegration = true;
-
-      defaultOptions = [ ];
-    };
-
-    starship = {
-      enable = true;
-      settings = {
-        # Don't print a new line at the start of the prompt
-        add_newline = false;
-
-        # Wait 10 milliseconds for starship to check files under the current directory.
-        scan_timeout = 10;
-        command_timeout = 500;
-
-        username = {
-          style_user = "blue";
-          style_root = "bold black";
-          format = "[$user]($style)";
-          disabled = false;
-          show_always = true;
-        };
-
-        time = {
-          disabled = false;
-          style = "cyan";
-          format = "[\\[ $time \\]]($style) ";
-          time_format = "%T";
-          utc_time_offset = "local";
-        };
-
-        hostname = {
-          ssh_only = false;
-          format =  "[@](dimmed red)[$hostname](bold green) ";
-          trim_at = ".companyname.com";
-          disabled = false;
-        };
-
-        directory = {
-          truncation_length = 8;
-        };
-
-        # Disable annoying features
-        c = { disabled = true; };
-        cmd_duration = { disabled = true; };
-        conda = { disabled = true; };
-        haskell = { disabled = true; };
-        julia = { disabled = true; };
-        nodejs = { disabled = true; };
-        python = { disabled = true; };
-        vlang = { disabled = true; };
-      };
-    };
-
     bottom = {
       enable = true;
       settings = {
@@ -273,53 +198,6 @@ in
           { invocation = "git_add"; shortcut = "ga"; key = "ctrl-a"; leave_broot = false; execution = "git add {file}"; apply_to = "file"; }
         ];
       };
-    };
-
-    tmux = {
-      enable = true;
-
-      aggressiveResize = true;
-      baseIndex = 1;
-      customPaneNavigationAndResize = true;
-      escapeTime = 0;
-      historyLimit = 50000;
-      keyMode = "vi";
-      mouse = true;
-      shell = "${pkgs.fish}/bin/fish";
-      terminal = "tmux-256color";
-
-      # secure socket breaks session restart
-      secureSocket = false;
-
-      plugins = with pkgs.tmuxPlugins; [
-        gruvbox
-        prefix-highlight
-        tmux-fzf
-      ];
-
-      extraConfig = ''
-      # Enable true color support
-      set -as terminal-overrides ",*:Tc"
-
-      bind '"' split-window -c "#{pane_current_path}"
-      bind % split-window -h -c "#{pane_current_path}"
-
-      # some nice pane navigation settings
-      bind-key h select-pane -L
-      bind-key j select-pane -D
-      bind-key k select-pane -U
-      bind-key l select-pane -R
-
-      bind-key -n C-h select-pane -L
-      bind-key -n C-j select-pane -D
-      bind-key -n C-k select-pane -U
-      bind-key -n C-l select-pane -R
-
-      # present a menu of URLs to open from the visible pane. sweet.
-      bind-key u capture-pane \;\
-          save-buffer /tmp/tmux-buffer \;\
-              split-window -l 10 "urlview /tmp/tmux-buffer"
-      '';
     };
 
     fish = {
@@ -443,11 +321,6 @@ in
       ];
     };
 
-    xmobar = {
-      enable = true;
-      extraConfig = builtins.readFile ./xmobarrc;
-    };
-
     alacritty = {
       enable = true;
       package = (nixGLWrap pkgs.alacritty);
@@ -518,94 +391,12 @@ in
       enableAliases = true;
     };
 
-    fish = {
-      enable = true;
-      plugins = [
-        { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
-        { name = "z"; src = pkgs.fishPlugins.z.src; }
-      ];
-
-      functions = {
-        fish_user_key_bindings = ''
-          for mode in insert default visual
-              bind -M $mode \cf forward-char
-          end
-        '';
-      };
-    };
-
     fzf = {
       enable = true;
       enableFishIntegration = true;
       enableBashIntegration = true;
 
       defaultOptions = [ ];
-    };
-
-    neovim = {
-      enable = true;
-      package = pkgs.neovim-nightly;
-
-      extraConfig = builtins.readFile ./nvim/init.vim;
-      extraLuaConfig = builtins.readFile ./nvim/config.lua;
-
-      # Manage treesitter parsers through nix to avoid issues with libc
-      plugins = with pkgs.vimPlugins; [
-        # Vim Plugins
-        a-vim
-        nerdcommenter
-        tabular
-        undotree
-        vim-fugitive
-        vim-indent-object
-        vim-obsession
-        vim-repeat
-        vim-surround
-        vim-vinegar
-
-        nvim-bqf
-
-        # Treesitter
-        nvim-treesitter.withAllGrammars
-
-        # Colorschemes
-        gruvbox-material
-        everforest
-
-        # Neovim-notify
-        nvim-notify
-
-        # nvim-cmp
-        cmp-buffer
-        cmp-cmdline
-        cmp-nvim-lsp
-        cmp-nvim-lsp-signature-help
-        cmp-path
-        nvim-cmp
-
-        # LSP
-        dressing-nvim
-        nvim-lspconfig
-        lspkind-nvim
-
-        # Lualine
-        lualine-nvim
-
-        # Telescope
-        telescope-nvim
-        telescope-fzf-native-nvim
-
-        # Neorg
-        neorg
-        neorg-telescope
-        zen-mode-nvim
-
-        # Nice popup messages
-        popup-nvim
-
-        # Oil file manager
-        oil-nvim
-      ];
     };
 
     rofi = {
