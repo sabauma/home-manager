@@ -361,7 +361,7 @@ in
 
     rofi = {
       enable = true;
-      theme = "gruvbox-dark-soft";
+      theme = "gruvbox-dark-hard";
       font = "Berkeley Mono 14";
       extraConfig = {
         sidebar-mode = true;
@@ -471,6 +471,7 @@ in
     vSync = true;
   };
 
+  services.flameshot.enable = true;
   services.notify-osd.enable = true;
   services.ssh-agent.enable = true;
 
