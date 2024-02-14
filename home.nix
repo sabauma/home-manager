@@ -510,6 +510,207 @@ in
       enableBashIntegration = true;
       nix-direnv.enable = true;
     };
+
+    eza = {
+      enable = true;
+      icons = true;
+      extraOptions = ["--group-directories-first"];
+      enableAliases = true;
+    };
+
+    fish = {
+      enable = true;
+      plugins = [
+        { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
+        { name = "z"; src = pkgs.fishPlugins.z.src; }
+      ];
+
+      functions = {
+        fish_user_key_bindings = ''
+          for mode in insert default visual
+              bind -M $mode \cf forward-char
+          end
+        '';
+      };
+    };
+
+    fzf = {
+      enable = true;
+      enableFishIntegration = true;
+      enableBashIntegration = true;
+
+      defaultOptions = [ ];
+    };
+
+    neovim = {
+      enable = true;
+      package = pkgs.neovim-nightly;
+
+      extraConfig = builtins.readFile ./nvim/init.vim;
+      extraLuaConfig = builtins.readFile ./nvim/config.lua;
+
+      # Manage treesitter parsers through nix to avoid issues with libc
+      plugins = with pkgs.vimPlugins; [
+        # Vim Plugins
+        a-vim
+        nerdcommenter
+        tabular
+        undotree
+        vim-fugitive
+        vim-indent-object
+        vim-obsession
+        vim-repeat
+        vim-surround
+        vim-vinegar
+
+        nvim-bqf
+
+        # Treesitter
+        nvim-treesitter.withAllGrammars
+
+        # Colorschemes
+        gruvbox-material
+        everforest
+
+        # Neovim-notify
+        nvim-notify
+
+        # nvim-cmp
+        cmp-buffer
+        cmp-cmdline
+        cmp-nvim-lsp
+        cmp-nvim-lsp-signature-help
+        cmp-path
+        nvim-cmp
+
+        # LSP
+        dressing-nvim
+        nvim-lspconfig
+        lspkind-nvim
+
+        # Lualine
+        lualine-nvim
+
+        # Telescope
+        telescope-nvim
+        telescope-fzf-native-nvim
+
+        # Neorg
+        neorg
+        neorg-telescope
+        zen-mode-nvim
+
+        # Nice popup messages
+        popup-nvim
+
+        # Oil file manager
+        oil-nvim
+      ];
+    };
+
+    rofi = {
+      enable = true;
+      theme = "gruvbox-dark-hard";
+      font = "Berkeley Mono 14";
+      extraConfig = {
+        sidebar-mode = true;
+        sorting-method  = "fzf";
+        terminal = "alacritty";
+      };
+    };
+
+    starship = {
+      enable = true;
+      settings = {
+        # Don't print a new line at the start of the prompt
+        add_newline = false;
+
+        # Wait 10 milliseconds for starship to check files under the current directory.
+        scan_timeout = 10;
+        command_timeout = 500;
+
+        username = {
+          style_user = "blue";
+          style_root = "bold black";
+          format = "[$user]($style)";
+          disabled = false;
+          show_always = true;
+        };
+
+        time = {
+          disabled = false;
+          style = "cyan";
+          format = "[\\[ $time \\]]($style) ";
+          time_format = "%T";
+          utc_time_offset = "local";
+        };
+
+        hostname = {
+          ssh_only = false;
+          format =  "[@](dimmed red)[$hostname](bold green) ";
+          trim_at = ".companyname.com";
+          disabled = false;
+        };
+
+        directory = {
+          truncation_length = 8;
+        };
+
+        # Disable annoying features
+        cmd_duration = { disabled = true; };
+        python = { disabled = true; };
+        julia = { disabled = true; };
+        conda = { disabled = true; };
+        vlang = { disabled = true; };
+        nodejs = { disabled = true; };
+      };
+    };
+
+    tmux = {
+      enable = true;
+
+      aggressiveResize = true;
+      customPaneNavigationAndResize = true;
+      baseIndex = 1;
+      escapeTime = 0;
+      historyLimit = 50000;
+      keyMode = "vi";
+      mouse = true;
+      terminal = "xterm-256color";
+      shell = "${pkgs.fish}/bin/fish";
+
+      plugins = with pkgs.tmuxPlugins; [
+        gruvbox
+        prefix-highlight
+        tmux-fzf
+      ];
+
+      extraConfig = ''
+      bind '"' split-window -c "#{pane_current_path}"
+      bind % split-window -h -c "#{pane_current_path}"
+
+      # some nice pane navigation settings
+      bind-key h select-pane -L
+      bind-key j select-pane -D
+      bind-key k select-pane -U
+      bind-key l select-pane -R
+
+      bind-key -n C-h select-pane -L
+      bind-key -n C-j select-pane -D
+      bind-key -n C-k select-pane -U
+      bind-key -n C-l select-pane -R
+
+      # present a menu of URLs to open from the visible pane. sweet.
+      bind-key u capture-pane \;\
+          save-buffer /tmp/tmux-buffer \;\
+              split-window -l 10 "urlview /tmp/tmux-buffer"
+      '';
+    };
+
+    xmobar = {
+      enable = true;
+      extraConfig = builtins.readFile ./xmobarrc;
+    };
   };
 
   services.picom = {
@@ -519,9 +720,9 @@ in
     fade = false;
   };
 
-  services.ssh-agent = {
-    enable = true;
-  };
+  services.flameshot.enable = true;
+  services.notify-osd.enable = true;
+  services.ssh-agent.enable = true;
 
   xsession = {
     enable = true;
