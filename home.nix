@@ -5,6 +5,8 @@
     specialArgs.neovim-nightly.overlay
   ];
 
+  imports = [ ./neovim.nix ];
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "spenser";
@@ -203,6 +205,34 @@
   };
 
   programs = {
+    bat = {
+      enable = true;
+      config = {
+        theme = "gruvbox-dark";
+      };
+    };
+
+    bottom = {
+      enable = true;
+      settings = {
+        flags = { color = "gruvbox"; };
+      };
+    };
+
+    broot = {
+      enable = true;
+      settings = {
+        verbs = [
+          { invocation = "edit"; key = "F2"; shortcut = "e"; execution = "$EDITOR {file}"; }
+          { key = "ctrl-p"; execution = ":line_up"; }
+          { key = "ctrl-n"; execution = ":line_down"; }
+          { key = "ctrl-u"; execution = ":page_up"; }
+          { key = "ctrl-d"; execution = ":page_down"; }
+          { invocation = "git_add"; shortcut = "ga"; key = "ctrl-a"; leave_broot = false; execution = "git add {file}"; apply_to = "file"; }
+        ];
+      };
+    };
+
     alacritty = {
       enable = true;
       package = pkgs.alacritty;
@@ -260,23 +290,20 @@
       };
     };
 
-    atuin = {
-      enable = true;
-    };
-
-    bat = {
-      enable = true;
-      config = {
-        theme = "gruvbox-dark";
-      };
-    };
-
     eza = {
       enable = true;
       icons = true;
       extraOptions = ["--group-directories-first"];
       enableBashIntegration = true;
       enableFishIntegration = true;
+    };
+
+    fzf = {
+      enable = true;
+      enableFishIntegration = true;
+      enableBashIntegration = true;
+
+      defaultOptions = [ ];
     };
 
     rofi = {
@@ -288,14 +315,6 @@
         sorting-method  = "fzf";
         terminal = "alacritty";
       };
-    };
-
-    fzf = {
-      enable = true;
-      enableFishIntegration = true;
-      enableBashIntegration = true;
-
-      defaultOptions = [ ];
     };
 
     starship = {
@@ -343,34 +362,6 @@
         vlang = { disabled = true; };
         nodejs = { disabled = true; };
       };
-    };
-
-    bottom = {
-      enable = true;
-      settings = {
-        flags = { color = "gruvbox"; };
-      };
-    };
-
-    broot = {
-      enable = true;
-      settings = {
-        verbs = [
-          { invocation = "edit"; key = "F2"; shortcut = "e"; execution = "$EDITOR {file}"; }
-          { key = "ctrl-p"; execution = ":line_up"; }
-          { key = "ctrl-n"; execution = ":line_down"; }
-          { key = "ctrl-u"; execution = ":page_up"; }
-          { key = "ctrl-d"; execution = ":page_down"; }
-          { invocation = "git_add"; shortcut = "ga"; key = "ctrl-a"; leave_broot = false; execution = "git add {file}"; apply_to = "file"; }
-        ];
-      };
-    };
-
-    direnv = {
-      enable = true;
-      enableBashIntegration = true;
-      enableFishIntegration = true;
-      nix-direnv.enable = true;
     };
 
     fish = {
