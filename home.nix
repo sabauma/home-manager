@@ -174,89 +174,6 @@ in
   };
 
   programs = {
-    bat = {
-      enable = true;
-      config = {
-        theme = "gruvbox-dark";
-      };
-    };
-
-    bottom = {
-      enable = true;
-      settings = {
-        flags = { color = "gruvbox"; };
-      };
-    };
-
-    broot = {
-      enable = true;
-      settings = {
-        verbs = [
-          { invocation = "edit"; key = "F2"; shortcut = "e"; execution = "$EDITOR {file}"; }
-          { key = "ctrl-p"; execution = ":line_up"; }
-          { key = "ctrl-n"; execution = ":line_down"; }
-          { key = "ctrl-u"; execution = ":page_up"; }
-          { key = "ctrl-d"; execution = ":page_down"; }
-          { invocation = "git_add"; shortcut = "ga"; key = "ctrl-a"; leave_broot = false; execution = "git add {file}"; apply_to = "file"; }
-        ];
-      };
-    };
-
-    fish = {
-      enable = true;
-      plugins = [
-        { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
-      ];
-
-      functions = {
-        bac-clone = "mw -using Bmain sbs create -c $argv[1] -bac";
-
-        change = "p4 change (changes) $argv";
-
-        changes = ''
-        p4 opened -s | grep -o '\<[0-9][0-9]*\>' | sort --unique --numeric-sort --reverse |
-        fzf --preview 'p4 describe {} | bat --color=always --pager=never --decorations=never --language=COMMIT_EDITMSG' \
-            --preview-window=70%:wrap:rounded --cycle --phony --exit-0
-        '';
-
-        mktags = ''
-        fd --extension "hpp" --extension "cpp" \
-           --extension "c" --extension "h" \
-           --extension "cc" --extension "hh" \
-        | ctags --sort=foldcase --c++-kinds=+p --fields=+iaS --extra=+q -f ./tags -L- &;
-        '';
-
-        net-sandbox = ''
-        set -l cluster $argv[1]
-        set -l tag $argv[2]
-        set -l output (mktemp)
-
-        if test "$tag" = ""
-          mw -using $cluster sbs create -c $cluster | tee "$output"
-        else
-          mw -using $cluster sbs create -c $cluster -t $tag | tee "$output"
-        end
-
-        set -l dir (grep -o '/mathworks/devel/sbs/.*$' "$output")
-        rm "$output"
-
-        cd "$dir""/matlab/src"
-        mktags
-        '';
-
-        s = "cd (sandboxes) $argv";
-
-        sandboxes = ''
-        mw -using Bmain sbs list |
-          tail -n +3 |
-          awk '{print $3};' |
-          sort |
-          fzf --multi --preview "summarize-sandbox {}" --preview-window=up:70%:wrap:rounded --tac --cycle --exit-0 |
-          awk '{print $1}'
-        '';
-      };
-    };
-
     alacritty = {
       enable = true;
       package = (nixGLWrap pkgs.alacritty);
@@ -314,6 +231,35 @@ in
       };
     };
 
+
+    bat = {
+      enable = true;
+      config = {
+        theme = "gruvbox-dark";
+      };
+    };
+
+    bottom = {
+      enable = true;
+      settings = {
+        flags = { color = "gruvbox"; };
+      };
+    };
+
+    broot = {
+      enable = true;
+      settings = {
+        verbs = [
+          { invocation = "edit"; key = "F2"; shortcut = "e"; execution = "$EDITOR {file}"; }
+          { key = "ctrl-p"; execution = ":line_up"; }
+          { key = "ctrl-n"; execution = ":line_down"; }
+          { key = "ctrl-u"; execution = ":page_up"; }
+          { key = "ctrl-d"; execution = ":page_down"; }
+          { invocation = "git_add"; shortcut = "ga"; key = "ctrl-a"; leave_broot = false; execution = "git add {file}"; apply_to = "file"; }
+        ];
+      };
+    };
+
     direnv = {
       enable = true;
       enableBashIntegration = true;
@@ -325,6 +271,61 @@ in
       icons = true;
       extraOptions = ["--group-directories-first"];
       enableAliases = true;
+    };
+
+    fish = {
+      enable = true;
+      plugins = [
+        { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
+      ];
+
+      functions = {
+        bac-clone = "mw -using Bmain sbs create -c $argv[1] -bac";
+
+        change = "p4 change (changes) $argv";
+
+        changes = ''
+        p4 opened -s | grep -o '\<[0-9][0-9]*\>' | sort --unique --numeric-sort --reverse |
+        fzf --preview 'p4 describe {} | bat --color=always --pager=never --decorations=never --language=COMMIT_EDITMSG' \
+            --preview-window=70%:wrap:rounded --cycle --phony --exit-0
+        '';
+
+        mktags = ''
+        fd --extension "hpp" --extension "cpp" \
+           --extension "c" --extension "h" \
+           --extension "cc" --extension "hh" \
+        | ctags --sort=foldcase --c++-kinds=+p --fields=+iaS --extra=+q -f ./tags -L- &;
+        '';
+
+        net-sandbox = ''
+        set -l cluster $argv[1]
+        set -l tag $argv[2]
+        set -l output (mktemp)
+
+        if test "$tag" = ""
+          mw -using $cluster sbs create -c $cluster | tee "$output"
+        else
+          mw -using $cluster sbs create -c $cluster -t $tag | tee "$output"
+        end
+
+        set -l dir (grep -o '/mathworks/devel/sbs/.*$' "$output")
+        rm "$output"
+
+        cd "$dir""/matlab/src"
+        mktags
+        '';
+
+        s = "cd (sandboxes) $argv";
+
+        sandboxes = ''
+        mw -using Bmain sbs list |
+          tail -n +3 |
+          awk '{print $3};' |
+          sort |
+          fzf --multi --preview "summarize-sandbox {}" --preview-window=up:70%:wrap:rounded --tac --cycle --exit-0 |
+          awk '{print $1}'
+        '';
+      };
     };
 
     fzf = {
@@ -463,13 +464,13 @@ in
     enable = true;
     enableContribAndExtras = true;
     extraPackages = ps: with ps; [
-      xmonad
-      xmonad-contrib
-      xmonad-extras
       hashable
       text-icu
       vector
       xmobar
+      xmonad
+      xmonad-contrib
+      xmonad-extras
     ];
 
     config = ./xmonad/xmonad.hs;
