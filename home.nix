@@ -70,7 +70,6 @@ in
     bitwarden-cli
     bottom
     broot
-    cachix
     cmake
     coreutils
     datamash
