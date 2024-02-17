@@ -59,6 +59,9 @@
       neorg-telescope
       zen-mode-nvim
 
+      # Obsidian notes
+      obsidian-nvim
+
       # Nice popup messages
       popup-nvim
 
