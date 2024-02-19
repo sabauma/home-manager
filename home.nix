@@ -1,4 +1,4 @@
-{ config, pkgs, lib, nixgl, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   # Wrap commands with nixGL to get GPU acceleration
@@ -414,6 +414,8 @@ in
       ];
 
       extraConfig = ''
+      set -as terminal-overrides ",*:Tc"
+
       bind '"' split-window -c "#{pane_current_path}"
       bind % split-window -h -c "#{pane_current_path}"
 
