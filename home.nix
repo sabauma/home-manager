@@ -44,6 +44,15 @@ in
     XDG_CURRENT_DESKTOP = "ubuntu:GNOME";
   };
 
+  xdg = {
+    enable = true;
+
+    mimeApps.enable = true;
+    mimeApps.defaultApplications = {
+      "application/pdf" = ["org.gnome.Evince.desktop"];
+    };
+  };
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
