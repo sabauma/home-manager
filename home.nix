@@ -219,6 +219,10 @@
       };
     };
 
+    atuin = {
+      enable = true;
+    };
+
     bat = {
       enable = true;
       config = {
