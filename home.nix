@@ -23,13 +23,6 @@ let
         ))
         (builtins.attrNames (builtins.readDir bins)));
   };
-
-  obsidian-patched = (pkgs.obsidian.override {
-    electron = pkgs.electron_25.overrideAttrs (_: {
-      preFixup = "patchelf --add-needed ${pkgs.libglvnd}/lib/libEGL.so.1 $out/bin/electron"; # NixOS/nixpkgs#272912
-      meta.knownVulnerabilities = [ ]; # NixOS/nixpkgs#273611
-    });
-  });
 in
 {
 
@@ -82,7 +75,7 @@ in
     fd
     ffmpeg
     fzf
-    gdb
+    #gdb
     gitFull
     htop
     hyperfine
@@ -115,7 +108,7 @@ in
     (nixGLWrap chromium)
     (nixGLWrap kitty)
     (nixGLWrap firefox-beta)
-    (nixGLWrap obsidian-patched)
+    (nixGLWrap obsidian)
     (nixGLWrap picom)
     (nixGLWrap vlc)
     (nixGLWrap wezterm)
@@ -231,6 +224,9 @@ in
       };
     };
 
+    atuin = {
+      enable = true;
+    };
 
     bat = {
       enable = true;
@@ -280,6 +276,14 @@ in
       ];
 
       functions = {
+        # Configure the user keybindings to use vim
+        fish_user_key_bindings = ''
+          bind -M insert \cf accept-autosuggestion
+          for mode in insert default visual
+              bind -M $mode \cf forward-char
+          end
+        '';
+
         bac-clone = "mw -using Bmain sbs create -c $argv[1] -bac";
 
         change = "p4 change (changes) $argv";
@@ -405,6 +409,7 @@ in
       keyMode = "vi";
       mouse = true;
       terminal = "xterm-256color";
+      secureSocket = false;
       shell = "${pkgs.fish}/bin/fish";
 
       plugins = with pkgs.tmuxPlugins; [
