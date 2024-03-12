@@ -1,15 +1,5 @@
 { config, pkgs, lib, ... }:
 
-let
-  obsidian-patched = pkgs.obsidian.override {
-      electron = pkgs.electron_25.overrideAttrs (_: {
-        preFixup = "patchelf --add-needed ${pkgs.libglvnd}/lib/libEGL.so.1 $out/bin/electron"; # NixOS/nixpkgs#272912
-        meta.knownVulnerabilities = [ ]; # NixOS/nixpkgs#273611
-      });
-    };
-
-in
-
 {
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
@@ -121,9 +111,11 @@ in
     discord
     firefox-beta
     kitty
-    obsidian-patched
+    obsidian
     picom
+    remmina
     rofi
+    signal-desktop
     steam
     vlc
     wezterm
