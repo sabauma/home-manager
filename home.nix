@@ -1,15 +1,5 @@
 { pkgs, specialArgs, ... }:
 
-let
-  obsidian-patched = pkgs.obsidian.override {
-    electron = pkgs.electron_25.overrideAttrs (_: {
-      preFixup = "patchelf --add-needed ${pkgs.libglvnd}/lib/libEGL.so.1 $out/bin/electron"; # NixOS/nixpkgs#272912
-      meta.knownVulnerabilities = [ ]; # NixOS/nixpkgs#273611
-    });
-  };
-
-in
-
 {
   nixpkgs.overlays = [
     specialArgs.neovim-nightly.overlay
@@ -100,12 +90,13 @@ in
     chromium
     discord
     kitty
-    latest.firefox-beta-bin
-    obsidian-patched
+    firefox-beta
     libreoffice
     obsidian
     picom
+    remmina
     rofi
+    signal-desktop
     steam
     thunderbird
     vlc
