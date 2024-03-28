@@ -37,6 +37,10 @@ lspconfig.pyright.setup {
   on_attach = on_attach,
 }
 
+-- Disable logging unless we need it.
+-- Otherwise the log will grow continuously.
+vim.lsp.set_log_level("off")
+
 require('nvim-treesitter.configs').setup {
   -- Grammars are managed by nix
   -- ensure_installed = "all",

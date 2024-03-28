@@ -2,7 +2,17 @@
 
 let
   # Wrap commands with nixGL to get GPU acceleration
-  nixGL = import <nixgl> {};
+  # nixGL = import <nixgl> {};
+
+  # Workaround until the issues with nixGL are fixed:
+  # https://github.com/nix-community/nixGL/pull/165
+  nixGL = pkgs.callPackage (pkgs.fetchFromGitHub {
+    owner  = "nix-community";
+    repo   = "nixGL";
+    rev    = "717facdec8104d7435fd6d54e90361b5eae5276d";
+    sha256 = "sha256-wrjFD3zQMvtwziv/LjQQrO6fmrpa7WRQpnk5dkTvcDo=";
+  }) { inherit pkgs; };
+
   nixGLWrap = pkg:
   let
     bins = "${pkg}/bin";
@@ -266,7 +276,8 @@ in
       enable = true;
       icons = true;
       extraOptions = ["--group-directories-first"];
-      enableAliases = true;
+      enableBashIntegration = true;
+      enableFishIntegration = true;
     };
 
     fish = {
