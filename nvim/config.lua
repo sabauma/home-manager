@@ -40,6 +40,10 @@ lspconfig.pyright.setup {
 -- Otherwise the log will grow continuously.
 vim.lsp.set_log_level("off")
 
+lspconfig.tblgen_lsp_server.setup {
+  on_attach = on_attach,
+}
+
 require('nvim-treesitter.configs').setup {
   -- Grammars are managed by nix
   -- ensure_installed = "all",
