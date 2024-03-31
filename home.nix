@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, specialArgs, ... }:
 
 let
   obsidian-patched = pkgs.obsidian.override {
@@ -12,13 +12,7 @@ in
 
 {
   nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
-    }))
-
-    (import (builtins.fetchTarball {
-      url = https://github.com/mozilla/nixpkgs-mozilla/archive/master.tar.gz;
-    }))
+    specialArgs.neovim-nightly.overlay
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -60,7 +54,7 @@ in
      '')
 
     # From github:sabauma/mlir-nix
-    (builtins.getFlake "github:sabauma/mlir.nix").packages.${pkgs.system}.mlir
+    specialArgs.mlir-nix.packages.${pkgs.system}.default
 
     nerdfonts
 
@@ -108,6 +102,8 @@ in
     kitty
     latest.firefox-beta-bin
     obsidian-patched
+    libreoffice
+    obsidian
     picom
     rofi
     steam
@@ -226,7 +222,8 @@ in
       enable = true;
       icons = true;
       extraOptions = ["--group-directories-first"];
-      enableAliases = true;
+      enableBashIntegration = true;
+      enableFishIntegration = true;
     };
 
     rofi = {

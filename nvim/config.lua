@@ -37,6 +37,10 @@ lspconfig.pyright.setup {
   on_attach = on_attach,
 }
 
+lspconfig.tblgen_lsp_server.setup {
+  on_attach = on_attach,
+}
+
 require('nvim-treesitter.configs').setup {
   -- Grammars are managed by nix
   -- ensure_installed = "all",
