@@ -1,11 +1,17 @@
 { pkgs, specialArgs, ... }:
 
+let
+  inherit (specialArgs) neovim-nightly mlir-nix;
+in
+
 {
   nixpkgs.overlays = [
-    specialArgs.neovim-nightly.overlay
+    neovim-nightly.overlay
   ];
 
-  imports = [ ./neovim.nix ];
+  imports = [
+    ./neovim.nix
+  ];
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -57,7 +63,7 @@
      '')
 
     # From github:sabauma/mlir-nix
-    specialArgs.mlir-nix.packages.${pkgs.system}.default
+    mlir-nix.packages.${pkgs.system}.default
 
     nerdfonts
 
