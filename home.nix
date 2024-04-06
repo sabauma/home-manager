@@ -107,6 +107,7 @@ in
     picom
     rofi
     steam
+    thunderbird
     vlc
     yazi
     zathura
