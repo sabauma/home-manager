@@ -122,6 +122,7 @@ in
     rofi
     signal-desktop
     steam
+    thunderbird
     vlc
     wezterm
     yazi
