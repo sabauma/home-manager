@@ -44,6 +44,18 @@ in
     mimeApps.enable = true;
     mimeApps.defaultApplications = {
       "application/pdf" = ["org.gnome.Evince.desktop"];
+
+      # Register firefox-beta as the default handler for web related files
+      "x-scheme-handler/http"=["firefox-beta.desktop"];
+      "x-scheme-handler/https"=["firefox-beta.desktop"];
+      "x-scheme-handler/chrome"=["firefox-beta.desktop"];
+      "text/html"=["firefox-beta.desktop"];
+      "application/x-extension-htm"=["firefox-beta.desktop"];
+      "application/x-extension-html"=["firefox-beta.desktop"];
+      "application/x-extension-shtml"=["firefox-beta.desktop"];
+      "application/xhtml+xml"=["firefox-beta.desktop"];
+      "application/x-extension-xhtml"=["firefox-beta.desktop"];
+      "application/x-extension-xht"=["firefox-beta.desktop"];
     };
   };
 
