@@ -203,8 +203,6 @@
   };
 
   programs = {
-<<<<<<< HEAD
-=======
     alacritty = {
       enable = true;
       package = pkgs.alacritty;
@@ -368,45 +366,11 @@
       };
     };
 
-    tmux = {
+    direnv = {
       enable = true;
-
-      aggressiveResize = true;
-      customPaneNavigationAndResize = true;
-      baseIndex = 1;
-      escapeTime = 0;
-      historyLimit = 50000;
-      keyMode = "vi";
-      mouse = true;
-      terminal = "xterm-256color";
-      shell = "${pkgs.fish}/bin/fish";
-
-      plugins = with pkgs.tmuxPlugins; [
-        gruvbox
-        prefix-highlight
-        tmux-fzf
-      ];
-
-      extraConfig = ''
-      bind '"' split-window -c "#{pane_current_path}"
-      bind % split-window -h -c "#{pane_current_path}"
-
-      # some nice pane navigation settings
-      bind-key h select-pane -L
-      bind-key j select-pane -D
-      bind-key k select-pane -U
-      bind-key l select-pane -R
-
-      bind-key -n C-h select-pane -L
-      bind-key -n C-j select-pane -D
-      bind-key -n C-k select-pane -U
-      bind-key -n C-l select-pane -R
-
-      # present a menu of URLs to open from the visible pane. sweet.
-      bind-key u capture-pane \;\
-          save-buffer /tmp/tmux-buffer \;\
-              split-window -l 10 "urlview /tmp/tmux-buffer"
-      '';
+      enableBashIntegration = true;
+      enableFishIntegration = true;
+      nix-direnv.enable = true;
     };
 
     fish = {
@@ -489,72 +453,51 @@
       ];
     };
 
+    tmux = {
+      enable = true;
+
+      aggressiveResize = true;
+      customPaneNavigationAndResize = true;
+      baseIndex = 1;
+      escapeTime = 0;
+      historyLimit = 50000;
+      keyMode = "vi";
+      mouse = true;
+      terminal = "xterm-256color";
+      shell = "${pkgs.fish}/bin/fish";
+
+      plugins = with pkgs.tmuxPlugins; [
+        gruvbox
+        prefix-highlight
+        tmux-fzf
+      ];
+
+      extraConfig = ''
+      bind '"' split-window -c "#{pane_current_path}"
+      bind % split-window -h -c "#{pane_current_path}"
+
+      # some nice pane navigation settings
+      bind-key h select-pane -L
+      bind-key j select-pane -D
+      bind-key k select-pane -U
+      bind-key l select-pane -R
+
+      bind-key -n C-h select-pane -L
+      bind-key -n C-j select-pane -D
+      bind-key -n C-k select-pane -U
+      bind-key -n C-l select-pane -R
+
+      # present a menu of URLs to open from the visible pane. sweet.
+      bind-key u capture-pane \;\
+          save-buffer /tmp/tmux-buffer \;\
+              split-window -l 10 "urlview /tmp/tmux-buffer"
+      '';
+    };
+
+
     xmobar = {
       enable = true;
       extraConfig = builtins.readFile ./xmobarrc;
-    };
-
-    alacritty = {
-      enable = true;
-      package = pkgs.alacritty;
-      settings = {
-        font = {
-          size = 8;
-          normal = {
-            family = "Development";
-            style = "Regular";
-          };
-          bold = {
-            family = "Development";
-            style = "Bold";
-          };
-          italic = {
-            family = "Development";
-            style = "Italic";
-          };
-          bold_italic = {
-            family = "Development";
-            style = "Bold Italic";
-          };
-        };
-
-        colors.draw_bold_text_with_bright_colors = false;
-
-        colors.primary = {
-          background = "0x1d2021";
-          foreground = "0xebdbb2";
-        };
-
-        colors.normal = {
-          black   = "0x282828";
-          red     = "0xcc241d";
-          green   = "0x98971a";
-          yellow  = "0xd79921";
-          blue    = "0x458588";
-          magenta = "0xb16286";
-          cyan    = "0x689d6a";
-          white   = "0xa89984";
-        };
-
-        colors.bright = {
-          black   = "0x928374";
-          red     = "0xfb4934";
-          green   = "0xb8bb26";
-          yellow  = "0xfabd2f";
-          blue    = "0x83a598";
-          magenta = "0xd3869b";
-          cyan    = "0x8ec07c";
-          white   = "0xebdbb2";
-        };
-
-        shell = "fish";
-      };
-    };
-
-    direnv = {
-      enable = true;
-      enableBashIntegration = true;
-      nix-direnv.enable = true;
     };
   };
 
