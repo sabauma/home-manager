@@ -205,34 +205,6 @@
   };
 
   programs = {
-    bat = {
-      enable = true;
-      config = {
-        theme = "gruvbox-dark";
-      };
-    };
-
-    bottom = {
-      enable = true;
-      settings = {
-        flags = { color = "gruvbox"; };
-      };
-    };
-
-    broot = {
-      enable = true;
-      settings = {
-        verbs = [
-          { invocation = "edit"; key = "F2"; shortcut = "e"; execution = "$EDITOR {file}"; }
-          { key = "ctrl-p"; execution = ":line_up"; }
-          { key = "ctrl-n"; execution = ":line_down"; }
-          { key = "ctrl-u"; execution = ":page_up"; }
-          { key = "ctrl-d"; execution = ":page_down"; }
-          { invocation = "git_add"; shortcut = "ga"; key = "ctrl-a"; leave_broot = false; execution = "git add {file}"; apply_to = "file"; }
-        ];
-      };
-    };
-
     alacritty = {
       enable = true;
       package = pkgs.alacritty;
@@ -287,6 +259,34 @@
         };
 
         shell = "${pkgs.fish}/bin/fish";
+      };
+    };
+
+    bat = {
+      enable = true;
+      config = {
+        theme = "gruvbox-dark";
+      };
+    };
+
+    bottom = {
+      enable = true;
+      settings = {
+        flags = { color = "gruvbox"; };
+      };
+    };
+
+    broot = {
+      enable = true;
+      settings = {
+        verbs = [
+          { invocation = "edit"; key = "F2"; shortcut = "e"; execution = "$EDITOR {file}"; }
+          { key = "ctrl-p"; execution = ":line_up"; }
+          { key = "ctrl-n"; execution = ":line_down"; }
+          { key = "ctrl-u"; execution = ":page_up"; }
+          { key = "ctrl-d"; execution = ":page_down"; }
+          { invocation = "git_add"; shortcut = "ga"; key = "ctrl-a"; leave_broot = false; execution = "git add {file}"; apply_to = "file"; }
+        ];
       };
     };
 
@@ -378,70 +378,6 @@
           end
         '';
       };
-    };
-
-    neovim = {
-      enable = true;
-      package = pkgs.neovim-nightly;
-
-      extraConfig = builtins.readFile ./nvim/init.vim;
-      extraLuaConfig = builtins.readFile ./nvim/config.lua;
-
-      # Manage treesitter parsers through nix to avoid issues with libc
-      plugins = with pkgs.vimPlugins; [
-        # Vim Plugins
-        a-vim
-        nerdcommenter
-        tabular
-        undotree
-        vim-fugitive
-        vim-indent-object
-        vim-obsession
-        vim-repeat
-        vim-surround
-        vim-vinegar
-
-        # Treesitter
-        nvim-treesitter.withAllGrammars
-
-        # Colorschemes
-        gruvbox-material
-        everforest
-
-        # Neovim-notify
-        nvim-notify
-
-        # nvim-cmp
-        cmp-buffer
-        cmp-cmdline
-        cmp-nvim-lsp
-        cmp-nvim-lsp-signature-help
-        cmp-path
-        nvim-cmp
-
-        # LSP
-        dressing-nvim
-        nvim-lspconfig
-        lspkind-nvim
-
-        # Lualine
-        lualine-nvim
-
-        # Telescope
-        telescope-nvim
-        telescope-fzf-native-nvim
-
-        # Neorg
-        neorg
-        neorg-telescope
-        zen-mode-nvim
-
-        # Nice popup messages
-        popup-nvim
-
-        # Oil file manager
-        oil-nvim
-      ];
     };
 
     tmux = {
