@@ -14,6 +14,12 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = [ "ntfs" ];
+  boot.loader.grub.configurationLimit = 3;
+  boot.loader.systemd-boot.configurationLimit = 3;
+
+  boot.kernelParams = [
+    "reboot=acpi"
+  ];
 
   # Configuration to enable Nvidia driver
   hardware.opengl = {
@@ -36,6 +42,9 @@
 
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
+
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
 
   networking.hostName = "loiosh"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -91,24 +100,23 @@
   };
 
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "us";
-    xkbVariant = "";
+    variant = "";
   };
 
   services.xserver.xrandrHeads = [
-  {
-    output = "HDMI-0";
-    monitorConfig = ''
-      Option "Rotate" "left"
-    '';
-  }
-
-  {
-    output = "DP-0";
-    primary = true;
-  }
-
+    {
+      output = "HDMI-0";
+      monitorConfig = ''
+        Option "Rotate" "left"
+      '';
+    }
+  
+    {
+      output = "DP-0";
+      primary = true;
+    }
   ];
 
   # Enable CUPS to print documents.
