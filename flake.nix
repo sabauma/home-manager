@@ -14,7 +14,7 @@
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-utils, neovim-nightly, mlir-nix, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, flake-utils, neovim-nightly, mlir-nix }@inputs:
   {
     homeConfigurations.spenser = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
