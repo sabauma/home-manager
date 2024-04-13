@@ -116,10 +116,12 @@ in
     # Graphical programs
     (nixGLWrap alacritty)
     (nixGLWrap chromium)
-    (nixGLWrap kitty)
     (nixGLWrap firefox-beta)
+    (nixGLWrap kitty)
     (nixGLWrap obsidian)
     (nixGLWrap picom)
+    (nixGLWrap remmina)
+    (nixGLWrap thunderbird)
     (nixGLWrap vlc)
     (nixGLWrap wezterm)
     rofi
