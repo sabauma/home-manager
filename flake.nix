@@ -9,20 +9,24 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    neorg-overlay = {
+      url = "github:nvim-neorg/nixpkgs-neorg-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     flake-utils.url = "github:numtide/flake-utils";
     mlir-nix.url = "github:sabauma/mlir.nix";
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-utils, neovim-nightly, mlir-nix }@inputs:
+  outputs = { self, nixpkgs, home-manager, flake-utils, ... }@inputs:
   {
     homeConfigurations.spenser = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       modules = [ ./home.nix ];
 
       extraSpecialArgs = {
-        inherit neovim-nightly;
-        inherit mlir-nix;
+        inherit (inputs) neovim-nightly mlir-nix neorg-overlay;
       };
     };
   };

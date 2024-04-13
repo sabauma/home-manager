@@ -1,11 +1,12 @@
 { pkgs, specialArgs, ... }:
 
 let
-  inherit (specialArgs) neovim-nightly mlir-nix;
+  inherit (specialArgs) mlir-nix neorg-overlay neovim-nightly;
 in
 
 {
   nixpkgs.overlays = [
+    neorg-overlay.overlays.default
     neovim-nightly.overlay
   ];
 
