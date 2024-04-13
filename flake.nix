@@ -18,7 +18,11 @@
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
   {
     homeConfigurations.spenser = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      pkgs = import nixpkgs {
+        system = "x86_64-linux";
+        overlays = [ inputs.nixgl.overlay ];
+      };
+
       modules = [ ./home.nix ];
 
       extraSpecialArgs = {
