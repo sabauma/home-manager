@@ -9,11 +9,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    neorg-overlay = {
-      url = "github:nvim-neorg/nixpkgs-neorg-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     flake-utils.url = "github:numtide/flake-utils";
     mlir-nix.url = "github:sabauma/mlir.nix";
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
@@ -26,7 +21,7 @@
       modules = [ ./home.nix ];
 
       extraSpecialArgs = {
-        inherit (inputs) neovim-nightly mlir-nix neorg-overlay;
+        inherit (inputs) neovim-nightly mlir-nix;
       };
     };
   };

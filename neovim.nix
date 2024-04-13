@@ -10,6 +10,8 @@
 
     # Manage treesitter parsers through nix to avoid issues with libc
     plugins = with pkgs.vimPlugins; [
+      lazy-nvim
+
       # Vim Plugins
       a-vim
       nerdcommenter
@@ -55,8 +57,8 @@
       telescope-fzf-native-nvim
 
       # Neorg
-      neorg
-      neorg-telescope
+      # neorg
+      # neorg-telescope
       zen-mode-nvim
 
       # Obsidian notes
