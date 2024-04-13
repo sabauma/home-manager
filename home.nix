@@ -1,18 +1,19 @@
 { pkgs, specialArgs, ... }:
 
 let
+  inherit (specialArgs) mlir-nix neovim-nightly nixgl;
 
   # Wrap commands with nixGL to get GPU acceleration
   # nixGL = import <nixgl> {};
 
   # Workaround until the issues with nixGL are fixed:
   # https://github.com/nix-community/nixGL/pull/165
-  nixGL = pkgs.callPackage (pkgs.fetchFromGitHub {
-    owner  = "nix-community";
-    repo   = "nixGL";
-    rev    = "717facdec8104d7435fd6d54e90361b5eae5276d";
-    sha256 = "sha256-wrjFD3zQMvtwziv/LjQQrO6fmrpa7WRQpnk5dkTvcDo=";
-  }) { inherit pkgs; };
+  # nixGL = pkgs.callPackage (pkgs.fetchFromGitHub {
+  #   owner  = "nix-community";
+  #   repo   = "nixGL";
+  #   rev    = "717facdec8104d7435fd6d54e90361b5eae5276d";
+  #   sha256 = "sha256-wrjFD3zQMvtwziv/LjQQrO6fmrpa7WRQpnk5dkTvcDo=";
+  # }) { inherit pkgs; };
 
   nixGLWrap = pkg:
   let
@@ -29,19 +30,18 @@ let
       (map
         (bin: pkgs.hiPrio (
           pkgs.writeShellScriptBin bin ''
-            exec -a "$0" "${nixGL.auto.nixGLDefault}/bin/nixGL" "${bins}/${bin}" "$@"
+            exec -a "$0" "${pkgs.nixgl.auto.nixGLDefault}/bin/nixGL" "${bins}/${bin}" "$@"
           ''
         ))
         (builtins.attrNames (builtins.readDir bins)));
   };
-
-  inherit (specialArgs) mlir-nix neovim-nightly;
 
 in
 {
 
   nixpkgs.overlays = [
     neovim-nightly.overlay
+    nixgl.overlay
   ];
 
   imports = [ ./neovim.nix ];
