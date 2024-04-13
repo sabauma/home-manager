@@ -17,16 +17,15 @@
   };
 
   outputs = { self, nixpkgs, home-manager, flake-utils, neovim-nightly, mlir-nix, ... }@inputs:
-    {
-      homeConfigurations.spenser = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        modules = [ ./home.nix ];
+  {
+    homeConfigurations.spenser = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      modules = [ ./home.nix ];
 
-        extraSpecialArgs = {
-          inherit neovim-nightly;
-          inherit mlir-nix;
-        };
+      extraSpecialArgs = {
+        inherit (inputs) neovim-nightly mlir-nix;
       };
     };
+  };
 }
 
