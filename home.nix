@@ -1,6 +1,7 @@
 { pkgs, specialArgs, ... }:
 
 let
+
   # Wrap commands with nixGL to get GPU acceleration
   nixGL = import <nixgl> {};
 
@@ -33,10 +34,13 @@ let
         ))
         (builtins.attrNames (builtins.readDir bins)));
   };
+
+  inherit (specialArgs) mlir-nix neovim-nightly;
+
 in
 {
   nixpkgs.overlays = [
-    specialArgs.neovim-nightly.overlay
+    neovim-nightly.overlay
   ];
 
   imports = [ ./neovim.nix ];

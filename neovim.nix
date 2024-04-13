@@ -10,6 +10,8 @@
 
     # Manage treesitter parsers through nix to avoid issues with libc
     plugins = with pkgs.vimPlugins; [
+      lazy-nvim
+
       # Vim Plugins
       a-vim
       nerdcommenter
