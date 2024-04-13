@@ -1,6 +1,7 @@
 { pkgs, specialArgs, ... }:
 
 let
+  inherit (specialArgs) mlir-nix neovim-nightly nixgl;
 
   # Wrap commands with nixGL to get GPU acceleration
   nixGL = import <nixgl> {};
@@ -29,18 +30,17 @@ let
       (map
         (bin: pkgs.hiPrio (
           pkgs.writeShellScriptBin bin ''
-            exec -a "$0" "${nixGL.auto.nixGLDefault}/bin/nixGL" "${bins}/${bin}" "$@"
+            exec -a "$0" "${pkgs.nixgl.auto.nixGLDefault}/bin/nixGL" "${bins}/${bin}" "$@"
           ''
         ))
         (builtins.attrNames (builtins.readDir bins)));
   };
 
-  inherit (specialArgs) mlir-nix neovim-nightly;
-
 in
 {
   nixpkgs.overlays = [
     neovim-nightly.overlay
+    nixgl.overlay
   ];
 
   imports = [ ./neovim.nix ];
