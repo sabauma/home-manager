@@ -10,7 +10,12 @@
     };
 
     flake-utils.url = "github:numtide/flake-utils";
-    mlir-nix.url = "github:sabauma/mlir.nix";
+
+    mlir-nix = {
+      url = "github:sabauma/mlir.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
   };
 
