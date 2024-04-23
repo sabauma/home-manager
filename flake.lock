@@ -139,11 +139,11 @@
     "llvm-project": {
       "flake": false,
       "locked": {
-        "lastModified": 1713536053,
-        "narHash": "sha256-/0Ht7Ddnqfp7or/QUoHHvosYCkOq7dSeB/Uos+dHnWs=",
+        "lastModified": 1713910585,
+        "narHash": "sha256-PIxgm3CDptDXEHWfip6+FEIHiYLXj//PBKWDpa+g03Y=",
         "owner": "llvm",
         "repo": "llvm-project",
-        "rev": "58764ddccda99039174ca572c6a94393c290f8ac",
+        "rev": "0c0c5c475857e9cd6a2fe82fd1e46abdb174a1c1",
         "type": "github"
       },
       "original": {
@@ -161,11 +161,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1713543651,
-        "narHash": "sha256-mjo3kPtK/x0QFv75gU8qGFCvqDvUuUc/2RQa69Kj9co=",
+        "lastModified": 1713911128,
+        "narHash": "sha256-96y8WEUI+KL/THonUAOkviRoTmohK37YqDd3XRfhnwU=",
         "owner": "sabauma",
         "repo": "mlir.nix",
-        "rev": "b726a457b9f9a37c896f98cfed5dcaab527475fa",
+        "rev": "02fb313fab34cbd0c70fd1f9f6699fe96f43ff4c",
         "type": "github"
       },
       "original": {
