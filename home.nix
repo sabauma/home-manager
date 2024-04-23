@@ -5,7 +5,12 @@
     specialArgs.neovim-nightly.overlay
   ];
 
-  imports = [ ./neovim.nix ];
+  imports = [
+    ./alacritty.nix
+    ./neovim.nix
+    ./starship.nix
+    ./xmonad/xmonad.nix
+  ];
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -392,28 +397,6 @@
     initExtra = ''
     ${pkgs.feh}/bin/feh --bg-fill ${./wallpapers/occ384clcjg51.jpg}
     '';
-  };
-
-  xsession.windowManager.xmonad = {
-    enable = true;
-    enableContribAndExtras = true;
-    extraPackages = ps: with ps; [
-      xmonad
-      xmonad-contrib
-      xmonad-extras
-      hashable
-      text-icu
-      vector
-      xmobar
-    ];
-
-    config = ./xmonad/xmonad.hs;
-    libFiles = {
-      "FindEmptyWorkspace.hs" = ./xmonad/lib/FindEmptyWorkspace.hs;
-      "Gruvbox.hs" = ./xmonad/lib/Gruvbox.hs;
-      "PerWorkspaceDirs.hs" = ./xmonad/lib/PerWorkspaceDirs.hs;
-      "PromptConfig.hs" = ./xmonad/lib/PromptConfig.hs;
-    };
   };
 
   dconf = {
