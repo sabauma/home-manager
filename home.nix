@@ -2,16 +2,16 @@
 
 let
   # Wrap commands with nixGL to get GPU acceleration
-  # nixGL = import <nixgl> {};
+  nixGL = import <nixgl> {};
 
   # Workaround until the issues with nixGL are fixed:
   # https://github.com/nix-community/nixGL/pull/165
-  nixGL = pkgs.callPackage (pkgs.fetchFromGitHub {
-    owner  = "nix-community";
-    repo   = "nixGL";
-    rev    = "717facdec8104d7435fd6d54e90361b5eae5276d";
-    sha256 = "sha256-wrjFD3zQMvtwziv/LjQQrO6fmrpa7WRQpnk5dkTvcDo=";
-  }) { inherit pkgs; };
+  # nixGL = pkgs.callPackage (pkgs.fetchFromGitHub {
+  #   owner  = "nix-community";
+  #   repo   = "nixGL";
+  #   rev    = "717facdec8104d7435fd6d54e90361b5eae5276d";
+  #   sha256 = "sha256-wrjFD3zQMvtwziv/LjQQrO6fmrpa7WRQpnk5dkTvcDo=";
+  # }) { inherit pkgs; };
 
   nixGLWrap = pkg:
   let
@@ -35,7 +35,6 @@ let
   };
 in
 {
-
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
       url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
@@ -67,7 +66,7 @@ in
     # From github:sabauma/mlir-nix
     (builtins.getFlake "github:sabauma/mlir.nix").packages.${pkgs.system}.mlir
 
-    # (pkgs.callPackage ./pkgs/netron.nix { inherit pkgs; })
+    (pkgs.callPackage ./pkgs/netron.nix { inherit pkgs; })
     (pkgs.callPackage ./pkgs/logline.nix { inherit pkgs; })
 
     nerdfonts
@@ -90,7 +89,6 @@ in
     htop
     hyperfine
     mosh
-    neovim-nightly
     newsboat
     openconnect
     pyright
@@ -287,6 +285,10 @@ in
       plugins = [
         { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
       ];
+
+      interactiveShellInit = ''
+      source /mathworks/inside/labs/dev/matlab_coder_tools/sbtools-completions/sbtools-completions/fish/setup.fish
+      '';
 
       functions = {
         # Configure the user keybindings to use vim

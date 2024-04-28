@@ -1,7 +1,6 @@
 
 vim.notify = require('notify')
 
-
 -- Mappings.
 local on_attach = function(client, bufnr)
   -- Mappings.
@@ -63,65 +62,65 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
-require('neorg').setup {
-  -- Tell Neorg what modules to load
-  load = {
-    ["core.defaults"] = {}, -- Load all the default modules
-    ["core.concealer"] = {
-      config = {
-        markup = {
-          enabled = true
-        },
-        icon_preset = "basic"
-      }
-    }, -- Allows for use of icons
-    ["core.completion"] = {
-      config = {
-        engine = "nvim-cmp" -- We current support nvim-compe and nvim-cmp only
-      }
-    },
-    ["core.presenter"] = {
-      config = {
-        zen_mode = "zen-mode"
-      },
-    },
-    ["core.dirman"] = {
-      config = {
-        workspaces = {
-          work = "~/Notes/work",
-          personal = "~/Notes/personal"
-        }
-      }
-    },
-    ["core.integrations.telescope"] = {}, -- Enable the telescope module
-    ["core.keybinds"] = { -- Configure core.keybinds
-      config = {
-        default_keybinds = true, -- Generate the default keybinds
-        neorg_leader = "<Leader>o" -- This is the default if unspecified
-      }
-    },
-    ["core.qol.toc"] = { },
-    ["core.export"] = { },
-    ["core.export.markdown"] = {
-      config = {
-        extensions = "all",
-      }
-    },
-    ["core.journal"] = {
-      config = {
-        journal_folder = "journal",
-        strategy = "flat"
-      }
-    },
-    ["core.esupports.metagen"] = {
-      config = {
-        type = "auto",
-        tab = "  ",
-        update_date = true
-      }
-    },
-  },
-}
+-- require('neorg').setup {
+--   -- Tell Neorg what modules to load
+--   load = {
+--     ["core.defaults"] = {}, -- Load all the default modules
+--     ["core.concealer"] = {
+--       config = {
+--         markup = {
+--           enabled = true
+--         },
+--         icon_preset = "basic"
+--       }
+--     }, -- Allows for use of icons
+--     ["core.completion"] = {
+--       config = {
+--         engine = "nvim-cmp" -- We current support nvim-compe and nvim-cmp only
+--       }
+--     },
+--     ["core.presenter"] = {
+--       config = {
+--         zen_mode = "zen-mode"
+--       },
+--     },
+--     ["core.dirman"] = {
+--       config = {
+--         workspaces = {
+--           work = "~/Notes/work",
+--           personal = "~/Notes/personal"
+--         }
+--       }
+--     },
+--     ["core.integrations.telescope"] = {}, -- Enable the telescope module
+--     ["core.keybinds"] = { -- Configure core.keybinds
+--       config = {
+--         default_keybinds = true, -- Generate the default keybinds
+--         neorg_leader = "<Leader>o" -- This is the default if unspecified
+--       }
+--     },
+--     ["core.qol.toc"] = { },
+--     ["core.export"] = { },
+--     ["core.export.markdown"] = {
+--       config = {
+--         extensions = "all",
+--       }
+--     },
+--     ["core.journal"] = {
+--       config = {
+--         journal_folder = "journal",
+--         strategy = "flat"
+--       }
+--     },
+--     ["core.esupports.metagen"] = {
+--       config = {
+--         type = "auto",
+--         tab = "  ",
+--         update_date = true
+--       }
+--     },
+--   },
+-- }
 
 -- Setup nvim-cmp.
 local cmp = require('cmp')
@@ -176,23 +175,10 @@ require('telescope').setup {
 
 require('telescope').load_extension('fzf')
 
-require("zen-mode").setup {
-  window = {
-    width = 90,
-    options = {
-      number = false
-    }
-  }
-}
-
 require("lualine").setup {
   sections = {
     lualine_c = {{ 'filename', path = 1, shortening_target=80 }}
   },
-
-  -- tabline = {
-  --   lualine_a = {{'tabs', mode = 2, use_mode_colors = true}},
-  -- }
 }
 
 require("oil").setup()

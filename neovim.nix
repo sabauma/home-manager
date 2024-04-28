@@ -55,9 +55,8 @@
       telescope-fzf-native-nvim
 
       # Neorg
-      neorg
-      neorg-telescope
-      zen-mode-nvim
+      # neorg
+      # neorg-telescope
 
       # Nice popup messages
       popup-nvim
