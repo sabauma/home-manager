@@ -1,0 +1,3 @@
+[submodule "pkgs/cgir_mlir_manager"]
+	path = pkgs/cgir_mlir_manager
+	url = git@insidelabs-git.mathworks.com:rubal/cgir_mlir_manager.git

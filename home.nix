@@ -66,8 +66,9 @@ in
     # From github:sabauma/mlir-nix
     (builtins.getFlake "github:sabauma/mlir.nix").packages.${pkgs.system}.mlir
 
-    (pkgs.callPackage ./pkgs/netron.nix { inherit pkgs; })
-    (pkgs.callPackage ./pkgs/logline.nix { inherit pkgs; })
+    (import ./pkgs/cgir-mlir-manager.nix { inherit pkgs; })
+    (import ./pkgs/logline.nix { inherit pkgs; })
+    (import ./pkgs/netron.nix { inherit pkgs; })
 
     nerdfonts
 
