@@ -63,6 +63,9 @@
 
       # Oil file manager
       oil-nvim
+
+      # outline.nvim
+      outline-nvim
     ];
   };
 }
