@@ -91,6 +91,8 @@ in
     hyperfine
     mosh
     newsboat
+    nil
+    ninja
     openconnect
     pyright
     python3Packages.python-lsp-server
