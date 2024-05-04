@@ -1,7 +1,6 @@
 
 vim.notify = require('notify')
 
-
 -- Mappings.
 local on_attach = function(client, bufnr)
   -- Mappings.
@@ -208,3 +207,6 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 require("outline").setup {}
+
+require("clangd_extensions.inlay_hints").setup_autocmd()
+require("clangd_extensions.inlay_hints").set_inlay_hints()

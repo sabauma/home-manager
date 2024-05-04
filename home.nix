@@ -101,6 +101,7 @@ in
     hyperfine
     mosh
     newsboat
+    nil
     ninja
     openconnect
     pyright

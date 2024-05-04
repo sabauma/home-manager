@@ -45,9 +45,10 @@
       cmp-path
 
       # LSP
+      clangd_extensions-nvim
       dressing-nvim
-      nvim-lspconfig
       lspkind-nvim
+      nvim-lspconfig
 
       # Lualine
       lualine-nvim
