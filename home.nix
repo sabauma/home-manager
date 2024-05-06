@@ -1,8 +1,6 @@
-{ pkgs, specialArgs, ... }:
+{ pkgs, lib, ... }:
 
 let
-  inherit (specialArgs) mlir-nix neovim-nightly nixgl;
-
   # Wrap commands with nixGL to get GPU acceleration
   nixGL = import <nixgl> {};
 
@@ -30,7 +28,7 @@ let
       (map
         (bin: pkgs.hiPrio (
           pkgs.writeShellScriptBin bin ''
-            exec -a "$0" "${pkgs.nixgl.auto.nixGLDefault}/bin/nixGL" "${bins}/${bin}" "$@"
+            exec -a "$0" "${nixGL.auto.nixGLDefault}/bin/nixGL" "${bins}/${bin}" "$@"
           ''
         ))
         (builtins.attrNames (builtins.readDir bins)));
@@ -39,8 +37,9 @@ let
 in
 {
   nixpkgs.overlays = [
-    neovim-nightly.overlay
-    nixgl.overlay
+    (import (builtins.fetchTarball {
+      url = "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
+    }))
   ];
 
   imports = [ ./neovim.nix ];
@@ -66,9 +65,9 @@ in
   # environment.
   home.packages = with pkgs; [
     # From github:sabauma/mlir-nix
-    specialArgs.mlir-nix.packages.${pkgs.system}.default
+    (builtins.getFlake "github:sabauma/mlir.nix").packages.${pkgs.system}.mlir
 
-    (import ./pkgs/cgir-mlir-manager.nix { inherit pkgs; })
+    # (import ./pkgs/cgir-mlir-manager.nix { inherit pkgs; })
     (import ./pkgs/logline.nix { inherit pkgs; })
     (import ./pkgs/netron.nix { inherit pkgs; })
 
