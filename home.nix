@@ -65,18 +65,6 @@ in
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    # shell script to increase screen brightness
-    (writeShellScriptBin "increment_brightness" ''
-     VAL=$("${pkgs.brightnessctl}/bin/brightnessctl" get)
-     "${pkgs.brightnessctl}/bin/brightnessctl" set $((VAL+1))
-     '')
-
-    # shell script to decrease screen brightness
-    (writeShellScriptBin "decrement_brightness" ''
-     VAL=$("${pkgs.brightnessctl}/bin/brightnessctl" get)
-     "${pkgs.brightnessctl}/bin/brightnessctl" set $((VAL-1))
-     '')
-
     # From github:sabauma/mlir-nix
     mlir-nix.packages.${pkgs.system}.default
 
