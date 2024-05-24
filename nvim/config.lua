@@ -130,25 +130,25 @@ cmp.setup {
   snippet = { },
 
   window = {
-    -- completion = cmp.config.window.bordered({
-    --   border = "shadow"
-    -- }),
+    completion = cmp.config.window.bordered({
+      -- border = "shadow"
+    }),
 
-    -- documentation = cmp.config.window.bordered({
-    --   border = "shadow"
-    -- }),
+    documentation = cmp.config.window.bordered({
+      -- border = "shadow"
+    }),
   },
 
   formatting = {
     fields = { "kind", "abbr", "menu" },
     format = lspkind.cmp_format({
-      maxwidth = 65,
-      mode = "symbol",
+      mode = "symbol_text",
     }),
   },
 
   mapping = cmp.mapping.preset.insert({
     ['<C-y>'] = cmp.config.disable,
+    ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),

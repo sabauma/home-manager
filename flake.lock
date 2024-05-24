@@ -159,11 +159,11 @@
     "llvm-project": {
       "flake": false,
       "locked": {
-        "lastModified": 1716122680,
-        "narHash": "sha256-/MppuCLelcilhxTbxtCKRSlkAQsRXpT4vhmJ7peThpA=",
+        "lastModified": 1716578391,
+        "narHash": "sha256-+X+hg+tDnin/oUtE+RcMekLmX7iM6DDB729AzkxqOIo=",
         "owner": "llvm",
         "repo": "llvm-project",
-        "rev": "6447abe067c8088a5cc093fe872719374e174068",
+        "rev": "77369a7f1a81f7991a3df2dad1bc8e277bc7559d",
         "type": "github"
       },
       "original": {
@@ -181,11 +181,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1716124966,
-        "narHash": "sha256-k1zsp0ZzwDxR0ICU4/1ekKjyXOV+TZaxet3VhRflui8=",
+        "lastModified": 1716580768,
+        "narHash": "sha256-3kE30w1SK8hjvVCzl/loNmE9dVPssi/NKQSbIF/3IS8=",
         "owner": "sabauma",
         "repo": "mlir.nix",
-        "rev": "05e9bc796fcdcdfa90d2fa4b7c5e28b9b8ba7920",
+        "rev": "23b4a60afaebab831e8c3bf17cdd580732be6b13",
         "type": "github"
       },
       "original": {
@@ -206,11 +206,11 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1716556845,
-        "narHash": "sha256-deZjKj//bELnoEDnqi24qaF9tBiaDOub9A5WhXNStKY=",
+        "lastModified": 1716561825,
+        "narHash": "sha256-v9V74Xd1/n0n/1eB3gZ+LqcOCurWqTfBum5azqjWMII=",
         "owner": "nix-community",
         "repo": "neovim-nightly-overlay",
-        "rev": "d1e0d374f1d036ccdc8615a3167537f24d34660d",
+        "rev": "d83afee1f19108100bd2fef1f86d87d2942d734d",
         "type": "github"
       },
       "original": {
