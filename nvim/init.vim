@@ -43,8 +43,8 @@ vim.opt.startofline=false
 vim.opt.diffopt:append('algorithm:histogram,indent-heuristic,hiddenoff')
 
 -- Backup & Undo settings
-vim.opt.undodir='~/.nvim/undodir//'
-vim.opt.backupdir='~/.nvim/backup//'
+vim.opt.undodir=vim.fn.stdpath('config') .. '/.undo' 
+vim.opt.backupdir=vim.fn.stdpath('config') .. '/.backup'
 vim.opt.undofile=true
 vim.opt.undolevels=1000
 vim.opt.undoreload=10000
