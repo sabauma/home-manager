@@ -3,7 +3,7 @@
 {
   programs.neovim = {
     enable = true;
-    package = pkgs.neovim-nightly;
+    package = pkgs.neovim;
 
     extraConfig = builtins.readFile ./nvim/init.vim;
     extraLuaConfig = builtins.readFile ./nvim/config.lua;

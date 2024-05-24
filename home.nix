@@ -6,7 +6,8 @@ in
 
 {
   nixpkgs.overlays = [
-    neovim-nightly.overlay
+    neovim-nightly.overlays.default
+
   ];
 
   imports = [
