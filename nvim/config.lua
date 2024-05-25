@@ -148,7 +148,6 @@ cmp.setup {
 
   mapping = cmp.mapping.preset.insert({
     ['<C-y>'] = cmp.config.disable,
-    ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
