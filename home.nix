@@ -470,6 +470,7 @@ in
       enable = true;
       settings = {
         default_shell = "${pkgs.fish}/bin/fish";
+        theme = "gruvbox-dark";
         themes = {
           gruvbox-dark = {
             fg = "#D5C4A1";
