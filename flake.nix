@@ -9,8 +9,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    flake-utils.url = "github:numtide/flake-utils";
-
     mlir-nix = {
       url = "github:sabauma/mlir.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,7 +20,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-utils, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
   {
     homeConfigurations.spenser = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
