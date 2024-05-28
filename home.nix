@@ -7,7 +7,6 @@ in
 {
   nixpkgs.overlays = [
     neovim-nightly.overlays.default
-
   ];
 
   imports = [
@@ -312,7 +311,11 @@ in
     zellij = {
       enable = true;
       settings = {
+        default_layout = "compact";
         default_shell = "${pkgs.fish}/bin/fish";
+        scrollback_editor = "${pkgs.neovim}/bin/nvim";
+        pane_frames = false;
+
         theme = "gruvbox-dark";
         themes = {
           gruvbox-dark = {
