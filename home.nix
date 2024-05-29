@@ -37,9 +37,9 @@ let
 in
 {
   nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = "https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz";
-    }))
+    (final: prev: {
+      neovim-nightly = (builtins.getFlake "github:nix-community/neovim-nightly-overlay").packages.${pkgs.system}.neovim;
+    })
   ];
 
   imports = [ ./neovim.nix ];
