@@ -11,7 +11,6 @@
 
     mlir-nix = {
       url = "github:sabauma/mlir.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     neovim-nightly = {
