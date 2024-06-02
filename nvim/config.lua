@@ -32,6 +32,10 @@ lspconfig.mlir_lsp_server.setup {
   on_attach = on_attach,
 }
 
+lspconfig.mojo.setup {
+  on_attach = on_attach,
+}
+
 lspconfig.pyright.setup {
   on_attach = on_attach,
 }
