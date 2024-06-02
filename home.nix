@@ -1,8 +1,12 @@
 { pkgs, specialArgs, ... }:
 
+let
+  inherit (specialArgs) mlir-nix neovim-nightly;
+in
+
 {
   nixpkgs.overlays = [
-    specialArgs.neovim-nightly.overlay
+    neovim-nightly.overlays.default
   ];
 
   imports = [
@@ -30,6 +34,8 @@
   nixpkgs.config.allowUnfree = true;
 
   home.sessionVariables = {
+    BROWSER = "firefox-beta";
+
     GTK_THEME = "Adwaita:dark";
 
     XDG_CURRENT_DESKTOP = "ubuntu:GNOME";
@@ -41,26 +47,26 @@
     mimeApps.enable = true;
     mimeApps.defaultApplications = {
       "application/pdf" = ["org.gnome.Evince.desktop"];
+
+      # Register firefox-beta as the default handler for web related files
+      "x-scheme-handler/http"=["firefox-beta.desktop"];
+      "x-scheme-handler/https"=["firefox-beta.desktop"];
+      "x-scheme-handler/chrome"=["firefox-beta.desktop"];
+      "text/html"=["firefox-beta.desktop"];
+      "application/x-extension-htm"=["firefox-beta.desktop"];
+      "application/x-extension-html"=["firefox-beta.desktop"];
+      "application/x-extension-shtml"=["firefox-beta.desktop"];
+      "application/xhtml+xml"=["firefox-beta.desktop"];
+      "application/x-extension-xhtml"=["firefox-beta.desktop"];
+      "application/x-extension-xht"=["firefox-beta.desktop"];
     };
   };
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    # shell script to increase screen brightness
-    (writeShellScriptBin "increment_brightness" ''
-     VAL=$("${pkgs.brightnessctl}/bin/brightnessctl" get)
-     "${pkgs.brightnessctl}/bin/brightnessctl" set $((VAL+1))
-     '')
-
-    # shell script to decrease screen brightness
-    (writeShellScriptBin "decrement_brightness" ''
-     VAL=$("${pkgs.brightnessctl}/bin/brightnessctl" get)
-     "${pkgs.brightnessctl}/bin/brightnessctl" set $((VAL-1))
-     '')
-
     # From github:sabauma/mlir-nix
-    specialArgs.mlir-nix.packages.${pkgs.system}.default
+    mlir-nix.packages.${pkgs.system}.default
 
     nerdfonts
 
@@ -70,9 +76,10 @@
     bitwarden-cli
     bottom
     broot
-    cachix
+    cmake
     coreutils
     datamash
+    du-dust
     eza
     fd
     ffmpeg
@@ -82,6 +89,8 @@
     hyperfine
     mosh
     newsboat
+    nil
+    ninja
     openconnect
     pyright
     ranger
@@ -93,8 +102,11 @@
     xmobar
     yt-dlp
 
+    # Gnome tools
+    gnome.gnome-screenshot
+
     ccache
-    clang-tools_17
+    clang-tools_18
 
     # Preferred shell
     fish
@@ -103,8 +115,8 @@
     calibre
     chromium
     discord
-    kitty
     firefox-beta
+    kitty
     libreoffice
     obsidian
     picom
@@ -114,6 +126,7 @@
     steam
     thunderbird
     vlc
+    wezterm
     yazi
     zathura
     zotero
@@ -144,9 +157,8 @@
     '';
 
     # Link in the fonts directory with personal fonts
+    ".fonts/".source = ./fonts;
     ".local/share/fonts".source = ./fonts;
-
-    "Pictures/wallpapers/".source = ./wallpapers;
   };
 
   fonts.fontconfig.enable = true;
@@ -201,31 +213,18 @@
       };
     };
 
+    direnv = {
+      enable = true;
+      enableBashIntegration = true;
+      nix-direnv.enable = true;
+    };
+
     eza = {
       enable = true;
       icons = true;
       extraOptions = ["--group-directories-first"];
       enableBashIntegration = true;
       enableFishIntegration = true;
-    };
-
-    fzf = {
-      enable = true;
-      enableFishIntegration = true;
-      enableBashIntegration = true;
-
-      defaultOptions = [ ];
-    };
-
-    rofi = {
-      enable = true;
-      theme = "gruvbox-dark-soft";
-      font = "Berkeley Mono 12";
-      extraConfig = {
-        sidebar-mode = true;
-        sorting-method  = "fzf";
-        terminal = "alacritty";
-      };
     };
 
     fish = {
@@ -241,6 +240,25 @@
               bind -M $mode \cf forward-char
           end
         '';
+      };
+    };
+
+    fzf = {
+      enable = true;
+      enableFishIntegration = true;
+      enableBashIntegration = true;
+
+      defaultOptions = [ ];
+    };
+
+    rofi = {
+      enable = true;
+      theme = "gruvbox-dark-hard";
+      font = "Berkeley Mono 14";
+      extraConfig = {
+        sidebar-mode = true;
+        sorting-method  = "fzf";
+        terminal = "alacritty";
       };
     };
 
@@ -289,12 +307,40 @@
       enable = true;
       extraConfig = builtins.readFile ./xmobarrc;
     };
+
+    zellij = {
+      enable = true;
+      settings = {
+        default_layout = "compact";
+        default_shell = "${pkgs.fish}/bin/fish";
+        scrollback_editor = "${pkgs.neovim}/bin/nvim";
+        pane_frames = false;
+
+        theme = "gruvbox-dark";
+        themes = {
+          gruvbox-dark = {
+            fg = "#D5C4A1";
+            bg = "#282828";
+            black = "#3C3836";
+            red = "#CC241D";
+            green = "#98971A";
+            yellow = "#D79921";
+            blue = "#3C8588";
+            magenta = "#B16286";
+            cyan = "#689D6A";
+            white = "#FBF1C7";
+            orange = "#D65D0E";
+          };
+        };
+      };
+    };
   };
 
   services.picom = {
     enable = true;
     backend = "glx";
     fade = false;
+    vSync = true;
   };
 
   xsession = {

@@ -11,7 +11,7 @@ import           XMonad.Prompt.FuzzyMatch
 import           PerWorkspaceDirs        (changeDir, currentWorkspace)
 
 myFont :: Int -> String
-myFont size = "xft:Fira Mono:size=" ++ show size
+myFont size = "xft:Berkeley Mono:size=" ++ show size
 
 -- These color were taken from the the gruvbox color scheme.
 -- See the .Xresources file for more color information.
@@ -34,7 +34,7 @@ myPromptConfig = def { bgColor         = backgroundColor
                      , bgHLight        = Colors.darkBlue
                      , fgHLight        = backgroundColor
                      , alwaysHighlight = False
-                     , font            = myFont 16
+                     , font            = myFont 11
                      , height          = 36
                      , sorter          = fuzzySort
                      , searchPredicate = fuzzyMatch }

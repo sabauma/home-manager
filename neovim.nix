@@ -3,7 +3,7 @@
 {
   programs.neovim = {
     enable = true;
-    package = pkgs.neovim-nightly;
+    package = pkgs.neovim;
 
     extraConfig = builtins.readFile ./nvim/init.vim;
     extraLuaConfig = builtins.readFile ./nvim/config.lua;
@@ -40,12 +40,14 @@
       cmp-buffer
       cmp-cmdline
       cmp-nvim-lsp
+      cmp-nvim-lsp-signature-help
       cmp-path
 
       # LSP
+      clangd_extensions-nvim
       dressing-nvim
-      nvim-lspconfig
       lspkind-nvim
+      nvim-lspconfig
 
       # Lualine
       lualine-nvim
@@ -55,15 +57,21 @@
       telescope-fzf-native-nvim
 
       # Neorg
-      neorg
-      neorg-telescope
+      # neorg
+      # neorg-telescope
       zen-mode-nvim
+
+      # Obsidian notes
+      obsidian-nvim
 
       # Nice popup messages
       popup-nvim
 
       # Oil file manager
       oil-nvim
+
+      # outline.nvim
+      outline-nvim
     ];
   };
 }

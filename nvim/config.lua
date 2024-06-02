@@ -1,7 +1,6 @@
 
 vim.notify = require('notify')
 
-
 -- Mappings.
 local on_attach = function(client, bufnr)
   -- Mappings.
@@ -63,65 +62,65 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
-require('neorg').setup {
-  -- Tell Neorg what modules to load
-  load = {
-    ["core.defaults"] = {}, -- Load all the default modules
-    ["core.concealer"] = {
-      config = {
-        markup = {
-          enabled = true
-        },
-        icon_preset = "basic"
-      }
-    }, -- Allows for use of icons
-    ["core.completion"] = {
-      config = {
-        engine = "nvim-cmp" -- We current support nvim-compe and nvim-cmp only
-      }
-    },
-    ["core.presenter"] = {
-      config = {
-        zen_mode = "zen-mode"
-      },
-    },
-    ["core.dirman"] = {
-      config = {
-        workspaces = {
-          work = "~/Notes/work",
-          personal = "~/Notes/personal"
-        }
-      }
-    },
-    ["core.integrations.telescope"] = {}, -- Enable the telescope module
-    ["core.keybinds"] = { -- Configure core.keybinds
-      config = {
-        default_keybinds = true, -- Generate the default keybinds
-        neorg_leader = "<Leader>o" -- This is the default if unspecified
-      }
-    },
-    ["core.qol.toc"] = { },
-    ["core.export"] = { },
-    ["core.export.markdown"] = {
-      config = {
-        extensions = "all",
-      }
-    },
-    ["core.journal"] = {
-      config = {
-        journal_folder = "journal",
-        strategy = "flat"
-      }
-    },
-    ["core.esupports.metagen"] = {
-      config = {
-        type = "auto",
-        tab = "  ",
-        update_date = true
-      }
-    },
-  },
-}
+-- require('neorg').setup {
+--   -- Tell Neorg what modules to load
+--   load = {
+--     ["core.defaults"] = {}, -- Load all the default modules
+--     ["core.concealer"] = {
+--       config = {
+--         markup = {
+--           enabled = true
+--         },
+--         icon_preset = "basic"
+--       }
+--     }, -- Allows for use of icons
+--     ["core.completion"] = {
+--       config = {
+--         engine = "nvim-cmp" -- We current support nvim-compe and nvim-cmp only
+--       }
+--     },
+--     ["core.presenter"] = {
+--       config = {
+--         zen_mode = "zen-mode"
+--       },
+--     },
+--     ["core.dirman"] = {
+--       config = {
+--         workspaces = {
+--           work = "~/Notes/work",
+--           personal = "~/Notes/personal"
+--         }
+--       }
+--     },
+--     ["core.integrations.telescope"] = {}, -- Enable the telescope module
+--     ["core.keybinds"] = { -- Configure core.keybinds
+--       config = {
+--         default_keybinds = true, -- Generate the default keybinds
+--         neorg_leader = "<Leader>o" -- This is the default if unspecified
+--       }
+--     },
+--     ["core.qol.toc"] = { },
+--     ["core.export"] = { },
+--     ["core.export.markdown"] = {
+--       config = {
+--         extensions = "all",
+--       }
+--     },
+--     ["core.journal"] = {
+--       config = {
+--         journal_folder = "journal",
+--         strategy = "flat"
+--       }
+--     },
+--     ["core.esupports.metagen"] = {
+--       config = {
+--         type = "auto",
+--         tab = "  ",
+--         update_date = true
+--       }
+--     },
+--   },
+-- }
 
 -- Setup nvim-cmp.
 local cmp = require('cmp')
@@ -131,20 +130,19 @@ cmp.setup {
   snippet = { },
 
   window = {
-    -- completion = cmp.config.window.bordered({
-    --   border = "shadow"
-    -- }),
+    completion = cmp.config.window.bordered({
+      -- border = "shadow"
+    }),
 
-    -- documentation = cmp.config.window.bordered({
-    --   border = "shadow"
-    -- }),
+    documentation = cmp.config.window.bordered({
+      -- border = "shadow"
+    }),
   },
 
   formatting = {
     fields = { "kind", "abbr", "menu" },
     format = lspkind.cmp_format({
-      maxwidth = 65,
-      mode = "symbol",
+      mode = "symbol_text",
     }),
   },
 
@@ -207,3 +205,7 @@ require("oil").setup()
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+require("outline").setup {}
+
+require("clangd_extensions.inlay_hints").setup_autocmd()
+require("clangd_extensions.inlay_hints").set_inlay_hints()
