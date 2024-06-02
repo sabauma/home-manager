@@ -17,6 +17,11 @@
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    neorg-overlay = {
+      url = "github:nvim-neorg/nixpkgs-neorg-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
@@ -26,7 +31,7 @@
       modules = [ ./home.nix ];
 
       extraSpecialArgs = {
-        inherit (inputs) neovim-nightly mlir-nix;
+        inherit (inputs) neovim-nightly mlir-nix neorg-overlay;
       };
     };
   };
