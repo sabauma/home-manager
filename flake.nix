@@ -13,7 +13,10 @@
 
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
 
-    mlir-nix.url = "github:sabauma/mlir.nix";
+    mlir-nix = {
+      url = "github:sabauma/mlir.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, flake-utils, neovim-nightly, mlir-nix, ... }@inputs:

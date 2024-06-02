@@ -5,7 +5,7 @@
     package = pkgs.alacritty;
     settings = {
       font = {
-        size = 10;
+        size = 8;
         normal = {
           family = "Development";
           style = "Regular";
