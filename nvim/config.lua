@@ -1,6 +1,8 @@
 
 vim.notify = require('notify')
 
+require('trouble').setup {}
+
 -- Mappings.
 local on_attach = function(client, bufnr)
   -- Mappings.
