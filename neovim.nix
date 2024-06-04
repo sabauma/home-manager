@@ -3,7 +3,7 @@
 {
   programs.neovim = {
     enable = true;
-    package = pkgs.neovim-nightly;
+    package = pkgs.neovim;
 
     extraConfig = builtins.readFile ./nvim/init.vim;
     extraLuaConfig = builtins.readFile ./nvim/config.lua;
@@ -38,12 +38,12 @@
       nvim-notify
 
       # nvim-cmp
-      nvim-cmp
       cmp-buffer
       cmp-cmdline
       cmp-nvim-lsp
       cmp-nvim-lsp-signature-help
       cmp-path
+      nvim-cmp
 
       # LSP
       clangd_extensions-nvim

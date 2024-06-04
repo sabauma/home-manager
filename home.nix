@@ -37,9 +37,7 @@ let
 in
 {
   nixpkgs.overlays = [
-    (final: prev: {
-      neovim-nightly = (builtins.getFlake "github:nix-community/neovim-nightly-overlay").packages.${pkgs.system}.neovim;
-    })
+    (builtins.getFlake "github:nix-community/neovim-nightly-overlay").overlays.default
   ];
 
   imports = [ ./neovim.nix ];
