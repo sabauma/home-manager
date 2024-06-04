@@ -72,6 +72,10 @@
 
       # outline.nvim
       outline-nvim
+
+      # Trouble.nvim
+      trouble-nvim
+      nvim-web-devicons
     ];
   };
 }
