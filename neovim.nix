@@ -57,8 +57,8 @@
       telescope-fzf-native-nvim
 
       # Neorg
-      # neorg
-      # neorg-telescope
+      neorg
+      neorg-telescope
       zen-mode-nvim
 
       # Obsidian notes
@@ -72,6 +72,10 @@
 
       # outline.nvim
       outline-nvim
+
+      # Trouble.nvim
+      trouble-nvim
+      nvim-web-devicons
     ];
   };
 }
