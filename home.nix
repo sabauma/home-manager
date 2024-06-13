@@ -8,6 +8,7 @@ in
   nixpkgs.overlays = [
     neovim-nightly.overlays.default
     neorg-overlay.overlays.default
+    mlir-nix.overlays.default
   ];
 
   imports = [
@@ -67,7 +68,7 @@ in
   # environment.
   home.packages = with pkgs; [
     # From github:sabauma/mlir-nix
-    mlir-nix.packages.${pkgs.system}.default
+    mlir
 
     nerdfonts
 
