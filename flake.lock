@@ -268,11 +268,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1717959400,
-        "narHash": "sha256-f+TpBKiH5FvD7pCvicorj9P9EjPtN6uRJtbZAFlLSII=",
+        "lastModified": 1718281121,
+        "narHash": "sha256-L1/5LAZLloijKZZIB4n52oWYWfwjT6oP8tEVZDVbL/8=",
         "owner": "sabauma",
         "repo": "mlir.nix",
-        "rev": "8155a9e1d46104b1494359db9183756069d7bd10",
+        "rev": "84fcdd89b62360e88fc1e7687c91842dc37e3d59",
         "type": "github"
       },
       "original": {
