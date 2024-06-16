@@ -208,6 +208,10 @@ lspconfig.tblgen_lsp_server.setup {
   on_attach = on_attach,
 }
 
+lspconfig.nil_ls.setup {
+  on_attach = on_attach,
+}
+
 -------------------------------------------------------------------------------
 -- Treesitter Configuration
 -------------------------------------------------------------------------------
