@@ -4,6 +4,7 @@ vim.notify = require('notify')
 require('pqf').setup {}
 require('nvim-surround').setup {}
 require('trouble').setup {}
+require('nvim-surround').setup {}
 
 -------------------------------------------------------------------------------
 -- LSP Configuration
