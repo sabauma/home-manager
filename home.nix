@@ -71,6 +71,10 @@ in
 
     nerdfonts
 
+    # Language Servers
+    bash-language-server
+    nil
+
     # Useful command line tools
     bat
     bitwarden-cli
@@ -90,7 +94,6 @@ in
     hyperfine
     mosh
     newsboat
-    nil
     ninja
     openconnect
     pyright

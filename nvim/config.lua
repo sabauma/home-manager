@@ -31,12 +31,24 @@ local configs = require('lspconfig.configs')
 local lspconfig = require('lspconfig')
 local lsputil = require('lspconfig.util')
 
+lspconfig.bashls.setup {
+  on_attach = on_attach,
+}
+
 lspconfig.clangd.setup {
   cmd = {"clangd", "--completion-style=detailed", "--background-index", "--background-index-priority=low"},
   on_attach = on_attach,
 }
 
 lspconfig.mlir_lsp_server.setup {
+  on_attach = on_attach,
+}
+
+lspconfig.mojo.setup {
+  on_attach = on_attach,
+}
+
+lspconfig.nil_ls.setup {
   on_attach = on_attach,
 }
 
@@ -49,10 +61,6 @@ lspconfig.pyright.setup {
 vim.lsp.set_log_level("off")
 
 lspconfig.tblgen_lsp_server.setup {
-  on_attach = on_attach,
-}
-
-lspconfig.nil_ls.setup {
   on_attach = on_attach,
 }
 
