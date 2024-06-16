@@ -46,6 +46,14 @@ lspconfig.tblgen_lsp_server.setup {
   on_attach = on_attach,
 }
 
+lspconfig.nil_ls.setup {
+  on_attach = on_attach,
+}
+
+-------------------------------------------------------------------------------
+-- Treesitter Configuration
+-------------------------------------------------------------------------------
+
 require('nvim-treesitter.configs').setup {
   -- Grammars are managed by nix
   -- ensure_installed = "all",
