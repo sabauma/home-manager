@@ -74,6 +74,10 @@ in
 
     nerdfonts
 
+    # Language Servers
+    bash-language-server
+    nil
+
     # Useful command line tools
     bat
     betterlockscreen
@@ -93,7 +97,6 @@ in
     hyperfine
     mosh
     newsboat
-    nil
     ninja
     openconnect
     pyright
