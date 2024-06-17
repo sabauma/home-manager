@@ -30,6 +30,7 @@
       everforest
 
       nvim-bqf
+      nvim-pqf
 
       # Neovim-notify
       nvim-notify

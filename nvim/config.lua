@@ -159,8 +159,9 @@ vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {
 
 vim.notify = require('notify')
 
-require('trouble').setup {}
+require('pqf').setup {}
 require('nvim-surround').setup {}
+require('trouble').setup {}
 
 -------------------------------------------------------------------------------
 -- LSP Configuration
