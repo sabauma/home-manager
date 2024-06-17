@@ -1,7 +1,13 @@
 
 vim.notify = require('notify')
 
+require('pqf').setup {}
+require('nvim-surround').setup {}
 require('trouble').setup {}
+
+-------------------------------------------------------------------------------
+-- LSP Configuration
+-------------------------------------------------------------------------------
 
 -- Mappings.
 local on_attach = function(client, bufnr)
