@@ -102,6 +102,7 @@ in
     pyright
     ranger
     ripgrep
+    shellcheck
     starship
     tmux
     vim_configurable
