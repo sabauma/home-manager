@@ -101,6 +101,7 @@ in
     ranger
     ripgrep
     starship
+    syncthing
     tmux
     vim_configurable
     xmobar
@@ -309,6 +310,8 @@ in
           end
         '';
 
+        c = "bat --theme=gruvbox-dark --paging=never --number $argv;";
+
         bac-clone = "mw -using Bmain sbs create -c $argv[1] -bac";
 
         change = "p4 change (changes) $argv";
@@ -319,6 +322,26 @@ in
             --preview-window=70%:wrap:rounded --cycle --phony --exit-0
         '';
 
+        gbr = ''
+          set -l log_line_to_hash "echo {} | grep -o '^[a-f0-9]*' | head -1"
+          set -l view_commit "$log_line_to_hash | xargs -I % sh -c 'git show --color=always %'"
+          set -l copy_commit_hash "$log_line_to_hash | xclip -selection clipboard"
+          set -l git_checkout "$log_line_to_hash | xargs -I % sh -c 'git checkout %'"
+          set -l open_cmd "open"
+
+          if test (uname) = Linux
+              set open_cmd "xdg-open"
+          end
+
+          git log --color=always --format='%C(auto)%h%d %s %C(green)%C(bold)%cr% C(blue)%an' $argv | \
+              fzf --no-sort --reverse --tiebreak=index --no-multi --ansi \
+                  --preview="$view_commit" \
+                  --header="ENTER to view, CTRL-Y to copy hash, CTRL-X to checkout, CTRL-C to exit" \
+                  --bind "enter:execute($view_commit)" \
+                  --bind "ctrl-y:execute($copy_commit_hash)" \
+                  --bind "ctrl-x:execute($git_checkout)"
+        '';
+
         mktags = ''
         fd --extension "hpp" --extension "cpp" \
            --extension "c" --extension "h" \
@@ -326,22 +349,8 @@ in
         | ctags --sort=foldcase --c++-kinds=+p --fields=+iaS --extra=+q -f ./tags -L- &;
         '';
 
-        net-sandbox = ''
-        set -l cluster $argv[1]
-        set -l tag $argv[2]
-        set -l output (mktemp)
-
-        if test "$tag" = ""
-          mw -using $cluster sbs create -c $cluster | tee "$output"
-        else
-          mw -using $cluster sbs create -c $cluster -t $tag | tee "$output"
-        end
-
-        set -l dir (grep -o '/mathworks/devel/sbs/.*$' "$output")
-        rm "$output"
-
-        cd "$dir""/matlab/src"
-        mktags
+        p4diff = ''
+          p4 diff -du | delta --line-numbers --syntax-theme gruvbox-dark;
         '';
 
         s = "cd (sandboxes) $argv";
@@ -354,6 +363,12 @@ in
           fzf --multi --preview "summarize-sandbox {}" --preview-window=up:70%:wrap:rounded --tac --cycle --exit-0 |
           awk '{print $1}'
         '';
+
+        zz = ''
+          z --clean &> /dev/null &
+          cd (z --list | awk '{print $2}' | fzf --preview "exa --all --group-directories-first --icons --color=always {}" --exit-0)
+        '';
+
       };
     };
 
