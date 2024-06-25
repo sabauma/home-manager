@@ -289,6 +289,7 @@ in
       enable = true;
       plugins = [
         { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
+        { name = "z"; src = pkgs.fishPlugins.z.src; }
       ];
 
       interactiveShellInit = ''
@@ -298,9 +299,7 @@ in
       '';
 
       functions = {
-        fish_key_bindings = ''
-        fish_vi_key_bindings
-        '';
+        fish_key_bindings = "fish_vi_key_bindings";
 
         # Configure the user keybindings to use vim
         fish_user_key_bindings = ''
