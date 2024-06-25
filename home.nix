@@ -293,9 +293,15 @@ in
 
       interactiveShellInit = ''
       source /mathworks/inside/labs/dev/matlab_coder_tools/sbtools-completions/sbtools-completions/fish/setup.fish
+
+      fish_add_path "/nix/var/nix/profiles/default/bin"
       '';
 
       functions = {
+        fish_key_bindings = ''
+        fish_vi_key_bindings
+        '';
+
         # Configure the user keybindings to use vim
         fish_user_key_bindings = ''
           bind -M insert \cf accept-autosuggestion
