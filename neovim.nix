@@ -29,6 +29,7 @@
       gruvbox-material
       everforest
 
+      # Quickfix list plugins
       nvim-bqf
       nvim-pqf
 
