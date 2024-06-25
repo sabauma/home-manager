@@ -76,6 +76,7 @@ in
 
     # Language Servers
     bash-language-server
+    haskell-language-server
     nil
 
     # Useful command line tools

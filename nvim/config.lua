@@ -198,6 +198,10 @@ lspconfig.clangd.setup {
   on_attach = on_attach,
 }
 
+lspconfig.hls.setup {
+  on_attach = on_attach,
+}
+
 lspconfig.mlir_lsp_server.setup {
   on_attach = on_attach,
 }
