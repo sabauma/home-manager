@@ -67,7 +67,7 @@ in
 
     # (import ./pkgs/cgir-mlir-manager.nix { inherit pkgs; })
     (import ./pkgs/logline.nix { inherit pkgs; })
-    (import ./pkgs/netron.nix { inherit pkgs; })
+    # (import ./pkgs/netron.nix { inherit pkgs; })
 
     nerdfonts
 
@@ -86,6 +86,7 @@ in
     du-dust
     eza
     fd
+    feh
     ffmpeg
     fzf
     #gdb
@@ -158,6 +159,8 @@ in
 
     # Link in the fonts directory with personal fonts
     ".fonts/".source = ./fonts;
+
+    ".wallpaper".source = ./wallpapers/occ384clcjg51.jpg;
 
     # Xsession configuration
     ".xsessionrc".source = ./xsessionrc;

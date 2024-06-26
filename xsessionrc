@@ -7,3 +7,5 @@
 
 picom --vsync --backend glx &
 gnome-screensaver &
+
+feh --bg-fill ~/.wallpaper
