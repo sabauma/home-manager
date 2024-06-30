@@ -70,9 +70,17 @@ in
   # environment.
   home.packages = with pkgs; [
     # From github:sabauma/mlir-nix
-    mlir
+    # Since the mlir build includes clang, it can conflict with other
+    # packages which install clang. Set as lowPrio to avoid shadowing an
+    # official build of clang.
+    (pkgs.lowPrio mlir)
 
     nerdfonts
+
+    # Language Servers
+    bash-language-server
+    haskell-language-server
+    nil
 
     # Useful command line tools
     bat
@@ -93,12 +101,12 @@ in
     hyperfine
     mosh
     newsboat
-    nil
     ninja
     openconnect
     pyright
     ranger
     ripgrep
+    shellcheck
     starship
     tmux
     vim_configurable

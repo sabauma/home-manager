@@ -159,6 +159,8 @@ vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {
 
 vim.notify = require('notify')
 
+require('pqf').setup {}
+require('nvim-surround').setup {}
 require('trouble').setup {}
 
 -------------------------------------------------------------------------------
@@ -187,8 +189,16 @@ local configs = require('lspconfig.configs')
 local lspconfig = require('lspconfig')
 local lsputil = require('lspconfig.util')
 
+lspconfig.bashls.setup {
+  on_attach = on_attach,
+}
+
 lspconfig.clangd.setup {
   cmd = {"clangd", "--completion-style=detailed", "--background-index", "--background-index-priority=low"},
+  on_attach = on_attach,
+}
+
+lspconfig.hls.setup {
   on_attach = on_attach,
 }
 
@@ -197,6 +207,10 @@ lspconfig.mlir_lsp_server.setup {
 }
 
 lspconfig.mojo.setup {
+  on_attach = on_attach,
+}
+
+lspconfig.nil_ls.setup {
   on_attach = on_attach,
 }
 

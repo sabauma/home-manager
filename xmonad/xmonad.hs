@@ -50,7 +50,6 @@ import qualified XMonad.StackSet                  as W
 --
 myTerminal      = "alacritty"
 
-
 -- Width of the window border in pixels.
 --
 myBorderWidth   = 4

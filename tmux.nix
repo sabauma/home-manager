@@ -15,8 +15,8 @@
 
     plugins = with pkgs.tmuxPlugins; [
       gruvbox
-        prefix-highlight
-        tmux-fzf
+      prefix-highlight
+      tmux-fzf
     ];
 
     extraConfig = ''

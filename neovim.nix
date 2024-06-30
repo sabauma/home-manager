@@ -19,9 +19,8 @@
       vim-indent-object
       vim-obsession
       vim-repeat
-      vim-colors-solarized
-      vim-surround
-      vim-vinegar
+
+      nvim-surround
 
       # Treesitter
       nvim-treesitter.withAllGrammars
@@ -30,7 +29,9 @@
       gruvbox-material
       everforest
 
+      # Quickfix list plugins
       nvim-bqf
+      nvim-pqf
 
       # Neovim-notify
       nvim-notify
