@@ -7,6 +7,7 @@ pkgs.stdenv.mkDerivation {
 
   propagatedBuildInputs = with pkgs; [
     bash
+    diff-so-fancy
     fzf
     git
     gnugrep

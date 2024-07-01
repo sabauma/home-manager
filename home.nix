@@ -72,6 +72,8 @@ in
 
     (import ./scripts { inherit pkgs; })
 
+    (import ./scripts { inherit pkgs; })
+
     nerdfonts
 
     # Language Servers
