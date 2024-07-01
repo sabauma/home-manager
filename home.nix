@@ -75,6 +75,8 @@ in
     # official build of clang.
     (pkgs.lowPrio mlir)
 
+    (import ./scripts { inherit pkgs; })
+
     nerdfonts
 
     # Language Servers
