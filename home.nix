@@ -70,6 +70,8 @@ in
     (import ./pkgs/logline.nix { inherit pkgs; })
     # (import ./pkgs/netron.nix { inherit pkgs; })
 
+    (import ./scripts { inherit pkgs; })
+
     nerdfonts
 
     # Language Servers
