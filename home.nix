@@ -63,7 +63,8 @@ in
   # environment.
   home.packages = with pkgs; [
     # From github:sabauma/mlir-nix
-    (builtins.getFlake "github:sabauma/mlir.nix").packages.${pkgs.system}.mlir
+    (pkgs.lowPrio
+      (builtins.getFlake "github:sabauma/mlir.nix").packages.${pkgs.system}.mlir)
 
     # (import ./pkgs/cgir-mlir-manager.nix { inherit pkgs; })
     (import ./pkgs/logline.nix { inherit pkgs; })
