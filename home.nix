@@ -117,7 +117,7 @@ in
     yt-dlp
 
     # Gnome tools
-    gnome.gnome-screenshot
+    gnome-screenshot
 
     ccache
     clang-tools_18
@@ -148,7 +148,7 @@ in
 
   home.pointerCursor = {
     name = "Adwaita";
-    package = pkgs.gnome.adwaita-icon-theme;
+    package = pkgs.adwaita-icon-theme;
     size = 12;
   };
 
