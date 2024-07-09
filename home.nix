@@ -1,4 +1,4 @@
-{ pkgs, specialArgs, ... }:
+{ pkgs, config, specialArgs, ... }:
 
 let
   inherit (specialArgs) mlir-nix neovim-nightly neorg-overlay;
@@ -36,6 +36,16 @@ in
 
   # Allow unfree software to be installed
   nixpkgs.config.allowUnfree = true;
+
+  xdg.configFile = {
+    "gdb/gdbinit".text = ''
+    shell mkdir -p -m 0700 ${config.xdg.cacheHome}/gdb
+
+    set history filename ${config.xdg.cacheHome}/gdb/history
+    set history save on
+    set history size unlimited
+    '';
+  };
 
   home.sessionVariables = {
     BROWSER = "firefox-beta";
