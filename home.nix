@@ -116,9 +116,6 @@ in
     xmobar
     yt-dlp
 
-    # Gnome tools
-    gnome.gnome-screenshot
-
     ccache
     clang-tools_18
 
@@ -148,7 +145,7 @@ in
 
   home.pointerCursor = {
     name = "Adwaita";
-    package = pkgs.gnome.adwaita-icon-theme;
+    package = pkgs.adwaita-icon-theme;
     size = 12;
   };
 
@@ -245,7 +242,7 @@ in
     rofi = {
       enable = true;
       theme = "gruvbox-dark-hard";
-      font = "Berkeley Mono 14";
+      font = "Berkeley Mono 12";
       extraConfig = {
         sidebar-mode = true;
         sorting-method  = "fzf";
