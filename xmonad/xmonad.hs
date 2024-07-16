@@ -201,8 +201,8 @@ myKeys conf@XConfig {XMonad.modMask = modm} = M.fromList $
     , ((noModMask , xF86XK_AudioLowerVolume)  , void (lowerVolume 2))
     , ((noModMask , xF86XK_AudioRaiseVolume)  , void (raiseVolume 2))
     , ((noModMask , xF86XK_AudioMute)         , void toggleMute)
-    , ((noModMask , xF86XK_MonBrightnessUp)   , spawn "increment_brightness")
-    , ((noModMask , xF86XK_MonBrightnessDown) , spawn "decrement_brightness")
+    , ((noModMask , xF86XK_MonBrightnessUp)   , spawn "light -A 10")
+    , ((noModMask , xF86XK_MonBrightnessDown) , spawn "light -U 10")
 
     -- Set working directory for a workspace
     , ((modm      , xK_d) , changeDirPrompt)

@@ -101,6 +101,7 @@ in
     git
     htop
     hyperfine
+    light
     mosh
     newsboat
     ninja
