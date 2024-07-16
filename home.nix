@@ -14,6 +14,7 @@ in
   imports = [
     ./alacritty.nix
     ./fonts/default.nix
+    ./firefox.nix
     ./neovim.nix
     ./starship.nix
     ./tmux.nix
@@ -139,7 +140,6 @@ in
     calibre
     chromium
     discord
-    firefox-beta
     kitty
     libreoffice
     obsidian
