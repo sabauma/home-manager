@@ -78,6 +78,8 @@ in
 
     # Language Servers
     bash-language-server
+    cmake-language-server
+    lua-language-server
     nil
 
     # Useful command line tools
@@ -250,6 +252,9 @@ in
 
     atuin = {
       enable = true;
+      settings = {
+        style = "compact";
+      };
     };
 
     bat = {
