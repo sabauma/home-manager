@@ -19,6 +19,8 @@ in
     ./starship.nix
     ./tmux.nix
     ./xmonad/xmonad.nix
+
+    ./llama-service-definition.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -204,12 +206,24 @@ in
       enable = true;
       settings = {
         verbs = [
-          { invocation = "edit"; key = "F2"; shortcut = "e"; execution = "$EDITOR {file}"; }
+          {
+            invocation = "edit";
+            key = "F2";
+            shortcut = "e";
+            execution = "$EDITOR {file}";
+          }
           { key = "ctrl-p"; execution = ":line_up"; }
           { key = "ctrl-n"; execution = ":line_down"; }
           { key = "ctrl-u"; execution = ":page_up"; }
           { key = "ctrl-d"; execution = ":page_down"; }
-          { invocation = "git_add"; shortcut = "ga"; key = "ctrl-a"; leave_broot = false; execution = "git add {file}"; apply_to = "file"; }
+          {
+            invocation = "git_add";
+            shortcut = "ga";
+            key = "ctrl-a";
+            leave_broot = false;
+            execution = "git add {file}";
+            apply_to = "file";
+          }
         ];
       };
     };
@@ -306,6 +320,11 @@ in
   services.flameshot.enable = true;
   services.notify-osd.enable = true;
   services.ssh-agent.enable = true;
+
+  services.ollama = {
+    enable = true;
+    acceleration = "cuda";
+  };
 
   xsession = {
     enable = true;
