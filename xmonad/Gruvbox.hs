@@ -1,17 +1,10 @@
 {-# OPTIONS_GHC -O2 -Wall               #-}
-{-# LANGUAGE GeneralizedNewtypeDeriving #-}
-{-# LANGUAGE TupleSections              #-}
 
 module Gruvbox where
 
 import           Data.Hashable
-import qualified Data.Vector   as V
-import           XMonad        (Window, X (), runQuery, title)
+import           XMonad        (Window, title)
 import           XMonad.Core
-import qualified XMonad.Util.ExtensibleState as XS
-
-import Data.Word
-import System.Random
 
 backgroundSoft = "#32302f"
 backgroundNorm = "#282828"
@@ -68,6 +61,6 @@ colorizer s active
   | active    = return (background, foreground)
   | otherwise = do
     name <- runQuery title s
-    let index   = hash name `mod` (length allColors)
+    let index   = hash name `mod` length allColors
         bgcolor = allColors !! index
     return (bgcolor, background)

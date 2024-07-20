@@ -24,7 +24,10 @@ xmobarVisibleWorkspaceColor = Colors.darkRed
 -- Color of the layout field
 xmobarLayoutColor = Colors.yellow
 
+backgroundColor :: String
 backgroundColor = Colors.background
+
+foregroundColor :: String
 foregroundColor = Colors.foreground
 
 -- XPConfig with an infix search, rather than prefix.

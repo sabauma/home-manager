@@ -30,6 +30,7 @@ import           Data.Char
 import           Data.Monoid                      (appEndo)
 import qualified Data.Text                        as T
 import qualified Data.Text.ICU.Normalize2         as ICU
+import           Data.Word (Word32)
 
 import           FindEmptyWorkspace
 import           Gruvbox                          as Colors
@@ -37,29 +38,30 @@ import           PerWorkspaceDirs                 (currentWorkspace, getDir)
 import           PromptConfig
 import           System.Exit
 import           System.IO
-import           Text.Printf                      (printf)
 
 import           Graphics.X11.ExtraTypes.XF86
 
-import qualified Data.Map                         as M
 import qualified XMonad.StackSet                  as W
 
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal      = "alacritty"
+myTerminal :: String
+myTerminal = "alacritty"
 
 -- Width of the window border in pixels.
 --
-myBorderWidth   = 4
+myBorderWidth :: Word32
+myBorderWidth = 4
 
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
 -- ("right alt"), which does not conflict with emacs keybindings. The
 -- "windows key" is usually mod4Mask.
 --
-myModMask       = mod1Mask
+myModMask :: KeyMask
+myModMask = mod1Mask
 
 -- The mask for the numlock key. Numlock status is "masked" from the
 -- current modifier status, so the keybindings will work with numlock on or
@@ -74,6 +76,7 @@ myModMask       = mod1Mask
 -- Set numlockMask = 0 if you don't have a numlock key, or want to treat
 -- numlock status separately.
 --
+myNumlockMask :: KeyMask
 myNumlockMask   = mod2Mask
 
 -- The default number of workspaces (virtual screens) and their names.
@@ -237,11 +240,12 @@ myKeys conf@XConfig {XMonad.modMask = modm} = M.fromList $
 
 fullFloatFocused :: X ()
 fullFloatFocused =
-    withFocused (\f -> windows =<< appEndo `fmap` runQuery doFullFloat f)
+    withFocused ((windows . appEndo) <=< runQuery doFullFloat)
 
 ------------------------------------------------------------------------
 -- Mouse bindings: default actions bound to mouse events
 
+myMouseBindings :: XConfig l -> M.Map (KeyMask, Button) (Window -> X ())
 myMouseBindings XConfig{XMonad.modMask = modMask} = M.fromList
     -- mod-button1, Set the window to floating mode and move by dragging
     [ ((modMask, button1), mouseAction mouseMoveWindow)
@@ -297,14 +301,14 @@ cleanupLayout s = name ++ padd
 
 xmobarConfig :: PP
 xmobarConfig = xmobarPP
-             { ppTitle   = title
+             { ppTitle   = myTitle
              , ppLayout  = layout
              , ppCurrent = current
              , ppVisible = visible
              , ppSep     = sep
              , ppUrgent  = urgent }
   where
-    title   = xmobarColor xmobarTitleColor ""  . shorten 40 . textNormalizer
+    myTitle = xmobarColor xmobarTitleColor ""  . shorten 40 . textNormalizer
     layout  = xmobarColor xmobarLayoutColor "" . cleanupLayout
     current = xmobarColor xmobarCurrentWorkspaceColor "" . wrap "«" "»"
     visible = xmobarColor xmobarVisibleWorkspaceColor "" . wrap "(" ")"

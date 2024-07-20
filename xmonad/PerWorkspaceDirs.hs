@@ -1,8 +1,7 @@
 {-# OPTIONS_GHC -O2 -Wall               #-}
-{-# LANGUAGE GeneralizedNewtypeDeriving #-}
 -------------------------------------------------------------------------------
 -- | Allows per workspace working directories
--- ----------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 
 module PerWorkspaceDirs
   ( currentWorkspace

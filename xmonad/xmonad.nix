@@ -16,10 +16,10 @@
 
     config = ./xmonad.hs;
     libFiles = {
-      "FindEmptyWorkspace.hs" = ./lib/FindEmptyWorkspace.hs;
-      "Gruvbox.hs" = ./lib/Gruvbox.hs;
-      "PerWorkspaceDirs.hs" = ./lib/PerWorkspaceDirs.hs;
-      "PromptConfig.hs" = ./lib/PromptConfig.hs;
+      "FindEmptyWorkspace.hs" = ./FindEmptyWorkspace.hs;
+      "Gruvbox.hs" = ./Gruvbox.hs;
+      "PerWorkspaceDirs.hs" = ./PerWorkspaceDirs.hs;
+      "PromptConfig.hs" = ./PromptConfig.hs;
     };
   };
 }
