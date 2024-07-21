@@ -27,6 +27,7 @@ import           XMonad.Prompt.Window             (allWindows, windowPrompt, XWi
 -- General libraries
 import           Control.Monad
 import           Data.Char
+import qualified Data.Map                         as M
 import           Data.Monoid                      (appEndo)
 import qualified Data.Text                        as T
 import qualified Data.Text.ICU.Normalize2         as ICU
@@ -38,6 +39,7 @@ import           PerWorkspaceDirs                 (currentWorkspace, getDir)
 import           PromptConfig
 import           System.Exit
 import           System.IO
+import           Text.Printf                      (printf)
 
 import           Graphics.X11.ExtraTypes.XF86
 
@@ -85,7 +87,7 @@ myNumlockMask   = mod2Mask
 -- of this list.
 --
 myWorkspaces :: [String]
-myWorkspaces = ["1:web", "2:email", "3:code"] ++ map show [4 :: Integer .. 9] ++ ["10:music", "11:im", "12:misc"]
+myWorkspaces = ["1:web", "2:email", "3:code"] ++ map show [4 :: Int .. 12]
 
 -- Border colors for unfocused and focused windows, respectively.
 -- Based off of the gruvbox color scheme
@@ -95,7 +97,7 @@ myFocusedBorderColor = Colors.darkBlue
 
 -- Useful functions for restarting XMonad
 xmonadExecutable :: String
-xmonadExecutable = "/usr/bin/xmonad"
+xmonadExecutable = "xmonad"
 
 restartXMonad :: X ()
 restartXMonad = broadcastMessage ReleaseResources >> restart xmonadExecutable True
@@ -161,8 +163,6 @@ myKeys conf@XConfig {XMonad.modMask = modm} = M.fromList $
     -- , ((modm .|. shiftMask, xK_Tab   ), toggleWindowTo)
     -- Fullscreen apps
     , ((modm, xK_f                   ), fullFloatFocused)
-    -- Grid Select Binding
-    , ((modm              , xK_g     ), goToSelected gridSelectConfig)
     -- Put cursor in upper left hand corner of the screen
     , ((modm, xK_o                   ), banish UpperLeft)
     -- Find an empty workspace
@@ -296,7 +296,7 @@ isJunk x = x == "Spacing" || all isNumber x
 cleanupLayout :: String -> String
 cleanupLayout s = name ++ padd
   where
-    name = "|" ++ (foldr const s $ filter (not . isJunk) (words s)) ++ "|"
+    name = "|" ++ foldr const s (filter (not . isJunk) (words s)) ++ "|"
     padd = take (10 - length name) (cycle " ")
 
 xmobarConfig :: PP
