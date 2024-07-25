@@ -20,7 +20,7 @@ in
     ./tmux.nix
     ./xmonad/xmonad.nix
 
-    ./llama-service-definition.nix
+    ./ollama-service-definition.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
