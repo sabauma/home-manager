@@ -67,10 +67,8 @@ in
       (builtins.getFlake "github:sabauma/mlir.nix").packages.${pkgs.system}.mlir)
 
     # (import ./pkgs/cgir-mlir-manager.nix { inherit pkgs; })
-    (import ./pkgs/logline.nix { inherit pkgs; })
+    # (import ./pkgs/logline.nix { inherit pkgs; })
     # (import ./pkgs/netron.nix { inherit pkgs; })
-
-    (import ./scripts { inherit pkgs; })
 
     (import ./scripts { inherit pkgs; })
 
