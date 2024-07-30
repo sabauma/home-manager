@@ -62,7 +62,7 @@
         ExtensionRecommendations = false; # Don’t recommend extensions while the user is visiting web pages
         FeatureRecommendations = false;   # Don’t recommend browser features
         Locked = true;                    # Prevent the user from changing user messaging preferences
-        MoreFromMozilla = false;          # Don’t show the “More from Mozilla” section in Preferences
+        MoreFromMozilla = false;          # Don’t show the "More from Mozilla" section in Preferences
         SkipOnboarding = true;            # Don’t show onboarding messages on the new tab page
         UrlbarInterventions = false;      # Don’t offer suggestions in the URL bar
         WhatsNew = false;                 # Remove the “What’s New” icon and menuitem
