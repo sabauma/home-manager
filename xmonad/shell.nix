@@ -1,19 +1,19 @@
-{ pkgs ? import <nixpkgs> {} }:
+{
+  pkgs ? import <nixpkgs> { },
+}:
 let
-  haskellEnv = pkgs.haskellPackages.ghcWithPackages (ps: with ps; [
-    hashable
+  haskellEnv = pkgs.haskellPackages.ghcWithPackages (
+    ps: with ps; [
+      hashable
 
-    text
-    text-icu
+      text
+      text-icu
 
-    xmonad
-    xmonad-contrib
-    xmonad-extras
-    vector
-  ]);
+      xmonad
+      xmonad-contrib
+      xmonad-extras
+      vector
+    ]
+  );
 in
-pkgs.mkShell {
-  packages = [
-    haskellEnv
-  ];
-}
+pkgs.mkShell { packages = [ haskellEnv ]; }

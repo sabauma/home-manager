@@ -29,7 +29,7 @@
 
       hostname = {
         ssh_only = false;
-        format =  "[@](dimmed red)[$hostname](bold green) ";
+        format = "[@](dimmed red)[$hostname](bold green) ";
         trim_at = ".companyname.com";
         disabled = false;
       };
@@ -39,12 +39,24 @@
       };
 
       # Disable annoying features
-      cmd_duration = { disabled = true; };
-      python = { disabled = true; };
-      julia = { disabled = true; };
-      conda = { disabled = true; };
-      vlang = { disabled = true; };
-      nodejs = { disabled = true; };
+      cmd_duration = {
+        disabled = true;
+      };
+      python = {
+        disabled = true;
+      };
+      julia = {
+        disabled = true;
+      };
+      conda = {
+        disabled = true;
+      };
+      vlang = {
+        disabled = true;
+      };
+      nodejs = {
+        disabled = true;
+      };
     };
   };
 }

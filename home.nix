@@ -1,4 +1,9 @@
-{ pkgs, config, specialArgs, ... }:
+{
+  pkgs,
+  config,
+  specialArgs,
+  ...
+}:
 
 let
   inherit (specialArgs) mlir-nix neovim-nightly neorg-overlay;
@@ -42,11 +47,11 @@ in
 
   xdg.configFile = {
     "gdb/gdbinit".text = ''
-    shell mkdir -p -m 0700 ${config.xdg.cacheHome}/gdb
+      shell mkdir -p -m 0700 ${config.xdg.cacheHome}/gdb
 
-    set history filename ${config.xdg.cacheHome}/gdb/history
-    set history save on
-    set history size unlimited
+      set history filename ${config.xdg.cacheHome}/gdb/history
+      set history save on
+      set history size unlimited
     '';
   };
 
@@ -63,19 +68,19 @@ in
 
     mimeApps.enable = true;
     mimeApps.defaultApplications = {
-      "application/pdf" = ["org.gnome.Evince.desktop"];
+      "application/pdf" = [ "org.gnome.Evince.desktop" ];
 
       # Register firefox-beta as the default handler for web related files
-      "x-scheme-handler/http"=["firefox-beta.desktop"];
-      "x-scheme-handler/https"=["firefox-beta.desktop"];
-      "x-scheme-handler/chrome"=["firefox-beta.desktop"];
-      "text/html"=["firefox-beta.desktop"];
-      "application/x-extension-htm"=["firefox-beta.desktop"];
-      "application/x-extension-html"=["firefox-beta.desktop"];
-      "application/x-extension-shtml"=["firefox-beta.desktop"];
-      "application/xhtml+xml"=["firefox-beta.desktop"];
-      "application/x-extension-xhtml"=["firefox-beta.desktop"];
-      "application/x-extension-xht"=["firefox-beta.desktop"];
+      "x-scheme-handler/http" = [ "firefox-beta.desktop" ];
+      "x-scheme-handler/https" = [ "firefox-beta.desktop" ];
+      "x-scheme-handler/chrome" = [ "firefox-beta.desktop" ];
+      "text/html" = [ "firefox-beta.desktop" ];
+      "application/x-extension-htm" = [ "firefox-beta.desktop" ];
+      "application/x-extension-html" = [ "firefox-beta.desktop" ];
+      "application/x-extension-shtml" = [ "firefox-beta.desktop" ];
+      "application/xhtml+xml" = [ "firefox-beta.desktop" ];
+      "application/x-extension-xhtml" = [ "firefox-beta.desktop" ];
+      "application/x-extension-xht" = [ "firefox-beta.desktop" ];
     };
   };
 
@@ -199,7 +204,9 @@ in
     bottom = {
       enable = true;
       settings = {
-        flags = { color = "gruvbox"; };
+        flags = {
+          color = "gruvbox";
+        };
       };
     };
 
@@ -213,10 +220,22 @@ in
             shortcut = "e";
             execution = "$EDITOR {file}";
           }
-          { key = "ctrl-p"; execution = ":line_up"; }
-          { key = "ctrl-n"; execution = ":line_down"; }
-          { key = "ctrl-u"; execution = ":page_up"; }
-          { key = "ctrl-d"; execution = ":page_down"; }
+          {
+            key = "ctrl-p";
+            execution = ":line_up";
+          }
+          {
+            key = "ctrl-n";
+            execution = ":line_down";
+          }
+          {
+            key = "ctrl-u";
+            execution = ":page_up";
+          }
+          {
+            key = "ctrl-d";
+            execution = ":page_down";
+          }
           {
             invocation = "git_add";
             shortcut = "ga";
@@ -238,7 +257,7 @@ in
     eza = {
       enable = true;
       icons = true;
-      extraOptions = ["--group-directories-first"];
+      extraOptions = [ "--group-directories-first" ];
       enableBashIntegration = true;
       enableFishIntegration = true;
     };
@@ -246,8 +265,14 @@ in
     fish = {
       enable = true;
       plugins = [
-        { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
-        { name = "z"; src = pkgs.fishPlugins.z.src; }
+        {
+          name = "fzf-fish";
+          src = pkgs.fishPlugins.fzf-fish.src;
+        }
+        {
+          name = "z";
+          src = pkgs.fishPlugins.z.src;
+        }
       ];
 
       functions = {
@@ -273,7 +298,7 @@ in
       font = "Berkeley Mono 14";
       extraConfig = {
         sidebar-mode = true;
-        sorting-method  = "fzf";
+        sorting-method = "fzf";
         terminal = "alacritty";
       };
     };
@@ -331,9 +356,9 @@ in
     enable = true;
 
     initExtra = ''
-    nvidia-settings --assign CurrentMetaMode="DP-0: nvidia-auto-select +2160+840, HDMI-0: nvidia-auto-select +0+0 {rotation=left}"
+      nvidia-settings --assign CurrentMetaMode="DP-0: nvidia-auto-select +2160+840, HDMI-0: nvidia-auto-select +0+0 {rotation=left}"
 
-    ${pkgs.feh}/bin/feh --bg-fill ${./wallpapers/occ384clcjg51.jpg}
+      ${pkgs.feh}/bin/feh --bg-fill ${./wallpapers/occ384clcjg51.jpg}
     '';
   };
 

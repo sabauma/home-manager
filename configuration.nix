@@ -5,10 +5,10 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -17,9 +17,7 @@
   boot.loader.grub.configurationLimit = 3;
   boot.loader.systemd-boot.configurationLimit = 3;
 
-  boot.kernelParams = [
-    "reboot=acpi"
-  ];
+  boot.kernelParams = [ "reboot=acpi" ];
 
   # Configuration to enable Nvidia driver
   hardware.opengl = {
@@ -28,7 +26,7 @@
     driSupport32Bit = true;
   };
 
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
     modesetting.enable = true;
@@ -89,14 +87,15 @@
   services.xserver.windowManager.xmonad = {
     enable = true;
     enableContribAndExtras = true;
-    extraPackages = ps: with ps; [
-      xmonad
-      xmonad-contrib
-      xmonad-extras
-      hashable
-      text-icu
-      vector
-    ];
+    extraPackages =
+      ps: with ps; [
+        xmonad
+        xmonad-contrib
+        xmonad-extras
+        hashable
+        text-icu
+        vector
+      ];
   };
 
   # Configure keymap in X11
@@ -112,7 +111,7 @@
         Option "Rotate" "left"
       '';
     }
-  
+
     {
       output = "DP-0";
       primary = true;
@@ -155,7 +154,11 @@
     isNormalUser = true;
     shell = pkgs.fish;
     description = "Spenser Bauman";
-    extraGroups = [ "networkmanager" "wheel" "storage" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "storage"
+    ];
     packages = with pkgs; [
       firefox
       vim
@@ -184,7 +187,10 @@
     wget
   ];
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   nix.optimise.automatic = true;
   nix.gc = {
     automatic = true;
