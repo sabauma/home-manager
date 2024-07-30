@@ -93,9 +93,12 @@ in
     nerdfonts
 
     # Language Servers
+    cmake-language-server
     bash-language-server
     haskell-language-server
+    lua-language-server
     nil
+    pyright
 
     # Useful command line tools
     bat
@@ -115,10 +118,8 @@ in
     htop
     hyperfine
     mosh
-    newsboat
     ninja
     openconnect
-    pyright
     ranger
     ripgrep
     shellcheck
