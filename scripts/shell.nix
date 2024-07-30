@@ -1,7 +1,5 @@
-{ pkgs ? import <nixpkgs> {} }:
+{
+  pkgs ? import <nixpkgs> { },
+}:
 
-pkgs.mkShell {
-  buildInputs = [
-    (import ./default.nix { inherit pkgs; })
-  ];
-}
+pkgs.mkShell { buildInputs = [ (import ./default.nix { inherit pkgs; }) ]; }

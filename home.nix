@@ -1,4 +1,9 @@
-{ pkgs, config, specialArgs, ... }:
+{
+  pkgs,
+  config,
+  specialArgs,
+  ...
+}:
 
 let
   inherit (specialArgs) mlir-nix neovim-nightly neorg-overlay;
@@ -42,11 +47,11 @@ in
 
   xdg.configFile = {
     "gdb/gdbinit".text = ''
-    shell mkdir -p -m 0700 ${config.xdg.cacheHome}/gdb
+      shell mkdir -p -m 0700 ${config.xdg.cacheHome}/gdb
 
-    set history filename ${config.xdg.cacheHome}/gdb/history
-    set history save on
-    set history size unlimited
+      set history filename ${config.xdg.cacheHome}/gdb/history
+      set history save on
+      set history size unlimited
     '';
   };
 
@@ -63,19 +68,19 @@ in
 
     mimeApps.enable = true;
     mimeApps.defaultApplications = {
-      "application/pdf" = ["org.gnome.Evince.desktop"];
+      "application/pdf" = [ "org.gnome.Evince.desktop" ];
 
       # Register firefox-beta as the default handler for web related files
-      "x-scheme-handler/http"=["firefox-beta.desktop"];
-      "x-scheme-handler/https"=["firefox-beta.desktop"];
-      "x-scheme-handler/chrome"=["firefox-beta.desktop"];
-      "text/html"=["firefox-beta.desktop"];
-      "application/x-extension-htm"=["firefox-beta.desktop"];
-      "application/x-extension-html"=["firefox-beta.desktop"];
-      "application/x-extension-shtml"=["firefox-beta.desktop"];
-      "application/xhtml+xml"=["firefox-beta.desktop"];
-      "application/x-extension-xhtml"=["firefox-beta.desktop"];
-      "application/x-extension-xht"=["firefox-beta.desktop"];
+      "x-scheme-handler/http" = [ "firefox-beta.desktop" ];
+      "x-scheme-handler/https" = [ "firefox-beta.desktop" ];
+      "x-scheme-handler/chrome" = [ "firefox-beta.desktop" ];
+      "text/html" = [ "firefox-beta.desktop" ];
+      "application/x-extension-htm" = [ "firefox-beta.desktop" ];
+      "application/x-extension-html" = [ "firefox-beta.desktop" ];
+      "application/x-extension-shtml" = [ "firefox-beta.desktop" ];
+      "application/xhtml+xml" = [ "firefox-beta.desktop" ];
+      "application/x-extension-xhtml" = [ "firefox-beta.desktop" ];
+      "application/x-extension-xht" = [ "firefox-beta.desktop" ];
     };
   };
 
@@ -93,9 +98,12 @@ in
     nerdfonts
 
     # Language Servers
+    cmake-language-server
     bash-language-server
     haskell-language-server
+    lua-language-server
     nil
+    pyright
 
     # Useful command line tools
     bat
@@ -116,10 +124,8 @@ in
     hyperfine
     light
     mosh
-    newsboat
     ninja
     openconnect
-    pyright
     ranger
     ripgrep
     shellcheck
@@ -196,7 +202,9 @@ in
     bottom = {
       enable = true;
       settings = {
-        flags = { color = "gruvbox"; };
+        flags = {
+          color = "gruvbox";
+        };
       };
     };
 
@@ -210,10 +218,22 @@ in
             shortcut = "e";
             execution = "$EDITOR {file}";
           }
-          { key = "ctrl-p"; execution = ":line_up"; }
-          { key = "ctrl-n"; execution = ":line_down"; }
-          { key = "ctrl-u"; execution = ":page_up"; }
-          { key = "ctrl-d"; execution = ":page_down"; }
+          {
+            key = "ctrl-p";
+            execution = ":line_up";
+          }
+          {
+            key = "ctrl-n";
+            execution = ":line_down";
+          }
+          {
+            key = "ctrl-u";
+            execution = ":page_up";
+          }
+          {
+            key = "ctrl-d";
+            execution = ":page_down";
+          }
           {
             invocation = "git_add";
             shortcut = "ga";
@@ -235,7 +255,7 @@ in
     eza = {
       enable = true;
       icons = true;
-      extraOptions = ["--group-directories-first"];
+      extraOptions = [ "--group-directories-first" ];
       enableBashIntegration = true;
       enableFishIntegration = true;
     };
@@ -243,8 +263,14 @@ in
     fish = {
       enable = true;
       plugins = [
-        { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
-        { name = "z"; src = pkgs.fishPlugins.z.src; }
+        {
+          name = "fzf-fish";
+          src = pkgs.fishPlugins.fzf-fish.src;
+        }
+        {
+          name = "z";
+          src = pkgs.fishPlugins.z.src;
+        }
       ];
 
       functions = {
@@ -270,7 +296,7 @@ in
       font = "Berkeley Mono 12";
       extraConfig = {
         sidebar-mode = true;
-        sorting-method  = "fzf";
+        sorting-method = "fzf";
         terminal = "alacritty";
       };
     };
@@ -328,7 +354,7 @@ in
     enable = true;
 
     initExtra = ''
-    ${pkgs.feh}/bin/feh --bg-fill ${./wallpapers/occ384clcjg51.jpg}
+      ${pkgs.feh}/bin/feh --bg-fill ${./wallpapers/occ384clcjg51.jpg}
     '';
   };
 

@@ -4,15 +4,16 @@
   xsession.windowManager.xmonad = {
     enable = true;
     enableContribAndExtras = true;
-    extraPackages = ps: with ps; [
-      xmonad
-      xmonad-contrib
-      xmonad-extras
-      hashable
-      text-icu
-      vector
-      xmobar
-    ];
+    extraPackages =
+      ps: with ps; [
+        xmonad
+        xmonad-contrib
+        xmonad-extras
+        hashable
+        text-icu
+        vector
+        xmobar
+      ];
 
     config = ./xmonad.hs;
     libFiles = {
