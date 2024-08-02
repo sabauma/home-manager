@@ -167,13 +167,21 @@ require('trouble').setup {}
 -- LSP Configuration
 -------------------------------------------------------------------------------
 
+local goto_prev = function(opts)
+  vim.diagnostic.jump({count=-1, float=true})
+end
+
+local goto_next = function(opts)
+  vim.diagnostic.jump({count=1, float=true})
+end
+
 -- Mappings.
 local on_attach = function(client, bufnr)
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
-  vim.keymap.set('n', '[g', vim.diagnostic.goto_prev, bufopts)
-  vim.keymap.set('n', ']g', vim.diagnostic.goto_next, bufopts)
+  vim.keymap.set('n', '[g', goto_prev, bufopts)
+  vim.keymap.set('n', ']g', goto_next, bufopts)
 
   vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
@@ -205,6 +213,7 @@ lspconfig.hls.setup {
 }
 
 lspconfig.lua_ls.setup {
+  on_attach = on_attach,
   on_init = function(client)
     local path = client.workspace_folders[1].name
     if vim.loop.fs_stat(path..'/.luarc.json') or vim.loop.fs_stat(path..'/.luarc.jsonc') then
@@ -220,11 +229,11 @@ lspconfig.lua_ls.setup {
       -- Make the server aware of Neovim runtime files
       workspace = {
         checkThirdParty = false,
-        library = {
-          vim.env.VIMRUNTIME
-        },
+        -- library = {
+        --   vim.env.VIMRUNTIME
+        -- },
         -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
-        -- library = vim.api.nvim_get_runtime_file("", true)
+        library = vim.api.nvim_get_runtime_file("", true)
       }
     })
   end,
@@ -344,6 +353,29 @@ require('neorg').setup {
 }
 
 -------------------------------------------------------------------------------
+-- cmp-ai
+-------------------------------------------------------------------------------
+
+-- require('cmp_ai.config').setup {
+--   max_lines = 100,
+--   provider = 'Ollama',
+--   provider_options = {
+--     model = 'codellama:7b-code',
+--     base_url = 'localhost:11434/api/generate',
+--   },
+--   notify = true,
+--   notify_callback = function(msg)
+--     vim.notify(msg)
+--   end,
+--   run_on_every_keystroke = true,
+--   ignored_file_types = {
+--     -- default is not to ignore
+--     -- uncomment to ignore in lua:
+--     -- lua = true
+--   },
+-- }
+
+-------------------------------------------------------------------------------
 -- nvim-cmp
 -------------------------------------------------------------------------------
 
@@ -377,6 +409,16 @@ cmp.setup {
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
     }),
+    ['<C-x>'] = cmp.mapping(
+      cmp.mapping.complete({
+        config = {
+          sources = cmp.config.sources({
+            { name = 'cmp_ai' },
+          }),
+        },
+      }),
+      { 'i' }
+    ),
   }),
 
   sources = cmp.config.sources({
