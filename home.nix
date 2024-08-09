@@ -370,8 +370,6 @@ in
     settings."org/gnome/desktop/interface".gtk-theme = "Adwaita";
   };
 
-  targets.genericLinux.enable = true;
-
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
