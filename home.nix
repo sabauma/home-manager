@@ -131,6 +131,7 @@ in
     shellcheck
     starship
     tmux
+    ueberzugpp
     vim_configurable
     xclip
     xmobar
