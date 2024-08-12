@@ -8,6 +8,9 @@
       # Disable private attribution, Mozilla's "privacy preserving"
       # ad/tracking APIs.
       Preferences = {
+        "browser.newtabpage.activity-stream.showWeather" = false;
+        "browser.newtabpage.activity-stream.system.showWeather" = false;
+
         "dom.private-attribution.submission.enabled" = false;
         "privacy.annotate_channels.strict_list.enabled" = true;
         "privacy.donottrackheader.enabled" = true;
