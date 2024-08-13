@@ -5,7 +5,6 @@ import           XMonad
 import           XMonad.Actions.CopyWindow
 import           XMonad.Actions.CycleWS
 import           XMonad.Actions.DynamicWorkspaces
-import           XMonad.Actions.GridSelect
 import           XMonad.Actions.Navigation2D
 import           XMonad.Actions.SpawnOn
 import           XMonad.Actions.SwapWorkspaces
@@ -108,19 +107,9 @@ spawnInCurDir c = currentWorkspace >>= getDir >>= spawnInDir c
     spawnInDir :: String -> String -> X ()
     spawnInDir command s = spawnHere $ printf "cd %s ; %s" s command
 
-gridSelectConfig :: GSConfig Window
-gridSelectConfig =
-  let config = def :: GSConfig Window
-  in config { gs_font        = myFont 8
-            , gs_colorizer   = Colors.colorizer
-            , gs_cellheight  = div (gs_cellheight config * 2) 2
-            , gs_cellwidth   = div (gs_cellwidth config * 2) 2
-            , gs_bordercolor = Colors.background
-            }
-
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
---
+------------------------------------------------------------------------
 myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 myKeys conf@XConfig {XMonad.modMask = modm} = M.fromList $
     -- launch a terminal
@@ -244,6 +233,7 @@ fullFloatFocused =
 
 ------------------------------------------------------------------------
 -- Mouse bindings: default actions bound to mouse events
+------------------------------------------------------------------------
 
 myMouseBindings :: XConfig l -> M.Map (KeyMask, Button) (Window -> X ())
 myMouseBindings XConfig{XMonad.modMask = modMask} = M.fromList
@@ -258,6 +248,7 @@ myMouseBindings XConfig{XMonad.modMask = modMask} = M.fromList
 
 ------------------------------------------------------------------------
 -- Layouts:
+------------------------------------------------------------------------
 
 mainLayouts = smartSpacing 5 $ smartBorders $ avoidStruts (tiled ||| mirror ||| grid ||| Full)
   where
@@ -274,6 +265,7 @@ mainLayouts = smartSpacing 5 $ smartBorders $ avoidStruts (tiled ||| mirror ||| 
 
 ------------------------------------------------------------------------
 -- Window rules
+------------------------------------------------------------------------
 
 myManageHook = composeAll
     [ className =? "MPlayer"        --> doFloat
@@ -289,6 +281,7 @@ myFocusFollowsMouse = True
 
 ------------------------------------------------------------------------
 -- Status bars and logging
+------------------------------------------------------------------------
 
 isJunk :: String -> Bool
 isJunk x = x == "Spacing" || all isNumber x
@@ -329,6 +322,7 @@ myLogHook xmproc = do
 
 ------------------------------------------------------------------------
 -- Startup hook
+------------------------------------------------------------------------
 
 -- Perform an arbitrary action each time xmonad starts or is restarted
 -- with mod-q.  Used by, e.g., XMonad.Layout.PerWorkspace to initialize
