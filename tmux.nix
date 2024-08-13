@@ -33,11 +33,6 @@
       bind-key -n C-j select-pane -D
       bind-key -n C-k select-pane -U
       bind-key -n C-l select-pane -R
-
-      # present a menu of URLs to open from the visible pane. sweet.
-      bind-key u capture-pane \;\
-      save-buffer /tmp/tmux-buffer \;\
-      split-window -l 10 "urlview /tmp/tmux-buffer"
     '';
   };
 }
