@@ -10,15 +10,18 @@ fi
 # Don't just diff the selected file alone, get related files first using
 # '--name-status -R' in order to include moves and renames in the diff.
 # See for reference: https://stackoverflow.com/q/71268388/3018229
+
+# shellcheck disable=SC2124,2016
 PREVIEW_COMMAND='git diff --color=always '$@' -- \
   $(echo $(git diff --name-status -R '$@' | grep {}) | cut -d" " -f 2-) \
   | '$PREVIEW_PAGER
 
 # Show additional context compared to preview
+# shellcheck disable=SC2124,2016
 ENTER_COMMAND='git diff --color=always '$@' -U10000 -- \
   $(echo $(git diff --name-status -R '$@' | grep {}) | cut -d" " -f 2-) \
   | '$ENTER_PAGER
 
 git diff --name-only "$@" | \
-  fzf ${GIT_FZF_DEFAULT_OPTS} --exit-0 --preview "${PREVIEW_COMMAND}" \
+  fzf "${GIT_FZF_DEFAULT_OPTS}" --exit-0 --preview "${PREVIEW_COMMAND}" \
   --preview-window=top:85% --bind "enter:execute:${ENTER_COMMAND}"
