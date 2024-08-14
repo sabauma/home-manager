@@ -5,46 +5,25 @@
 { config, pkgs, ... }:
 
 {
-  imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-  ];
+  imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+      <nixos-hardware/system76>
+    ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.supportedFilesystems = [ "ntfs" ];
-  boot.loader.grub.configurationLimit = 3;
-  boot.loader.systemd-boot.configurationLimit = 3;
 
-  boot.kernelParams = [ "reboot=acpi" ];
-
-  # Configuration to enable Nvidia driver
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
-
-  services.xserver.videoDrivers = [ "nvidia" ];
-
-  hardware.nvidia = {
-    modesetting.enable = true;
-
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
-
-    # Don't use open-source drivers
-    open = false;
-    nvidiaSettings = true;
-
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
+  services.blueman.enable = true;
 
-  networking.hostName = "loiosh"; # Define your hostname.
+  networking.hostName = "frieren"; # Define your hostname.
+
+  zramSwap.enable = true;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -72,57 +51,37 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Enable auto mounting of external drives
-  services.gvfs.enable = true;
-  services.udisks2.enable = true;
-
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-
-  # Enable xmonad
   services.xserver.windowManager.xmonad = {
     enable = true;
     enableContribAndExtras = true;
-    extraPackages =
-      ps: with ps; [
-        xmonad
-        xmonad-contrib
-        xmonad-extras
-        hashable
-        text-icu
-        vector
-      ];
+    extraPackages = ps: with ps; [
+      xmonad
+      xmonad-contrib
+      xmonad-extras
+      hashable
+      text-icu
+      vector
+    ];
   };
 
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
     variant = "";
+    options = "caps:swapescape";
   };
 
-  services.xserver.xrandrHeads = [
-    {
-      output = "HDMI-0";
-      monitorConfig = ''
-        Option "Rotate" "left"
-      '';
-    }
-
-    {
-      output = "DP-0";
-      primary = true;
-    }
-  ];
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -131,7 +90,7 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+    jack.enable = true;
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
@@ -141,62 +100,61 @@
   services.syncthing = {
     enable = true;
     user = "spenser";
-    dataDir = "/home/spenser/Sync/";
+    dataDir = "/home/spenser";
     configDir = "/home/spenser/.config/syncthing";
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  # Change permissions on acpi_video0/brightness to allow users to set
+  # the brightness programatically.
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="acpi_video0", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"
+  '';
+
   programs.fish.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.spenser = {
     isNormalUser = true;
-    shell = pkgs.fish;
     description = "Spenser Bauman";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "storage"
-    ];
+    extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.fish;
     packages = with pkgs; [
       firefox
-      vim
-      fish
+    #  thunderbird
     ];
-  };
-
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.nvidia.acceptLicense = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    gnome.adwaita-icon-theme
-    gnome.eog
-
     busybox
-    gitFull
+    firefox
+    neovim
     vim
     wget
+
   ];
 
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    gamescopeSession.enable = true;
+  };
+
+  nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.optimise.automatic = true;
   nix.gc = {
     automatic = true;
     dates = "weekly";
     options = "--delete-older-than 30d";
-  };
+  }; 
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -224,4 +182,5 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
+
 }
