@@ -13,6 +13,7 @@ pkgs.stdenv.mkDerivation {
     fzf
     git
     gnugrep
+    skim
     xdg-utils
   ];
 
