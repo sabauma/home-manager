@@ -2,25 +2,31 @@
   pkgs ? import <nixpkgs> { },
 }:
 
-pkgs.stdenv.mkDerivation {
-  name = "my-shell-scripts";
+let
+  wrapShellScript = { name }: pkgs.writeShellApplication {
+    inherit name;
 
-  src = ./.;
+    runtimeInputs = with pkgs; [
+      bash
+      coreutils
+      curl
+      fzf
+      git
+      skim
+    ];
 
-  propagatedBuildInputs = with pkgs; [
-    bash
-    diff-so-fancy
-    fzf
-    git
-    gnugrep
-    skim
-    xdg-utils
+    text = builtins.readFile ./${name};
+  };
+
+in
+
+pkgs.buildEnv {
+  name = "scripts";
+  paths = [
+    (wrapShellScript { name = "gbr"; })
+    (wrapShellScript { name = "git-commit-show"; })
+    (wrapShellScript { name = "git-fuzzy-diff"; })
+    (wrapShellScript { name = "git-fuzzy-log"; })
+    (wrapShellScript { name = "ilog"; })
   ];
-
-  installPhase = ''
-    mkdir -p $out/bin
-    cp $src/* $out/bin/
-    chmod +x $out/bin/*
-    patchShebangs $out/bin
-  '';
 }

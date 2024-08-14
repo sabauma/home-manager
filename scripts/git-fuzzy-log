@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# shellcheck disable=SC2016
 PREVIEW_COMMAND='f() {
   set -- $(echo -- "$@" | grep -o "[a-f0-9]\{7\}")
   [ $# -eq 0 ] || (

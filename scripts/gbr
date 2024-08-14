@@ -4,11 +4,6 @@ log_line_to_hash="echo {} | grep -o '[a-f0-9]\{7\}' | head -1"
 view_commit="$log_line_to_hash | xargs -I % sh -c 'git show --color=always % | diff-so-fancy | less -R'"
 copy_commit_hash="$log_line_to_hash | xclip"
 git_checkout="$log_line_to_hash | xargs -I % sh -c 'git checkout %'"
-open_cmd="open"
-
-if [ "$(uname)" = "Linux" ]; then
-    open_cmd="xdg-open"
-fi
 
 git log --color=always --format='%C(auto)%h%d %s %C(green)%C(bold)%cr% C(blue)%an' | \
     fzf --no-sort --reverse --tiebreak=index --no-multi --ansi \

@@ -4,10 +4,10 @@
 # rather than just using the summary/description.
 
 git status >& /dev/null
-if [ $? -eq 128 ]; then return; fi
+if [ $? -eq 128 ]; then exit 1; fi
 
 sk \
   --ansi \
   -ic"git log --all --oneline --color -G\"{}\" $*" \
-  --preview="[[ -n "{1}" ]] && git show --color -G {cq} {1} | rg  --colors=match:fg:blue --colors=line:style:intense --color=always --passthru {cq}" \
+  --preview="git show --color -G {cq} {1} | rg  --colors=match:fg:blue --colors=line:style:intense --color=always --passthru {cq}" \
   --bind="ctrl-j:preview-down,ctrl-k:preview-up" | awk '{print $1}'
