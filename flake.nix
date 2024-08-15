@@ -22,6 +22,11 @@
       url = "github:nvim-neorg/nixpkgs-neorg-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    git-fuzzy = {
+      url = "github:bigH/git-fuzzy";
+      flake = false;
+    };
   };
 
   outputs =
@@ -37,7 +42,7 @@
         modules = [ ./home.nix ];
 
         extraSpecialArgs = {
-          inherit (inputs) neovim-nightly mlir-nix neorg-overlay;
+          inherit (inputs) neovim-nightly mlir-nix neorg-overlay git-fuzzy;
         };
       };
     };
