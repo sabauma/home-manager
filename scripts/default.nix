@@ -3,20 +3,22 @@
 }:
 
 let
-  wrapShellScript = { name }: pkgs.writeShellApplication {
-    inherit name;
+  wrapShellScript =
+    { name }:
+    pkgs.writeShellApplication {
+      inherit name;
 
-    runtimeInputs = with pkgs; [
-      bash
-      coreutils
-      curl
-      fzf
-      git
-      skim
-    ];
+      runtimeInputs = with pkgs; [
+        bash
+        coreutils
+        curl
+        fzf
+        git
+        skim
+      ];
 
-    text = builtins.readFile ./${name};
-  };
+      text = builtins.readFile ./${name};
+    };
 
 in
 

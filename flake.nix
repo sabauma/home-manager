@@ -42,7 +42,12 @@
         modules = [ ./home.nix ];
 
         extraSpecialArgs = {
-          inherit (inputs) neovim-nightly mlir-nix neorg-overlay git-fuzzy;
+          inherit (inputs)
+            neovim-nightly
+            mlir-nix
+            neorg-overlay
+            git-fuzzy
+            ;
         };
       };
     };

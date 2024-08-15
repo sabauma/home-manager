@@ -5,11 +5,11 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      <nixos-hardware/system76>
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    <nixos-hardware/system76>
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -60,14 +60,15 @@
   services.xserver.windowManager.xmonad = {
     enable = true;
     enableContribAndExtras = true;
-    extraPackages = ps: with ps; [
-      xmonad
-      xmonad-contrib
-      xmonad-extras
-      hashable
-      text-icu
-      vector
-    ];
+    extraPackages =
+      ps: with ps; [
+        xmonad
+        xmonad-contrib
+        xmonad-extras
+        hashable
+        text-icu
+        vector
+      ];
   };
 
   # Configure keymap in X11
@@ -76,7 +77,6 @@
     variant = "";
     options = "caps:swapescape";
   };
-
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -118,11 +118,14 @@
   users.users.spenser = {
     isNormalUser = true;
     description = "Spenser Bauman";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     shell = pkgs.fish;
     packages = with pkgs; [
       firefox
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
@@ -148,13 +151,16 @@
     gamescopeSession.enable = true;
   };
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   nix.optimise.automatic = true;
   nix.gc = {
     automatic = true;
     dates = "weekly";
     options = "--delete-older-than 30d";
-  }; 
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

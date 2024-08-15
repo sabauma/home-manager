@@ -6,7 +6,12 @@
 }:
 
 let
-  inherit (specialArgs) mlir-nix neovim-nightly neorg-overlay git-fuzzy;
+  inherit (specialArgs)
+    mlir-nix
+    neovim-nightly
+    neorg-overlay
+    git-fuzzy
+    ;
 in
 
 {
