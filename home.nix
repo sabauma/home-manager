@@ -163,6 +163,7 @@ in
     wezterm
     yazi
     zathura
+    zoom-us
     zotero
   ];
 
