@@ -7,7 +7,6 @@
 
 let
   inherit (specialArgs)
-    mlir-nix
     neovim-nightly
     neorg-overlay
     git-fuzzy
@@ -19,7 +18,6 @@ in
   nixpkgs.overlays = [
     neovim-nightly.overlays.default
     neorg-overlay.overlays.default
-    mlir-nix.overlays.default
   ];
 
   imports = [
