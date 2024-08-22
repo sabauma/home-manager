@@ -6,6 +6,8 @@
 sh <(curl -L https://nixos.org/nix/install) --daemon
 
 # Install home-manager
+rm -rf ~/.config/home-manager
+
 nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
 nix-channel --update
 nix-shell '<home-manager>' -A install
@@ -20,7 +22,7 @@ git checkout modular-laptop
 home-manager \
   --extra-experimental-features nix-command \
   --extra-experimental-features flakes \
-  switch --flake ".#spenser" -b backup
+  switch --flake ".#ubuntu" -b backup
 popd
 
 
