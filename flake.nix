@@ -51,6 +51,7 @@
 
           user-config.username = "spenser";
         };
+      };
 
       homeConfigurations.ubuntu = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
@@ -66,7 +67,6 @@
 
           user-config.username = "ubuntu";
         };
-      };
       };
     };
 }
