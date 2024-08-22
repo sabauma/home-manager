@@ -98,6 +98,33 @@ vim.opt.background='dark'
 vim.opt.termguicolors = true
 vim.cmd.colorscheme("gruvbox-material")
 
+function ResolveAndReopen()
+  local current_file = vim.fn.expand('%:p')
+  local resolved_path = vim.fn.resolve(current_file)
+
+  if current_file ~= resolved_path then
+    -- Save the current buffer number
+    local current_buf = vim.api.nvim_get_current_buf()
+
+    -- Save the cursor position
+    local cursor_pos = vim.api.nvim_win_get_cursor(0)
+
+    -- Close the old buffer
+    vim.api.nvim_buf_delete(current_buf, {force = true})
+
+    vim.cmd('edit ' .. vim.fn.fnameescape(resolved_path))
+
+    vim.api.nvim_win_set_cursor(0, cursor_pos)
+
+    print("Reopened file with resolved path: " .. resolved_path)
+  else
+    print("File path already resolved: " .. current_file)
+  end
+end
+
+-- Optional: Add a command to call the function
+vim.api.nvim_create_user_command('ResolveAndReopen', ResolveAndReopen, {})
+
 -------------------------------------------------------------------------------
 -- Mappings
 -------------------------------------------------------------------------------
