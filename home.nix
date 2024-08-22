@@ -96,7 +96,7 @@ in
     # Since the mlir build includes clang, it can conflict with other
     # packages which install clang. Set as lowPrio to avoid shadowing an
     # official build of clang.
-    (pkgs.lowPrio mlir)
+    # (pkgs.lowPrio mlir)
 
     (import ./scripts { inherit pkgs; })
     (import ./git-fuzzy.nix { inherit pkgs git-fuzzy; })
@@ -359,10 +359,10 @@ in
   services.notify-osd.enable = true;
   services.ssh-agent.enable = true;
 
-  services.ollama = {
-    enable = true;
-    acceleration = "cuda";
-  };
+  # services.ollama = {
+  #   enable = true;
+  #   acceleration = "cuda";
+  # };
 
   xsession = {
     enable = true;
