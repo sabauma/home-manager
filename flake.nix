@@ -48,7 +48,25 @@
             neorg-overlay
             git-fuzzy
             ;
+
+          user-config.username = "spenser";
         };
+
+      homeConfigurations.ubuntu = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        modules = [ ./home.nix ];
+
+        extraSpecialArgs = {
+          inherit (inputs)
+            neovim-nightly
+            mlir-nix
+            neorg-overlay
+            git-fuzzy
+            ;
+
+          user-config.username = "ubuntu";
+        };
+      };
       };
     };
 }
