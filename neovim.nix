@@ -37,7 +37,6 @@
 
       # nvim-cmp
       nvim-cmp
-      cmp-ai
       cmp-buffer
       cmp-cmdline
       cmp-nvim-lsp
@@ -58,8 +57,6 @@
       telescope-fzf-native-nvim
 
       # Neorg
-      # neorg
-      # neorg-telescope
       zen-mode-nvim
 
       # Obsidian notes
