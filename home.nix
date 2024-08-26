@@ -96,20 +96,17 @@ in
     (import ./scripts { inherit pkgs; })
     (import ./git-fuzzy.nix { inherit pkgs git-fuzzy; })
 
-    nerdfonts
+    (nerdfonts.override { fonts = [ "FiraCode" "FiraMono" "DroidSansMono" ]; })
 
     # Language Servers
     bash-language-server
     cmake-language-server
-    haskell-language-server
     lua-language-server
     nil
     pyright
 
     # Useful command line tools
     bat
-    betterlockscreen
-    bitwarden-cli
     bottom
     broot
     cmake
@@ -126,8 +123,6 @@ in
     hyperfine
     light
     mosh
-    ninja
-    openconnect
     ranger
     ripgrep
     shellcheck
@@ -137,7 +132,6 @@ in
     vim_configurable
     xclip
     xmobar
-    yt-dlp
 
     ccache
     clang-tools_18
@@ -146,23 +140,11 @@ in
     fish
 
     # Graphical programs
-    calibre
-    chromium
-    discord
     kitty
-    libreoffice
     obsidian
     picom
-    remmina
     rofi
-    signal-desktop
-    steam
-    thunderbird
-    vlc
-    wezterm
     yazi
-    zathura
-    zotero
   ];
 
   home.pointerCursor = {
@@ -308,10 +290,6 @@ in
       };
     };
 
-    sioyek = {
-      enable = true;
-    };
-
     xmobar = {
       enable = true;
       extraConfig = builtins.readFile ./xmobarrc;
@@ -371,6 +349,8 @@ in
     settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
     settings."org/gnome/desktop/interface".gtk-theme = "Adwaita";
   };
+
+  targets.genericLinux.enable = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
