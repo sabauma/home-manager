@@ -269,9 +269,17 @@ lspconfig.lua_ls.setup {
   }
 }
 
-lspconfig.mlir_lsp_server.setup {
-  on_attach = on_attach,
-}
+if vim.env.MODULAR_PATH then
+  lspconfig.mlir_lsp_server.setup {
+    cmd = {"modular-lsp-server"},
+    on_attach = on_attach,
+  }
+else
+  lspconfig.mlir_lsp_server.setup {
+    cmd = {"mlir-lsp-server"},
+    on_attach = on_attach,
+  }
+end
 
 lspconfig.mojo.setup {
   on_attach = on_attach,
