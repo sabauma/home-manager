@@ -274,16 +274,32 @@ if vim.env.MODULAR_PATH then
     cmd = {"modular-lsp-server"},
     on_attach = on_attach,
   }
+
+  local modular_path = vim.env.MODULAR_PATH
+  local bazelw = modular_path .. "/bazelw"
+  local stdlib = modular_path .. "/open-source/mojo/stdlib"
+  local max = modular_path .. "/SDK/lib/API/mojo"
+  local kernels = modular_path .. "/Kernels/mojo"
+
+  lspconfig.mojo.setup {
+    cmd = {
+      'mojo-lsp-server',
+      '-I', stdlib,
+      '-I', max,
+      '-I', kernels,
+    },
+    on_attach = on_attach,
+  }
 else
   lspconfig.mlir_lsp_server.setup {
     cmd = {"mlir-lsp-server"},
     on_attach = on_attach,
   }
-end
 
-lspconfig.mojo.setup {
-  on_attach = on_attach,
-}
+  lspconfig.mojo.setup {
+    on_attach = on_attach,
+  }
+end
 
 lspconfig.nil_ls.setup {
   on_attach = on_attach,
