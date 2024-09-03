@@ -271,6 +271,10 @@ in
           end
         '';
       };
+
+      interactiveShellInit = ''
+        fish_add_path ~/.modular/bin
+      '';
     };
 
     fzf = {
