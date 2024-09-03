@@ -27,6 +27,11 @@
       url = "github:bigH/git-fuzzy";
       flake = false;
     };
+
+    nixgl = {
+      url = "github:nix-community/nixGL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -43,10 +48,11 @@
 
         extraSpecialArgs = {
           inherit (inputs)
-            neovim-nightly
+            git-fuzzy
             mlir-nix
             neorg-overlay
-            git-fuzzy
+            neovim-nightly
+            nixgl
             ;
 
           user-config.username = "spenser";

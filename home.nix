@@ -8,14 +8,18 @@
 let
   inherit (specialArgs)
     neovim-nightly
+    nixgl
     git-fuzzy
     user-config
     ;
+
+  nixGLWrap = import ./nixGLWrap.nix { inherit pkgs; };
 in
 
 {
   nixpkgs.overlays = [
     neovim-nightly.overlays.default
+    nixgl.overlay
   ];
 
   imports = [
@@ -118,6 +122,7 @@ in
     fd
     ffmpeg
     fzf
+    gh
     git
     htop
     hyperfine
@@ -140,9 +145,9 @@ in
     fish
 
     # Graphical programs
-    kitty
+    (nixGLWrap kitty)
+    flameshot
     obsidian
-    picom
     rofi
     yazi
   ];
@@ -333,12 +338,12 @@ in
 
   services.picom = {
     enable = true;
+    package = (nixGLWrap pkgs.picom);
     backend = "glx";
     fade = false;
     vSync = true;
   };
 
-  services.flameshot.enable = true;
   services.notify-osd.enable = true;
   services.ssh-agent.enable = true;
 
