@@ -124,7 +124,7 @@ in
     fzf
     gh
     git-lfs
-    gitFull
+    git
     htop
     hyperfine
     light
