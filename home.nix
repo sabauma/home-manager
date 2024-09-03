@@ -123,7 +123,8 @@ in
     ffmpeg
     fzf
     gh
-    git
+    git-lfs
+    gitFull
     htop
     hyperfine
     light
@@ -137,6 +138,7 @@ in
     vim_configurable
     xclip
     xmobar
+    yazi
 
     ccache
     clang-tools_18
@@ -149,7 +151,6 @@ in
     flameshot
     obsidian
     rofi
-    yazi
   ];
 
   home.pointerCursor = {
