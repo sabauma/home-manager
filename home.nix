@@ -7,6 +7,7 @@
 
 let
   inherit (specialArgs)
+    mlir-nix
     neovim-nightly
     nixgl
     git-fuzzy
@@ -18,7 +19,10 @@ in
 
 {
   nixpkgs.overlays = [
+    mlir-nix.overlays.default
     neovim-nightly.overlays.default
+
+    # Needed for nixGLWrap to work properly
     nixgl.overlay
   ];
 
