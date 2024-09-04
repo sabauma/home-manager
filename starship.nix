@@ -57,6 +57,8 @@
       nodejs = {
         disabled = true;
       };
+
+      shell.disabled = false;
     };
   };
 }

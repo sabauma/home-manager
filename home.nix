@@ -187,6 +187,10 @@ in
       enable = true;
     };
 
+    bash = {
+      enable = true;
+    };
+
     bat = {
       enable = true;
       config = {
