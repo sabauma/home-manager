@@ -12,6 +12,7 @@
     mouse = true;
     terminal = "xterm-256color";
     shell = "${pkgs.fish}/bin/fish";
+    secureSocket = false;
 
     plugins = with pkgs.tmuxPlugins; [
       gruvbox
