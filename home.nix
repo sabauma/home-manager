@@ -157,6 +157,7 @@ in
     remmina
     rofi
     signal-desktop
+    slack
     steam
     thunderbird
     vlc
