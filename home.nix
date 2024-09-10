@@ -141,7 +141,7 @@ in
     gnome-screenshot
 
     ccache
-    clang-tools_18
+    clang-tools
 
     # Preferred shell
     fish
