@@ -145,7 +145,7 @@ in
     yazi
 
     ccache
-    clang-tools
+    llvmPackages_19.clang-tools
 
     # Preferred shell
     fish
@@ -358,9 +358,12 @@ in
 
   xsession = {
     enable = true;
+    scriptPath = ".xsessionrc";
 
     initExtra = ''
       ${pkgs.feh}/bin/feh --bg-fill ${./wallpapers/occ384clcjg51.jpg}
+      ${pkgs.xorg.setxkbmap}/bin/setxkbmap -option caps:escape
+      gnome-screensaver&
     '';
   };
 
@@ -368,6 +371,9 @@ in
     enable = true;
     settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
     settings."org/gnome/desktop/interface".gtk-theme = "Adwaita";
+    settings."org/gnome/desktop/input-sources" = {
+      xkb-options = ["caps:escape"];
+    };
   };
 
   targets.genericLinux.enable = true;
