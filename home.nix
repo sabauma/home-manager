@@ -107,6 +107,7 @@ in
     pyright
 
     # Useful command line tools
+    awscli2
     bat
     betterlockscreen
     bitwarden-cli
