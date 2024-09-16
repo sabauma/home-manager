@@ -114,6 +114,7 @@ in
     pyright
 
     # Useful command line tools
+    awscli2
     bat
     bottom
     broot
