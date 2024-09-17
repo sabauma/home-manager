@@ -167,6 +167,9 @@ require('trouble').setup {}
 -- LSP Configuration
 -------------------------------------------------------------------------------
 
+-- The logs get long very quickly, so disable them
+vim.lsp.set_log_level('off')
+
 local goto_prev = function(opts)
   vim.diagnostic.jump({count=-1, float=true})
 end
