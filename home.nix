@@ -6,7 +6,7 @@
 }:
 
 let
-  inherit (specialArgs) mlir-nix neovim-nightly neorg-overlay git-fuzzy;
+  inherit (specialArgs) mlir-nix neovim-nightly neorg-overlay git-fuzzy-src;
 in
 
 {
@@ -94,7 +94,7 @@ in
     (pkgs.lowPrio mlir)
 
     (import ./scripts { inherit pkgs; })
-    (import ./git-fuzzy.nix { inherit pkgs git-fuzzy; })
+    (import ./git-fuzzy.nix { inherit pkgs git-fuzzy-src; })
 
     nerdfonts
 

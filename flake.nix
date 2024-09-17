@@ -23,7 +23,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    git-fuzzy = {
+    git-fuzzy-src = {
       url = "github:bigH/git-fuzzy";
       flake = false;
     };
@@ -42,7 +42,7 @@
         modules = [ ./home.nix ];
 
         extraSpecialArgs = {
-          inherit (inputs) neovim-nightly mlir-nix neorg-overlay git-fuzzy;
+          inherit (inputs) neovim-nightly mlir-nix neorg-overlay git-fuzzy-src;
         };
       };
     };
