@@ -105,6 +105,7 @@ in
     lua-language-server
     nil
     pyright
+    ruff
 
     # Useful command line tools
     awscli2
