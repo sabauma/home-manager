@@ -319,6 +319,10 @@ lspconfig.pyright.setup {
   on_attach = on_attach,
 }
 
+lspconfig.ruff.setup {
+  on_attach = on_attach,
+}
+
 lspconfig.tblgen_lsp_server.setup {
   on_attach = on_attach,
 }
