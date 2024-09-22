@@ -23,7 +23,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    git-fuzzy = {
+    git-fuzzy-src = {
       url = "github:bigH/git-fuzzy";
       flake = false;
     };
@@ -46,7 +46,7 @@
             neovim-nightly
             mlir-nix
             neorg-overlay
-            git-fuzzy
+            git-fuzzy-src
             ;
         };
       };

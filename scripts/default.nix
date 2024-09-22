@@ -4,7 +4,7 @@
 
 let
   wrapShellScript =
-    { name }:
+    name:
     pkgs.writeShellApplication {
       inherit name;
 
@@ -18,17 +18,18 @@ let
       ];
 
       text = builtins.readFile ./${name};
-    };
+  };
 
 in
 
 pkgs.buildEnv {
   name = "scripts";
   paths = [
-    (wrapShellScript { name = "gbr"; })
-    (wrapShellScript { name = "git-commit-show"; })
-    (wrapShellScript { name = "git-fuzzy-diff"; })
-    (wrapShellScript { name = "git-fuzzy-log"; })
-    (wrapShellScript { name = "ilog"; })
+    (wrapShellScript "gbr")
+    (wrapShellScript "git-commit-show")
+    (wrapShellScript "git-fuzzy-diff")
+    (wrapShellScript "git-fuzzy-log")
+    (wrapShellScript "githist")
+    (wrapShellScript "ilog")
   ];
 }

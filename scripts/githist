@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+git log --abbrev-commit --oneline "$(git merge-base origin/main HEAD)^..HEAD"

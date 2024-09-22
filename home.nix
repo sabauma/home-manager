@@ -6,12 +6,7 @@
 }:
 
 let
-  inherit (specialArgs)
-    mlir-nix
-    neovim-nightly
-    neorg-overlay
-    git-fuzzy
-    ;
+  inherit (specialArgs) mlir-nix neovim-nightly neorg-overlay git-fuzzy-src;
 in
 
 {
@@ -99,7 +94,7 @@ in
     (pkgs.lowPrio mlir)
 
     (import ./scripts { inherit pkgs; })
-    (import ./git-fuzzy.nix { inherit pkgs git-fuzzy; })
+    (import ./git-fuzzy.nix { inherit pkgs git-fuzzy-src; })
 
     nerdfonts
 
@@ -110,8 +105,10 @@ in
     lua-language-server
     nil
     pyright
+    ruff
 
     # Useful command line tools
+    awscli2
     bat
     betterlockscreen
     bitwarden-cli
@@ -145,7 +142,7 @@ in
     yt-dlp
 
     ccache
-    clang-tools_18
+    clang-tools
 
     # Preferred shell
     fish
@@ -161,12 +158,14 @@ in
     remmina
     rofi
     signal-desktop
+    slack
     steam
     thunderbird
     vlc
     wezterm
     yazi
     zathura
+    zoom-us
     zotero
   ];
 
@@ -369,6 +368,7 @@ in
 
     initExtra = ''
       ${pkgs.feh}/bin/feh --bg-fill ${./wallpapers/occ384clcjg51.jpg}
+      ${pkgs.xorg.xset}/bin/xset dpms 3600 3600 3600
     '';
   };
 
