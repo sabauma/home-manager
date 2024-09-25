@@ -301,6 +301,10 @@ in
       defaultOptions = [ ];
     };
 
+    lazygit = {
+      enable = true;
+    };
+
     rofi = {
       enable = true;
       theme = "gruvbox-dark-hard";
