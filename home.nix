@@ -368,6 +368,7 @@ in
 
       ${pkgs.feh}/bin/feh --bg-fill ${./wallpapers/occ384clcjg51.jpg}
       ${pkgs.xorg.xset}/bin/xset dpms 3600 3600 3600
+      ${pkgs.xorg.xset}/bin/xset s off
     '';
   };
 
