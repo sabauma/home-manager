@@ -37,7 +37,6 @@
 
       # nvim-cmp
       nvim-cmp
-      cmp-ai
       cmp-buffer
       cmp-cmdline
       cmp-nvim-lsp

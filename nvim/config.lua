@@ -360,29 +360,6 @@ require('neorg').setup {
 }
 
 -------------------------------------------------------------------------------
--- cmp-ai
--------------------------------------------------------------------------------
-
--- require('cmp_ai.config').setup {
---   max_lines = 100,
---   provider = 'Ollama',
---   provider_options = {
---     model = 'codellama:7b-code',
---     base_url = 'localhost:11434/api/generate',
---   },
---   notify = true,
---   notify_callback = function(msg)
---     vim.notify(msg)
---   end,
---   run_on_every_keystroke = true,
---   ignored_file_types = {
---     -- default is not to ignore
---     -- uncomment to ignore in lua:
---     -- lua = true
---   },
--- }
-
--------------------------------------------------------------------------------
 -- nvim-cmp
 -------------------------------------------------------------------------------
 
