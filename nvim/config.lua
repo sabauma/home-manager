@@ -286,7 +286,6 @@ if vim.env.MODULAR_PATH then
   }
 
   local modular_path = vim.env.MODULAR_PATH
-  local bazelw = modular_path .. "/bazelw"
   local stdlib = modular_path .. "/open-source/mojo/stdlib"
   local max = modular_path .. "/SDK/lib/API/mojo"
   local kernels = modular_path .. "/Kernels/mojo"
