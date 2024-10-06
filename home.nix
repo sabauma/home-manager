@@ -300,6 +300,17 @@ in
       defaultOptions = [ ];
     };
 
+    lazygit = {
+      enable = true;
+    };
+
+    readline = {
+      enable = true;
+      extraConfig = ''
+        set editing-mode vi
+      '';
+    };
+
     rofi = {
       enable = true;
       theme = "gruvbox-dark-hard";
