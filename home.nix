@@ -99,11 +99,12 @@ in
     nerdfonts
 
     # Language Servers
-    cmake-language-server
     bash-language-server
+    cmake-language-server
     haskell-language-server
     lua-language-server
     nil
+    nixd
     pyright
     ruff
 
