@@ -192,6 +192,10 @@ in
 
     bash = {
       enable = true;
+
+      initExtra = ''
+        export PATH=~/.local/bin:$PATH
+      '';
     };
 
     bat = {
