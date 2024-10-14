@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 let
-  nixGLWrap = import ./nixGLWrap.nix { inherit pkgs; };
+  nixGLWrap = import ../nixGLWrap.nix { inherit pkgs; };
 in
 {
   programs.alacritty = {

@@ -10,7 +10,7 @@ let
     mlir-nix
     neovim-nightly
     nixgl
-    git-fuzzy
+    git-fuzzy-src
     user-config
     ;
 
@@ -27,12 +27,10 @@ in
   ];
 
   imports = [
-    ./alacritty.nix
-    ./fonts/default.nix
-    ./firefox.nix
+    ./programs
+    ./fonts
+
     ./neovim.nix
-    ./starship.nix
-    ./tmux.nix
     ./xmonad/xmonad.nix
   ];
 
@@ -102,7 +100,7 @@ in
     # (pkgs.lowPrio mlir)
 
     (import ./scripts { inherit pkgs; })
-    (import ./git-fuzzy.nix { inherit pkgs git-fuzzy; })
+    (import ./git-fuzzy.nix { inherit pkgs git-fuzzy-src; })
 
     (nerdfonts.override { fonts = [ "FiraCode" "FiraMono" "DroidSansMono" ]; })
 
@@ -150,7 +148,7 @@ in
     yazi
 
     ccache
-    llvmPackages_19.clang-tools
+    clang-tools
 
     # Preferred shell
     fish
@@ -160,6 +158,16 @@ in
     flameshot
     obsidian
     rofi
+    signal-desktop
+    slack
+    steam
+    thunderbird
+    vlc
+    wezterm
+    yazi
+    zathura
+    zoom-us
+    zotero
   ];
 
   home.pointerCursor = {

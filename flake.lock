@@ -169,7 +169,7 @@
         "type": "github"
       }
     },
-    "git-fuzzy": {
+    "git-fuzzy-src": {
       "flake": false,
       "locked": {
         "lastModified": 1726902222,
@@ -537,7 +537,7 @@
     },
     "root": {
       "inputs": {
-        "git-fuzzy": "git-fuzzy",
+        "git-fuzzy-src": "git-fuzzy-src",
         "home-manager": "home-manager",
         "mlir-nix": "mlir-nix",
         "neorg-overlay": "neorg-overlay",

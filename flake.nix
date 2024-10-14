@@ -23,14 +23,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    git-fuzzy = {
-      url = "github:bigH/git-fuzzy";
-      flake = false;
-    };
-
     nixgl = {
       url = "github:nix-community/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    git-fuzzy-src = {
+      url = "github:bigH/git-fuzzy";
+      flake = false;
     };
   };
 
@@ -48,7 +48,7 @@
 
         extraSpecialArgs = {
           inherit (inputs)
-            git-fuzzy
+            git-fuzzy-src
             mlir-nix
             neorg-overlay
             neovim-nightly
@@ -65,10 +65,11 @@
 
         extraSpecialArgs = {
           inherit (inputs)
-            neovim-nightly
+            git-fuzzy-src
             mlir-nix
             neorg-overlay
-            git-fuzzy
+            neovim-nightly
+            nixgl
             ;
 
           user-config.username = "ubuntu";
