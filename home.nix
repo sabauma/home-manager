@@ -99,7 +99,7 @@ in
     # Since the mlir build includes clang, it can conflict with other
     # packages which install clang. Set as lowPrio to avoid shadowing an
     # official build of clang.
-    (pkgs.lowPrio mlir)
+    # (pkgs.lowPrio mlir)
 
     (import ./scripts { inherit pkgs; })
     (import ./git-fuzzy.nix { inherit pkgs git-fuzzy; })
