@@ -17,12 +17,10 @@ in
   ];
 
   imports = [
-    ./alacritty.nix
-    ./fonts/default.nix
-    ./firefox.nix
+    ./programs
+    ./fonts
+
     ./neovim.nix
-    ./starship.nix
-    ./tmux.nix
     ./xmonad/xmonad.nix
 
     ./ollama-service-definition.nix
