@@ -148,7 +148,7 @@ in
     yazi
 
     ccache
-    clang-tools
+    llvmPackages_19.clang-tools
 
     # Preferred shell
     fish
