@@ -17,6 +17,9 @@ nix-channel --add https://github.com/nix-community/home-manager/archive/master.t
 nix-channel --update
 nix-shell '<home-manager>' -A install
 
+# Need to source the updated bashrc now that home-manager was added to the path
+source ~/.bashrc
+
 # Check out my home-manager installation
 rm -rf ~/.config/home-manager
 git clone https://github.com/sabauma/home-manager.git ~/.config/home-manager
