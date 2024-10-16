@@ -224,44 +224,6 @@ in
       };
     };
 
-    broot = {
-      enable = true;
-      settings = {
-        verbs = [
-          {
-            invocation = "edit";
-            key = "F2";
-            shortcut = "e";
-            execution = "$EDITOR {file}";
-          }
-          {
-            key = "ctrl-p";
-            execution = ":line_up";
-          }
-          {
-            key = "ctrl-n";
-            execution = ":line_down";
-          }
-          {
-            key = "ctrl-u";
-            execution = ":page_up";
-          }
-          {
-            key = "ctrl-d";
-            execution = ":page_down";
-          }
-          {
-            invocation = "git_add";
-            shortcut = "ga";
-            key = "ctrl-a";
-            leave_broot = false;
-            execution = "git add {file}";
-            apply_to = "file";
-          }
-        ];
-      };
-    };
-
     direnv = {
       enable = true;
       enableBashIntegration = true;
@@ -270,42 +232,10 @@ in
 
     eza = {
       enable = true;
-      icons = true;
+      icons = "auto";
       extraOptions = [ "--group-directories-first" ];
       enableBashIntegration = true;
       enableFishIntegration = true;
-    };
-
-    fish = {
-      enable = true;
-      plugins = [
-        {
-          name = "fzf-fish";
-          src = pkgs.fishPlugins.fzf-fish.src;
-        }
-        {
-          name = "z";
-          src = pkgs.fishPlugins.z.src;
-        }
-      ];
-
-      functions = {
-        fish_greeting = "";
-
-        fish_key_bindings = "fish_vi_key_bindings";
-
-        fish_user_key_bindings = ''
-          fish_vi_key_bindings
-
-          for mode in insert default visual
-              bind -M $mode \cf forward-char
-          end
-        '';
-      };
-
-      interactiveShellInit = ''
-        fish_add_path ~/.modular/bin
-      '';
     };
 
     fzf = {
@@ -341,33 +271,6 @@ in
     xmobar = {
       enable = true;
       extraConfig = builtins.readFile ./xmobarrc;
-    };
-
-    zellij = {
-      enable = true;
-      settings = {
-        default_layout = "compact";
-        default_shell = "${pkgs.fish}/bin/fish";
-        scrollback_editor = "${pkgs.neovim}/bin/nvim";
-        pane_frames = false;
-
-        theme = "gruvbox-dark";
-        themes = {
-          gruvbox-dark = {
-            fg = "#D5C4A1";
-            bg = "#282828";
-            black = "#3C3836";
-            red = "#CC241D";
-            green = "#98971A";
-            yellow = "#D79921";
-            blue = "#3C8588";
-            magenta = "#B16286";
-            cyan = "#689D6A";
-            white = "#FBF1C7";
-            orange = "#D65D0E";
-          };
-        };
-      };
     };
   };
 
