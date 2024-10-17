@@ -154,20 +154,16 @@ in
     fish
 
     # Graphical programs
-    (nixGLWrap kitty)
-    flameshot
     obsidian
     rofi
     signal-desktop
     slack
-    steam
     thunderbird
     vlc
     wezterm
     yazi
     zathura
     zoom-us
-    zotero
   ];
 
   home.pointerCursor = {
