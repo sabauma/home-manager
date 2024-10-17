@@ -22,8 +22,6 @@ in
 
     ./neovim.nix
     ./xmonad/xmonad.nix
-
-    ./ollama-service-definition.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -281,11 +279,6 @@ in
   services.flameshot.enable = true;
   services.notify-osd.enable = true;
   services.ssh-agent.enable = true;
-
-  services.ollama = {
-    enable = true;
-    acceleration = "cuda";
-  };
 
   xsession = {
     enable = true;
