@@ -1,5 +1,4 @@
-_:
-{
+_: {
   imports = [
     ./alacritty.nix
     ./broot.nix

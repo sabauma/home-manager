@@ -22,7 +22,9 @@ import           XMonad.Layout.Grid               (Grid (..))
 import           XMonad.Layout.NoBorders          (smartBorders)
 
 import           XMonad.Layout.Spacing            (smartSpacing)
-import           XMonad.Prompt.Window             (allWindows, windowPrompt, XWindowMap, WindowPrompt (..))
+import           XMonad.Prompt.Window             (WindowPrompt (..),
+                                                   XWindowMap, allWindows,
+                                                   windowPrompt)
 
 -- General libraries
 import           Control.Monad
@@ -31,7 +33,7 @@ import qualified Data.Map                         as M
 import           Data.Monoid                      (appEndo)
 import qualified Data.Text                        as T
 import qualified Data.Text.ICU.Normalize2         as ICU
-import           Data.Word (Word32)
+import           Data.Word                        (Word32)
 
 import           FindEmptyWorkspace
 import           Gruvbox                          as Colors

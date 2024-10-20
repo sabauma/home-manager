@@ -18,7 +18,7 @@ let
       ];
 
       text = builtins.readFile ./${name};
-  };
+    };
 
 in
 
