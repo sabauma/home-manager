@@ -8,4 +8,10 @@
   programs.hlint.enable = true;
   programs.nixfmt.enable = true;
   programs.stylish-haskell.enable = true;
+
+  # Stylua
+  programs.stylua.enable = true;
+  settings.formatter.stylua.options = [
+    "--config-path=${./.stylua.toml}"
+  ];
 }
