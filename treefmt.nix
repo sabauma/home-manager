@@ -3,11 +3,18 @@
   # Used to find the project root
   projectRootFile = "flake.nix";
 
-  # Enable formatting of this files
+  # Fish
   programs.fish_indent.enable = true;
+
+  # Haskell
   programs.hlint.enable = true;
-  programs.nixfmt.enable = true;
   programs.stylish-haskell.enable = true;
+
+  # Nix
+  programs.nixfmt.enable = true;
+
+  # Shell
+  programs.shfmt.enable = true;
 
   # Stylua
   programs.stylua.enable = true;
