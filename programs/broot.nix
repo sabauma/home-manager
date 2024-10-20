@@ -1,5 +1,4 @@
-_:
-{
+_: {
   programs.broot = {
     enable = true;
     settings = {

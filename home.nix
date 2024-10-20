@@ -102,7 +102,13 @@ in
     (import ./scripts { inherit pkgs; })
     (import ./git-fuzzy.nix { inherit pkgs git-fuzzy-src; })
 
-    (nerdfonts.override { fonts = [ "FiraCode" "FiraMono" "DroidSansMono" ]; })
+    (nerdfonts.override {
+      fonts = [
+        "FiraCode"
+        "FiraMono"
+        "DroidSansMono"
+      ];
+    })
 
     # Language Servers
     bash-language-server
@@ -299,7 +305,7 @@ in
     settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
     settings."org/gnome/desktop/interface".gtk-theme = "Adwaita";
     settings."org/gnome/desktop/input-sources" = {
-      xkb-options = ["caps:escape"];
+      xkb-options = [ "caps:escape" ];
     };
   };
 

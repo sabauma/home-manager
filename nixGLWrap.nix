@@ -1,4 +1,5 @@
-{ pkgs }: pkg:
+{ pkgs }:
+pkg:
 let
   bins = "${pkg}/bin";
 in
@@ -9,12 +10,13 @@ pkgs.buildEnv {
     inherit (pkg) version;
   };
   paths =
-    [ pkg ] ++
-    (map
-      (bin: pkgs.hiPrio (
+    [ pkg ]
+    ++ (map (
+      bin:
+      pkgs.hiPrio (
         pkgs.writeShellScriptBin bin ''
           exec -a "$0" "${pkgs.nixgl.nixGLIntel}/bin/nixGLIntel" "${bins}/${bin}" "$@"
         ''
-      ))
-      (builtins.attrNames (builtins.readDir bins)));
+      )
+    ) (builtins.attrNames (builtins.readDir bins)));
 }
