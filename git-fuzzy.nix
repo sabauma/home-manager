@@ -1,6 +1,6 @@
 {
   pkgs,
-  git-fuzzy-src
+  git-fuzzy-src,
 }:
 pkgs.writeShellApplication {
   name = "git-fuzzy";
@@ -13,6 +13,5 @@ pkgs.writeShellApplication {
 
   text = ''
     ${git-fuzzy-src}/bin/git-fuzzy "$@"
-    '';
+  '';
 }
-

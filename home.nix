@@ -6,7 +6,12 @@
 }:
 
 let
-  inherit (specialArgs) mlir-nix neovim-nightly neorg-overlay git-fuzzy-src;
+  inherit (specialArgs)
+    mlir-nix
+    neovim-nightly
+    neorg-overlay
+    git-fuzzy-src
+    ;
 in
 
 {
@@ -17,15 +22,11 @@ in
   ];
 
   imports = [
-    ./alacritty.nix
-    ./fonts/default.nix
-    ./firefox.nix
-    ./neovim.nix
-    ./starship.nix
-    ./tmux.nix
-    ./xmonad/xmonad.nix
+    ./programs
+    ./fonts
 
-    ./ollama-service-definition.nix
+    ./neovim.nix
+    ./xmonad/xmonad.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -104,6 +105,7 @@ in
     haskell-language-server
     lua-language-server
     nil
+    nixd
     pyright
     ruff
 
@@ -123,6 +125,8 @@ in
     fd
     ffmpeg
     fzf
+    git-absorb
+    git-lfs
     git
     htop
     hyperfine
@@ -199,6 +203,10 @@ in
       enable = true;
     };
 
+    bash = {
+      enable = true;
+    };
+
     bat = {
       enable = true;
       config = {
@@ -215,44 +223,6 @@ in
       };
     };
 
-    broot = {
-      enable = true;
-      settings = {
-        verbs = [
-          {
-            invocation = "edit";
-            key = "F2";
-            shortcut = "e";
-            execution = "$EDITOR {file}";
-          }
-          {
-            key = "ctrl-p";
-            execution = ":line_up";
-          }
-          {
-            key = "ctrl-n";
-            execution = ":line_down";
-          }
-          {
-            key = "ctrl-u";
-            execution = ":page_up";
-          }
-          {
-            key = "ctrl-d";
-            execution = ":page_down";
-          }
-          {
-            invocation = "git_add";
-            shortcut = "ga";
-            key = "ctrl-a";
-            leave_broot = false;
-            execution = "git add {file}";
-            apply_to = "file";
-          }
-        ];
-      };
-    };
-
     direnv = {
       enable = true;
       enableBashIntegration = true;
@@ -261,32 +231,10 @@ in
 
     eza = {
       enable = true;
-      icons = true;
+      icons = "auto";
       extraOptions = [ "--group-directories-first" ];
       enableBashIntegration = true;
       enableFishIntegration = true;
-    };
-
-    fish = {
-      enable = true;
-      plugins = [
-        {
-          name = "fzf-fish";
-          src = pkgs.fishPlugins.fzf-fish.src;
-        }
-        {
-          name = "z";
-          src = pkgs.fishPlugins.z.src;
-        }
-      ];
-
-      functions = {
-        fish_user_key_bindings = ''
-          for mode in insert default visual
-              bind -M $mode \cf forward-char
-          end
-        '';
-      };
     };
 
     fzf = {
@@ -295,6 +243,17 @@ in
       enableBashIntegration = true;
 
       defaultOptions = [ ];
+    };
+
+    lazygit = {
+      enable = true;
+    };
+
+    readline = {
+      enable = true;
+      extraConfig = ''
+        set editing-mode vi
+      '';
     };
 
     rofi = {
@@ -316,33 +275,6 @@ in
       enable = true;
       extraConfig = builtins.readFile ./xmobarrc;
     };
-
-    zellij = {
-      enable = true;
-      settings = {
-        default_layout = "compact";
-        default_shell = "${pkgs.fish}/bin/fish";
-        scrollback_editor = "${pkgs.neovim}/bin/nvim";
-        pane_frames = false;
-
-        theme = "gruvbox-dark";
-        themes = {
-          gruvbox-dark = {
-            fg = "#D5C4A1";
-            bg = "#282828";
-            black = "#3C3836";
-            red = "#CC241D";
-            green = "#98971A";
-            yellow = "#D79921";
-            blue = "#3C8588";
-            magenta = "#B16286";
-            cyan = "#689D6A";
-            white = "#FBF1C7";
-            orange = "#D65D0E";
-          };
-        };
-      };
-    };
   };
 
   services.blueman-applet.enable = true;
@@ -358,17 +290,13 @@ in
   services.notify-osd.enable = true;
   services.ssh-agent.enable = true;
 
-  services.ollama = {
-    enable = true;
-    acceleration = "cuda";
-  };
-
   xsession = {
     enable = true;
 
     initExtra = ''
       ${pkgs.feh}/bin/feh --bg-fill ${./wallpapers/occ384clcjg51.jpg}
       ${pkgs.xorg.xset}/bin/xset dpms 3600 3600 3600
+      ${pkgs.xorg.xset}/bin/xset s off
     '';
   };
 

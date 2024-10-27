@@ -2,13 +2,13 @@
 module PromptConfig where
 
 import           Data.Char
-import           Gruvbox                 as Colors
+import           Gruvbox                  as Colors
 import           XMonad
 import           XMonad.Prompt
-import           XMonad.Prompt.Directory (directoryPrompt)
+import           XMonad.Prompt.Directory  (directoryPrompt)
 import           XMonad.Prompt.FuzzyMatch
 
-import           PerWorkspaceDirs        (changeDir, currentWorkspace)
+import           PerWorkspaceDirs         (changeDir, currentWorkspace)
 
 myFont :: Int -> String
 myFont size = "xft:Berkeley Mono:size=" ++ show size

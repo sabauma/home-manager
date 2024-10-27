@@ -10,12 +10,15 @@ rm -rf ~/.config/home-manager
 
 # Enable flakes and nix-command features
 mkdir -p "${HOME}/.config/nix/"
-echo "experimental-features = nix-command flakes" > "${HOME}/.config/nix/nix.conf"
+echo "experimental-features = nix-command flakes" >"${HOME}/.config/nix/nix.conf"
 
 # Install home-manager
 nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
 nix-channel --update
 nix-shell '<home-manager>' -A install
+
+# Need to source the updated bashrc now that home-manager was added to the path
+source ~/.bashrc
 
 # Check out my home-manager installation
 rm -rf ~/.config/home-manager
@@ -26,5 +29,3 @@ pushd ~/.config/home-manager
 git checkout modular-laptop
 home-manager switch --flake ".#ubuntu" -b backup
 popd
-
-
