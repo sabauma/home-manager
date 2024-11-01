@@ -57,7 +57,7 @@ in
         white = "0xebdbb2";
       };
 
-      shell = "${pkgs.fish}/bin/fish";
+      terminal.shell = "${pkgs.fish}/bin/fish";
     };
   };
 }
