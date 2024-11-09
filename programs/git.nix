@@ -2,7 +2,7 @@
 {
   programs.git = {
     enable = true;
-    userEmail = "sabauma@fastmail.com";
+    userEmail = "spenser@modular.com";
     userName = "Spenser Bauman";
 
     # Enable difftastic integration
