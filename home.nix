@@ -128,7 +128,9 @@ in
     cmake
     coreutils
     datamash
+    delta
     diff-so-fancy
+    difftastic
     du-dust
     eza
     fd
