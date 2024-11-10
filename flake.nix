@@ -23,11 +23,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    git-fuzzy-src = {
-      url = "github:bigH/git-fuzzy";
-      flake = false;
-    };
-
     treefmt-nix.url = "github:numtide/treefmt-nix";
   };
 
@@ -63,7 +58,6 @@
             neovim-nightly
             mlir-nix
             neorg-overlay
-            git-fuzzy-src
             ;
         };
       };

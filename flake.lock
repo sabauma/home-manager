@@ -154,22 +154,6 @@
         "type": "github"
       }
     },
-    "git-fuzzy-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1726902222,
-        "narHash": "sha256-D4fOj4JAS/bIMK1h9Kg/DaEwlfNau4+N92+js99yrNs=",
-        "owner": "bigH",
-        "repo": "git-fuzzy",
-        "rev": "a9299d78461c90fd24869f5a51f9afba6c46d68d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "bigH",
-        "repo": "git-fuzzy",
-        "type": "github"
-      }
-    },
     "git-hooks": {
       "inputs": {
         "flake-compat": "flake-compat_4",
@@ -517,7 +501,6 @@
     },
     "root": {
       "inputs": {
-        "git-fuzzy-src": "git-fuzzy-src",
         "home-manager": "home-manager",
         "mlir-nix": "mlir-nix",
         "neorg-overlay": "neorg-overlay",
