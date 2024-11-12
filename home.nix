@@ -10,7 +10,6 @@ let
     mlir-nix
     neovim-nightly
     nixgl
-    git-fuzzy-src
     user-config
     ;
 
@@ -100,7 +99,6 @@ in
     # (pkgs.lowPrio mlir)
 
     (import ./scripts { inherit pkgs; })
-    (import ./git-fuzzy.nix { inherit pkgs git-fuzzy-src; })
 
     (nerdfonts.override {
       fonts = [
