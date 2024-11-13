@@ -96,7 +96,7 @@ vim.opt.termguicolors = true
 vim.cmd.colorscheme("gruvbox-material")
 
 function ResolveAndReopen()
-  local current_file = vim.fn.expand('%:p')
+  local current_file = vim.fn.expand("%:p")
   local resolved_path = vim.fn.resolve(current_file)
 
   if current_file ~= resolved_path then
@@ -107,9 +107,9 @@ function ResolveAndReopen()
     local cursor_pos = vim.api.nvim_win_get_cursor(0)
 
     -- Close the old buffer
-    vim.api.nvim_buf_delete(current_buf, {force = true})
+    vim.api.nvim_buf_delete(current_buf, { force = true })
 
-    vim.cmd('edit ' .. vim.fn.fnameescape(resolved_path))
+    vim.cmd("edit " .. vim.fn.fnameescape(resolved_path))
 
     vim.api.nvim_win_set_cursor(0, cursor_pos)
 
@@ -120,7 +120,7 @@ function ResolveAndReopen()
 end
 
 -- Optional: Add a command to call the function
-vim.api.nvim_create_user_command('ResolveAndReopen', ResolveAndReopen, {})
+vim.api.nvim_create_user_command("ResolveAndReopen", ResolveAndReopen, {})
 
 -------------------------------------------------------------------------------
 -- Mappings
@@ -181,10 +181,10 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   end,
 })
 
-vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {
-  pattern = {"*.h.inc", "*.hpp.inc", "*.cpp.inc"},
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = { "*.h.inc", "*.hpp.inc", "*.cpp.inc" },
   callback = function()
-    vim.opt.filetype = 'cpp'
+    vim.opt.filetype = "cpp"
   end,
 })
 
@@ -281,34 +281,37 @@ lspconfig.lua_ls.setup({
 })
 
 if vim.env.MODULAR_PATH then
-  lspconfig.mlir_lsp_server.setup {
-    cmd = {"modular-lsp-server"},
+  lspconfig.mlir_lsp_server.setup({
+    cmd = { "modular-lsp-server" },
     on_attach = on_attach,
-  }
+  })
 
   local modular_path = vim.env.MODULAR_PATH
   local stdlib = modular_path .. "/open-source/mojo/stdlib"
   local max = modular_path .. "/SDK/lib/API/mojo"
   local kernels = modular_path .. "/Kernels/mojo"
 
-  lspconfig.mojo.setup {
+  lspconfig.mojo.setup({
     cmd = {
-      'mojo-lsp-server',
-      '-I', stdlib,
-      '-I', max,
-      '-I', kernels,
+      "mojo-lsp-server",
+      "-I",
+      stdlib,
+      "-I",
+      max,
+      "-I",
+      kernels,
     },
     on_attach = on_attach,
-  }
+  })
 else
-  lspconfig.mlir_lsp_server.setup {
-    cmd = {"mlir-lsp-server"},
+  lspconfig.mlir_lsp_server.setup({
+    cmd = { "mlir-lsp-server" },
     on_attach = on_attach,
-  }
+  })
 
-  lspconfig.mojo.setup {
+  lspconfig.mojo.setup({
     on_attach = on_attach,
-  }
+  })
 end
 
 lspconfig.nil_ls.setup({
