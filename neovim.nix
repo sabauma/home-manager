@@ -49,6 +49,9 @@
       lspkind-nvim
       nvim-lspconfig
 
+      # Git Related
+      gitsigns-nvim
+
       # Lualine
       lualine-nvim
 

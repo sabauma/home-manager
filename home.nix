@@ -10,7 +10,6 @@ let
     mlir-nix
     neovim-nightly
     neorg-overlay
-    git-fuzzy-src
     ;
 in
 
@@ -95,7 +94,6 @@ in
     (pkgs.lowPrio mlir)
 
     (import ./scripts { inherit pkgs; })
-    (import ./git-fuzzy.nix { inherit pkgs git-fuzzy-src; })
 
     nerdfonts
 
@@ -119,7 +117,9 @@ in
     cmake
     coreutils
     datamash
+    delta
     diff-so-fancy
+    difftastic
     du-dust
     eza
     fd
