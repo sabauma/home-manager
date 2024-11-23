@@ -100,13 +100,7 @@ in
 
     (import ./scripts { inherit pkgs; })
 
-    (nerdfonts.override {
-      fonts = [
-        "FiraCode"
-        "FiraMono"
-        "DroidSansMono"
-      ];
-    })
+    nerdfonts
 
     # Language Servers
     bash-language-server
