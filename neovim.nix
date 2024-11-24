@@ -60,8 +60,8 @@
       telescope-fzf-native-nvim
 
       # Neorg
-      neorg
-      neorg-telescope
+      # neorg
+      # neorg-telescope
       zen-mode-nvim
 
       # Obsidian notes
