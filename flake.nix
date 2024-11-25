@@ -73,6 +73,7 @@
             ;
 
           user-config.username = "spenser";
+          user-config.graphical = true;
         };
       };
 
@@ -90,6 +91,7 @@
             ;
 
           user-config.username = "ubuntu";
+          user-config.graphical = false;
         };
       };
     };

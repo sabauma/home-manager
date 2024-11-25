@@ -91,80 +91,88 @@ in
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = with pkgs; [
-    # From github:sabauma/mlir-nix
-    # Since the mlir build includes clang, it can conflict with other
-    # packages which install clang. Set as lowPrio to avoid shadowing an
-    # official build of clang.
-    # (pkgs.lowPrio mlir)
+  home.packages =
+    with pkgs;
+    [
+      # From github:sabauma/mlir-nix
+      # Since the mlir build includes clang, it can conflict with other
+      # packages which install clang. Set as lowPrio to avoid shadowing an
+      # official build of clang.
+      # (pkgs.lowPrio mlir)
 
-    (import ./scripts { inherit pkgs; })
+      (import ./scripts { inherit pkgs; })
 
-    nerdfonts
+      nerdfonts
 
-    # Language Servers
-    bash-language-server
-    cmake-language-server
-    haskell-language-server
-    lua-language-server
-    nil
-    nixd
-    pyright
-    ruff
+      # Language Servers
+      bash-language-server
+      cmake-language-server
+      haskell-language-server
+      lua-language-server
+      nil
+      nixd
+      pyright
+      ruff
 
-    # Useful command line tools
-    awscli2
-    bat
-    bottom
-    broot
-    cmake
-    coreutils
-    datamash
-    delta
-    diff-so-fancy
-    difftastic
-    du-dust
-    eza
-    fd
-    ffmpeg
-    fzf
-    gh
-    git-absorb
-    git-lfs
-    git
-    htop
-    hyperfine
-    light
-    mosh
-    ranger
-    ripgrep
-    shellcheck
-    starship
-    tmux
-    ueberzugpp
-    vim_configurable
-    xclip
-    xmobar
-    yazi
+      # Useful command line tools
+      awscli2
+      bat
+      bottom
+      broot
+      cmake
+      coreutils
+      datamash
+      delta
+      diff-so-fancy
+      difftastic
+      du-dust
+      eza
+      fd
+      ffmpeg
+      fzf
+      gh
+      git-absorb
+      git-lfs
+      git
+      htop
+      hyperfine
+      light
+      mosh
+      ranger
+      ripgrep
+      shellcheck
+      starship
+      tmux
+      ueberzugpp
+      vim_configurable
+      xclip
+      xmobar
+      yazi
 
-    ccache
-    llvmPackages_19.clang-tools
+      ccache
+      llvmPackages_19.clang-tools
 
-    # Preferred shell
-    fish
-
-    # Graphical programs
-    obsidian
-    rofi
-    signal-desktop
-    slack
-    thunderbird
-    vlc
-    wezterm
-    yazi
-    zathura
-    zoom-us
-  ];
+      # Preferred shell
+      fish
+    ]
+    ++ (
+      if config.graphical then
+        [
+          # Graphical programs
+          obsidian
+          rofi
+          signal-desktop
+          slack
+          thunderbird
+          vlc
+          wezterm
+          yazi
+          zathura
+          zoom-us
+        ]
+      else
+        [ ]
+    );
 
   home.pointerCursor = {
     name = "Adwaita";
