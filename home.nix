@@ -156,7 +156,7 @@ in
       fish
     ]
     ++ (
-      if config.graphical then
+      if user-config.graphical then
         [
           # Graphical programs
           obsidian
