@@ -9,7 +9,6 @@ let
   inherit (specialArgs)
     mlir-nix
     neovim-nightly
-    neorg-overlay
     ;
 in
 
