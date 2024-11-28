@@ -1,4 +1,4 @@
-_:
+{ pkgs, ... }:
 
 {
   home.file = {
@@ -21,4 +21,20 @@ _:
     ".fonts/".source = ./.;
     ".local/share/fonts".source = ./.;
   };
+
+  home.packages = with pkgs.nerd-fonts; [
+    fira-code
+    fira-mono
+    hasklug
+    inconsolata
+    iosevka
+    jetbrains-mono
+    monoid
+    sauce-code-pro
+    symbols-only
+    ubuntu
+    ubuntu-mono
+    victor-mono
+    zed-mono
+  ];
 }

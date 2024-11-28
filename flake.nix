@@ -18,19 +18,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    neorg-overlay = {
-      url = "github:nvim-neorg/nixpkgs-neorg-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixgl = {
       url = "github:nix-community/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    git-fuzzy-src = {
-      url = "github:bigH/git-fuzzy";
-      flake = false;
     };
 
     treefmt-nix.url = "github:numtide/treefmt-nix";
@@ -65,7 +55,6 @@
 
         extraSpecialArgs = {
           inherit (inputs)
-            git-fuzzy-src
             mlir-nix
             neorg-overlay
             neovim-nightly
@@ -83,7 +72,6 @@
 
         extraSpecialArgs = {
           inherit (inputs)
-            git-fuzzy-src
             mlir-nix
             neorg-overlay
             neovim-nightly

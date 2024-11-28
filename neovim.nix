@@ -59,9 +59,6 @@
       telescope-nvim
       telescope-fzf-native-nvim
 
-      # Neorg
-      zen-mode-nvim
-
       # Obsidian notes
       obsidian-nvim
 

@@ -102,8 +102,6 @@ in
 
       (import ./scripts { inherit pkgs; })
 
-      nerdfonts
-
       # Language Servers
       bash-language-server
       cmake-language-server
