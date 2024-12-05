@@ -3,6 +3,7 @@
 {
   programs.starship = {
     enable = true;
+    enableInteractive = true;
     settings = {
       # Don't print a new line at the start of the prompt
       add_newline = false;
