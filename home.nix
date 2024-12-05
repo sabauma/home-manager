@@ -15,7 +15,6 @@ in
 {
   nixpkgs.overlays = [
     neovim-nightly.overlays.default
-    # neorg-overlay.overlays.default
     mlir-nix.overlays.default
   ];
 
