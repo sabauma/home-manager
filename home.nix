@@ -102,16 +102,6 @@ in
 
       (import ./scripts { inherit pkgs; })
 
-      # Language Servers
-      bash-language-server
-      cmake-language-server
-      haskell-language-server
-      lua-language-server
-      nil
-      nixd
-      pyright
-      ruff
-
       # Useful command line tools
       awscli2
       bat
@@ -148,7 +138,6 @@ in
       yazi
 
       ccache
-      llvmPackages_19.clang-tools
 
       # Preferred shell
       fish
