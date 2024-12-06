@@ -5,6 +5,7 @@ _: {
     ./firefox.nix
     ./fish.nix
     ./git.nix
+    ./htop.nix
     ./starship.nix
     ./tmux.nix
     ./zellij.nix

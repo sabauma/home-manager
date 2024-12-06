@@ -121,9 +121,6 @@ in
     fd
     ffmpeg
     fzf
-    git-absorb
-    git-lfs
-    git
     htop
     hyperfine
     mosh
