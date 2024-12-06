@@ -143,7 +143,6 @@ in
     gnome-screenshot
 
     ccache
-    clang-tools
 
     # Preferred shell
     fish
