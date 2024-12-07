@@ -9,14 +9,12 @@ let
   inherit (specialArgs)
     mlir-nix
     neovim-nightly
-    neorg-overlay
     ;
 in
 
 {
   nixpkgs.overlays = [
     neovim-nightly.overlays.default
-    neorg-overlay.overlays.default
     mlir-nix.overlays.default
   ];
 
@@ -95,8 +93,6 @@ in
 
     (import ./scripts { inherit pkgs; })
 
-    nerdfonts
-
     # Language Servers
     bash-language-server
     cmake-language-server
@@ -125,9 +121,6 @@ in
     fd
     ffmpeg
     fzf
-    git-absorb
-    git-lfs
-    git
     htop
     hyperfine
     light
@@ -146,7 +139,6 @@ in
     yt-dlp
 
     ccache
-    clang-tools
 
     # Preferred shell
     fish

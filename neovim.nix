@@ -1,6 +1,21 @@
 { pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+    # Language Servers
+    bash-language-server
+    cmake-language-server
+    haskell-language-server
+    lua-language-server
+    nil
+    nixd
+    pyright
+    ruff
+
+    # Contails the clangd language server
+    llvmPackages_latest.clang-tools
+  ];
+
   programs.neovim = {
     enable = true;
     package = pkgs.neovim;
@@ -58,11 +73,6 @@
       # Telescope
       telescope-nvim
       telescope-fzf-native-nvim
-
-      # Neorg
-      neorg
-      neorg-telescope
-      zen-mode-nvim
 
       # Obsidian notes
       obsidian-nvim
