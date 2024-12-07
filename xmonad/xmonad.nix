@@ -1,6 +1,12 @@
 { ... }:
 
 {
+  # The xmonad config uses xmobar
+  programs.xmobar = {
+    enable = true;
+    extraConfig = builtins.readFile ./xmobarrc;
+  };
+
   xsession.windowManager.xmonad = {
     enable = true;
     enableContribAndExtras = true;

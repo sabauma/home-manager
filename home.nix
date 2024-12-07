@@ -112,7 +112,6 @@ in
     starship
     vim_configurable
     xclip
-    xmobar
     yt-dlp
 
     # Gnome tools
@@ -237,11 +236,6 @@ in
         sorting-method = "fzf";
         terminal = "alacritty";
       };
-    };
-
-    xmobar = {
-      enable = true;
-      extraConfig = builtins.readFile ./xmobarrc;
     };
   };
 

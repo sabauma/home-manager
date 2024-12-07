@@ -11,7 +11,6 @@
     nixd
     pyright
     ruff
-    shellcheck
 
     # Contails the clangd language server
     llvmPackages_latest.clang-tools
