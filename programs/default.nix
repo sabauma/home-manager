@@ -4,6 +4,7 @@ _: {
     ./broot.nix
     ./firefox.nix
     ./fish.nix
+    ./gdb.nix
     ./git.nix
     ./htop.nix
     ./starship.nix

@@ -50,16 +50,6 @@ in
   # Allow unfree software to be installed
   nixpkgs.config.allowUnfree = true;
 
-  xdg.configFile = {
-    "gdb/gdbinit".text = ''
-      shell mkdir -p -m 0700 ${config.xdg.cacheHome}/gdb
-
-      set history filename ${config.xdg.cacheHome}/gdb/history
-      set history save on
-      set history size unlimited
-    '';
-  };
-
   home.sessionVariables = {
     BROWSER = "firefox-beta";
 
@@ -257,11 +247,6 @@ in
         sorting-method = "fzf";
         terminal = "alacritty";
       };
-    };
-
-    xmobar = {
-      enable = true;
-      extraConfig = builtins.readFile ./xmobarrc;
     };
   };
 
