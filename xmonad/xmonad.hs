@@ -110,16 +110,6 @@ spawnInCurDir c = currentWorkspace >>= getDir >>= spawnInDir c
     spawnInDir :: String -> String -> X ()
     spawnInDir command s = spawnHere $ printf "cd %s ; %s" s command
 
-gridSelectConfig :: GSConfig Window
-gridSelectConfig =
-  let config = def :: GSConfig Window
-  in config { gs_font        = myFont 8
-            , gs_colorizer   = Colors.colorizer
-            , gs_cellheight  = div (gs_cellheight config * 2) 2
-            , gs_cellwidth   = div (gs_cellwidth config * 2) 2
-            , gs_bordercolor = Colors.background
-            }
-
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
 --
@@ -337,6 +327,7 @@ myLogHook xmproc = do
 -- per-workspace layout choices.
 --
 -- By default, do nothing.
+myStartupHook :: X ()
 myStartupHook = return ()
 
 ------------------------------------------------------------------------
@@ -345,7 +336,9 @@ myStartupHook = return ()
 -- Run xmonad with the settings you specify. No need to modify this.
 --
 main :: IO ()
-main = xmonad . defaults =<< spawnPipe "xmobar"
+main = do
+  pipe <- spawnPipe "xmobar"
+  xmonad (defaults pipe)
 
 allHooks :: [ManageHook]
 allHooks = [manageDocks, myManageHook, manageHook def, manageSpawn]
