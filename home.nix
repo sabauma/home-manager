@@ -90,9 +90,7 @@ in
     bitwarden-cli
     bottom
     broot
-    cmake
     coreutils
-    datamash
     delta
     diff-so-fancy
     difftastic
@@ -104,7 +102,6 @@ in
     htop
     hyperfine
     mosh
-    ninja
     openconnect
     ranger
     ripgrep
@@ -116,8 +113,6 @@ in
 
     # Gnome tools
     gnome-screenshot
-
-    ccache
 
     # Preferred shell
     fish
@@ -214,10 +209,6 @@ in
       enableBashIntegration = true;
 
       defaultOptions = [ ];
-    };
-
-    lazygit = {
-      enable = true;
     };
 
     readline = {
