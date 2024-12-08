@@ -6,7 +6,7 @@
 sh <(curl -L https://nixos.org/nix/install) --daemon
 
 # Clean out any accidental cruft
-rm -rf ~/.config/home-manager
+rm -rf ~/.config/home-manager || true
 
 # Enable flakes and nix-command features
 mkdir -p "${HOME}/.config/nix/"
@@ -21,7 +21,7 @@ nix-shell '<home-manager>' -A install
 source ~/.bashrc
 
 # Check out my home-manager installation
-rm -rf ~/.config/home-manager
+rm -rf ~/.config/home-manager || true
 git clone https://github.com/sabauma/home-manager.git ~/.config/home-manager
 
 # Build home-manager config
