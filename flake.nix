@@ -56,7 +56,6 @@
         extraSpecialArgs = {
           inherit (inputs)
             mlir-nix
-            neorg-overlay
             neovim-nightly
             nixgl
             ;
@@ -73,7 +72,6 @@
         extraSpecialArgs = {
           inherit (inputs)
             mlir-nix
-            neorg-overlay
             neovim-nightly
             nixgl
             ;

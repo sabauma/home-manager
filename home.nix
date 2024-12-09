@@ -127,8 +127,6 @@ in
       xmobar
       yazi
 
-      ccache
-
       # Preferred shell
       fish
     ]
@@ -225,10 +223,6 @@ in
       enableBashIntegration = true;
 
       defaultOptions = [ ];
-    };
-
-    lazygit = {
-      enable = true;
     };
 
     readline = {

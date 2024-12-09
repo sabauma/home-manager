@@ -16,4 +16,10 @@ let
     ]
   );
 in
-pkgs.mkShell { packages = [ haskellEnv ]; }
+pkgs.mkShell {
+  packages = with pkgs; [
+    haskellEnv
+    stylish-haskell
+    haskell-language-server
+  ];
+}
