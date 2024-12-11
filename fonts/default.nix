@@ -13,7 +13,7 @@
       <prefer><family>Berkeley Mono</family></prefer>
 
       <!-- Use this font if a character isn't found in the above font. -->
-      <accept><family>Fira Mono Nerd Font</family></accept>
+      <accept><family>Fira Mono</family></accept>
       </alias>
     '';
 
