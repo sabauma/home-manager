@@ -155,8 +155,6 @@ in
     size = 12;
   };
 
-  fonts.fontconfig.enable = true;
-
   # You can also manage environment variables but you will have to manually
   # source
   #
