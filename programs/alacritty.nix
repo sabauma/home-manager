@@ -1,12 +1,9 @@
 { pkgs, ... }:
 
-let
-  nixGLWrap = import ../nixGLWrap.nix { inherit pkgs; };
-in
 {
   programs.alacritty = {
     enable = true;
-    package = nixGLWrap pkgs.alacritty;
+    package = pkgs.nixGLWrap pkgs.alacritty;
     settings = {
       font = {
         size = 8;

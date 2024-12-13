@@ -1,6 +1,5 @@
 {
   pkgs,
-  config,
   specialArgs,
   ...
 }:
@@ -13,7 +12,9 @@ let
     user-config
     ;
 
-  nixGLWrap = import ./nixGLWrap.nix { inherit pkgs; };
+  nixGLWrapOverlay = final: prev: {
+    nixGLWrap = import ./nixGLWrap.nix { pkgs = prev; };
+  };
 in
 
 {
@@ -23,6 +24,7 @@ in
 
     # Needed for nixGLWrap to work properly
     nixgl.overlay
+    nixGLWrapOverlay
   ];
 
   imports = [
@@ -246,7 +248,7 @@ in
 
   services.picom = {
     enable = true;
-    package = (nixGLWrap pkgs.picom);
+    package = (pkgs.nixGLWrap pkgs.picom);
     backend = "glx";
     fade = false;
     vSync = true;
