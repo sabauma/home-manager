@@ -15,7 +15,7 @@
       <prefer><family>Berkeley Mono</family></prefer>
 
       <!-- Use this font if a character isn't found in the above font. -->
-      <accept><family>Fira Code</family></accept>
+      <accept><family>Symbols Nerd Font</family></accept>
       </alias>
     '';
 
