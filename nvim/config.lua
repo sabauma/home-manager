@@ -466,4 +466,7 @@ require("outline").setup({})
 -- gitsigns
 -------------------------------------------------------------------------------
 
-require("gitsigns").setup()
+require("gitsigns").setup({
+  current_line_blame = true,
+  trouble = true,
+})
