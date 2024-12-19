@@ -8,6 +8,9 @@ sh <(curl -L https://nixos.org/nix/install) --daemon
 # Clean out any accidental cruft
 rm -rf ~/.config/home-manager || true
 
+# Need to source the updated bashrc to get the path variable for Nix
+source ~/.bashrc
+
 # Enable flakes and nix-command features
 mkdir -p "${HOME}/.config/nix/"
 echo "experimental-features = nix-command flakes" >"${HOME}/.config/nix/nix.conf"
