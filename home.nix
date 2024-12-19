@@ -114,10 +114,6 @@ in
       fd
       ffmpeg
       fzf
-      gh
-      git-absorb
-      git-lfs
-      git
       htop
       hyperfine
       light

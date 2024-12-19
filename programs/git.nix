@@ -2,6 +2,7 @@
 {
   home.packages = with pkgs; [
     git-absorb
+    git-lfs
   ];
 
   programs.git = {

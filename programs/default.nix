@@ -5,6 +5,7 @@ _: {
     ./firefox.nix
     ./fish.nix
     ./gdb.nix
+    ./gh.nix
     ./git.nix
     ./htop.nix
     ./lazygit.nix
