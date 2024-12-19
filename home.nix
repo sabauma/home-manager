@@ -70,6 +70,10 @@ in
       "application/x-extension-xhtml" = [ "firefox-beta.desktop" ];
       "application/x-extension-xht" = [ "firefox-beta.desktop" ];
     };
+
+    configFile = {
+      "clangd/config.yaml".text = builtins.readFile ./clangd-config.yaml;
+    };
   };
 
   # The home.packages option allows you to install Nix packages into your
