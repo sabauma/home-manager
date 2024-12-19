@@ -118,6 +118,7 @@ in
       hyperfine
       light
       mosh
+      pipx
       ranger
       ripgrep
       shellcheck
