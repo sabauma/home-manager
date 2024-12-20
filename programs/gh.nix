@@ -5,7 +5,10 @@
 
     gitCredentialHelper = {
       enable = true;
-      hosts = [ "https://github.com" "https://gist.github.com" ];
+      hosts = [
+        "https://github.com"
+        "https://gist.github.com"
+      ];
     };
   };
 }
