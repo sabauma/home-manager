@@ -12,7 +12,7 @@
     pyright
     ruff
 
-    # Contails the clangd language server
+    # Contains the clangd language server
     llvmPackages_latest.clang-tools
   ];
 
