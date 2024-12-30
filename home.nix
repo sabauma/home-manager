@@ -137,6 +137,7 @@ in
       if user-config.graphical then
         [
           # Graphical programs
+          blueman
           obsidian
           rofi
           signal-desktop
