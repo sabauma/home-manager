@@ -88,7 +88,6 @@ in
     (import ./scripts { inherit pkgs; })
 
     # Useful command line tools
-    awscli2
     bat
     betterlockscreen
     bitwarden-cli
@@ -109,8 +108,6 @@ in
     openconnect
     ranger
     ripgrep
-    shellcheck
-    starship
     vim_configurable
     xclip
     yt-dlp
