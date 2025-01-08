@@ -179,6 +179,11 @@ in
   programs = {
     atuin = {
       enable = true;
+      settings = {
+        inline_height = 0;
+        style = "full";
+        sync.records = true;
+      };
     };
 
     bash = {
