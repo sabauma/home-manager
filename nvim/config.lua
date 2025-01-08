@@ -103,12 +103,15 @@ vim.cmd.colorscheme("gruvbox-material")
 vim.keymap.set("n", "j", "gj")
 vim.keymap.set("n", "k", "gk")
 
--- Invoke telescope's live-grep and find-files
+-- Invoke telescope's live-grep, find-files, and buffers
 vim.keymap.set("n", "<leader>lg", function()
   require("telescope.builtin").live_grep()
 end)
 vim.keymap.set("n", "<leader>ff", function()
   require("telescope.builtin").find_files()
+end)
+vim.keymap.set("n", "<leader>bb", function()
+  require("telescope.builtin").buffers()
 end)
 
 -- Press Space to turn off highlighting and clear any message already displayed.
