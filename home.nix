@@ -43,16 +43,6 @@ in
   # Allow unfree software to be installed
   nixpkgs.config.allowUnfree = true;
 
-  xdg.configFile = {
-    "gdb/gdbinit".text = ''
-      shell mkdir -p -m 0700 ${config.xdg.cacheHome}/gdb
-
-      set history filename ${config.xdg.cacheHome}/gdb/history
-      set history save on
-      set history size unlimited
-    '';
-  };
-
   home.sessionVariables = {
     BROWSER = "firefox-beta";
 
@@ -80,6 +70,10 @@ in
       "application/x-extension-xhtml" = [ "firefox-beta.desktop" ];
       "application/x-extension-xht" = [ "firefox-beta.desktop" ];
     };
+
+    configFile = {
+      "clangd/config.yaml".text = builtins.readFile ./clangd-config.yaml;
+    };
   };
 
   # The home.packages option allows you to install Nix packages into your
@@ -93,26 +87,13 @@ in
 
     (import ./scripts { inherit pkgs; })
 
-    # Language Servers
-    bash-language-server
-    cmake-language-server
-    haskell-language-server
-    lua-language-server
-    nil
-    nixd
-    pyright
-    ruff
-
     # Useful command line tools
-    awscli2
     bat
     betterlockscreen
     bitwarden-cli
     bottom
     broot
-    cmake
     coreutils
-    datamash
     delta
     diff-so-fancy
     difftastic
@@ -125,7 +106,6 @@ in
     hyperfine
     light
     mosh
-    ninja
     openconnect
     ranger
     ripgrep
@@ -135,10 +115,10 @@ in
     ueberzugpp
     vim_configurable
     xclip
-    xmobar
     yt-dlp
 
-    ccache
+    # Gnome tools
+    gnome-screenshot
 
     # Preferred shell
     fish
@@ -171,8 +151,6 @@ in
     size = 12;
   };
 
-  fonts.fontconfig.enable = true;
-
   # You can also manage environment variables but you will have to manually
   # source
   #
@@ -193,6 +171,11 @@ in
   programs = {
     atuin = {
       enable = true;
+      settings = {
+        inline_height = 0;
+        style = "full";
+        sync.records = true;
+      };
     };
 
     bash = {
@@ -237,10 +220,6 @@ in
       defaultOptions = [ ];
     };
 
-    lazygit = {
-      enable = true;
-    };
-
     readline = {
       enable = true;
       extraConfig = ''
@@ -257,15 +236,6 @@ in
         sorting-method = "fzf";
         terminal = "alacritty";
       };
-    };
-
-    sioyek = {
-      enable = true;
-    };
-
-    xmobar = {
-      enable = true;
-      extraConfig = builtins.readFile ./xmobarrc;
     };
   };
 

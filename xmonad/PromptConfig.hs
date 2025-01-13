@@ -1,7 +1,6 @@
 {-# OPTIONS_GHC -O2 -Wall #-}
 module PromptConfig where
 
-import           Data.Char
 import           Gruvbox                  as Colors
 import           XMonad
 import           XMonad.Prompt

@@ -1,6 +1,8 @@
 { pkgs, ... }:
 
 {
+  fonts.fontconfig.enable = true;
+
   home.file = {
     # Define a fonts.conf file with a 'Development' font family which uses the
     # preferred Berkeley Mono font while having a fallback font for Symbols not
@@ -13,7 +15,7 @@
       <prefer><family>Berkeley Mono</family></prefer>
 
       <!-- Use this font if a character isn't found in the above font. -->
-      <accept><family>Fira Mono Nerd Font</family></accept>
+      <accept><family>Fira Code Nerd Font</family></accept>
       </alias>
     '';
 

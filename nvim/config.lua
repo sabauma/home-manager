@@ -103,12 +103,15 @@ vim.cmd.colorscheme("gruvbox-material")
 vim.keymap.set("n", "j", "gj")
 vim.keymap.set("n", "k", "gk")
 
--- Invoke telescope's live-grep and find-files
+-- Invoke telescope's live-grep, find-files, and buffers
 vim.keymap.set("n", "<leader>lg", function()
   require("telescope.builtin").live_grep()
 end)
 vim.keymap.set("n", "<leader>ff", function()
   require("telescope.builtin").find_files()
+end)
+vim.keymap.set("n", "<leader>bb", function()
+  require("telescope.builtin").buffers()
 end)
 
 -- Press Space to turn off highlighting and clear any message already displayed.
@@ -298,6 +301,13 @@ require("nvim-treesitter.configs").setup({
       node_decremental = "grm",
     },
   },
+  -- Requires nvim-treesitter-refactor
+  refactor = {
+    highlight_definitions = {
+      enable = true,
+      clear_on_cursor_move = true,
+    },
+  },
 })
 
 -------------------------------------------------------------------------------
@@ -406,4 +416,7 @@ require("outline").setup({})
 -- gitsigns
 -------------------------------------------------------------------------------
 
-require("gitsigns").setup()
+require("gitsigns").setup({
+  current_line_blame = true,
+  trouble = true,
+})

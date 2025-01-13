@@ -11,8 +11,9 @@
     nixd
     pyright
     ruff
+    shellcheck
 
-    # Contails the clangd language server
+    # Contains the clangd language server
     llvmPackages_latest.clang-tools
   ];
 
@@ -38,6 +39,7 @@
 
       # Treesitter
       nvim-treesitter.withAllGrammars
+      nvim-treesitter-refactor
 
       # Colorschemes
       gruvbox-material

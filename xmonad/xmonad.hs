@@ -331,6 +331,7 @@ myLogHook xmproc = do
 -- per-workspace layout choices.
 --
 -- By default, do nothing.
+myStartupHook :: X ()
 myStartupHook = return ()
 
 ------------------------------------------------------------------------
@@ -339,7 +340,9 @@ myStartupHook = return ()
 -- Run xmonad with the settings you specify. No need to modify this.
 --
 main :: IO ()
-main = xmonad . defaults =<< spawnPipe "xmobar"
+main = do
+  pipe <- spawnPipe "xmobar"
+  xmonad (defaults pipe)
 
 allHooks :: [ManageHook]
 allHooks = [manageDocks, myManageHook, manageHook def, manageSpawn]

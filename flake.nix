@@ -52,7 +52,6 @@
           inherit (inputs)
             neovim-nightly
             mlir-nix
-            neorg-overlay
             ;
         };
       };

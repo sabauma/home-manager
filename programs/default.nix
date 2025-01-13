@@ -4,8 +4,10 @@ _: {
     ./broot.nix
     ./firefox.nix
     ./fish.nix
+    ./gdb.nix
     ./git.nix
     ./htop.nix
+    ./lazygit.nix
     ./starship.nix
     ./tmux.nix
     ./zellij.nix
