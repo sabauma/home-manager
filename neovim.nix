@@ -39,6 +39,7 @@
 
       # Treesitter
       nvim-treesitter.withAllGrammars
+      nvim-treesitter-refactor
 
       # Colorschemes
       gruvbox-material

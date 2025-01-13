@@ -301,6 +301,13 @@ require("nvim-treesitter.configs").setup({
       node_decremental = "grm",
     },
   },
+  -- Requires nvim-treesitter-refactor
+  refactor = {
+    highlight_definitions = {
+      enable = true,
+      clear_on_cursor_move = true,
+    }
+  },
 })
 
 -------------------------------------------------------------------------------
