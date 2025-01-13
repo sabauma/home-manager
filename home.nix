@@ -145,7 +145,6 @@ in
           thunderbird
           vlc
           wezterm
-          yazi
           zathura
           zoom-us
         ]
