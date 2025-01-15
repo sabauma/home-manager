@@ -5,3 +5,5 @@ Diagnostics:
     Add: bugprone-*
     Add: performance-*
     Add: readability-*
+    Add: misc-*
+    Add: llvm-*
