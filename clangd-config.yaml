@@ -1,8 +1,10 @@
 Diagnostics:
   ClangTidy:
+    Add: cppcoreguidelines-*
+    Add: bugprone-*
+    Add: llvm-*
+    Add: misc-*
     Add: modernize-*
     Remove: [modernize-use-nodiscard, modernize-use-trailing-return-type]
-    Add: bugprone-*
     Add: performance-*
     Add: readability-*
-    Add: llvm-*
