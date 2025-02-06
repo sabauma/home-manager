@@ -420,3 +420,11 @@ require("gitsigns").setup({
   current_line_blame = true,
   trouble = true,
 })
+
+-------------------------------------------------------------------------------
+-- bigfile.nvim
+-------------------------------------------------------------------------------
+
+require("bigfile").setup({
+  filesize = 10, -- 10MB file size
+})

@@ -37,6 +37,9 @@
 
       nvim-surround
 
+      # bigfile.nvim
+      bigfile-nvim
+
       # Treesitter
       nvim-treesitter.withAllGrammars
       nvim-treesitter-refactor
