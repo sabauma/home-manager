@@ -93,6 +93,7 @@ in
     bitwarden-cli
     bottom
     broot
+    coder
     coreutils
     delta
     diff-so-fancy
