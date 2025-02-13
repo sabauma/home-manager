@@ -1,6 +1,5 @@
 Diagnostics:
   ClangTidy:
-    Add: cppcoreguidelines-*
     Add: bugprone-*
     Add: llvm-*
     Add: misc-*

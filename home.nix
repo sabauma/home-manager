@@ -104,6 +104,7 @@ in
       bottom
       broot
       cmake
+      coder
       coreutils
       datamash
       delta
