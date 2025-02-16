@@ -18,6 +18,9 @@
     };
 
     extraConfig = {
+      # Automatically update submodules when performing git pull
+      submodule.recurse = true;
+
       # Sort branches by commit date rather than alphabetically
       branch.sort = "-committerdate";
 
