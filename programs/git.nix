@@ -47,6 +47,10 @@
       fetch.fsckobjects = true;
       receive.fsckObjects = true;
       transfer.fsckobjects = true;
+
+      help.autocorrect = 1;
+      column.ui = "auto";
+      commit.verbose = true;
     };
   };
 }
