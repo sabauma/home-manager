@@ -51,6 +51,8 @@
       help.autocorrect = 1;
       column.ui = "auto";
       commit.verbose = true;
+      core.fsmonitor = true;
+      core.untrackedcache = true;
     };
   };
 }
