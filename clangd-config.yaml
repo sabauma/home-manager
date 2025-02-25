@@ -1,4 +1,5 @@
 Diagnostics:
+  MissingIncludes: Strict
   ClangTidy:
     Add: bugprone-*
     Add: llvm-*
