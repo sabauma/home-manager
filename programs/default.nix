@@ -8,6 +8,7 @@ _: {
     ./git.nix
     ./htop.nix
     ./lazygit.nix
+    ./librewolf.nix
     ./starship.nix
     ./tmux.nix
     ./zellij.nix
