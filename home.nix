@@ -139,6 +139,7 @@ in
         [
           # Graphical programs
           blueman
+          gnome-control-center
           obsidian
           rofi
           signal-desktop
