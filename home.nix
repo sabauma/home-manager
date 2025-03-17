@@ -262,6 +262,11 @@ in
     vSync = true;
   };
 
+  services.ollama = {
+    enable = true;
+    acceleration = "cuda";
+  };
+
   services.notify-osd.enable = true;
   services.ssh-agent.enable = true;
 

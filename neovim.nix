@@ -94,6 +94,8 @@
       # Trouble.nvim
       trouble-nvim
       nvim-web-devicons
+
+      codecompanion-nvim
     ];
   };
 }
