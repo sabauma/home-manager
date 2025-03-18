@@ -264,7 +264,6 @@ in
 
   services.ollama = {
     enable = true;
-    acceleration = "cuda";
   };
 
   services.notify-osd.enable = true;
