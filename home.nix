@@ -101,6 +101,7 @@ in
       # Useful command line tools
       awscli2
       bat
+      bfs
       bottom
       broot
       cmake
