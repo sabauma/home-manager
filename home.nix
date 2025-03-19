@@ -90,6 +90,7 @@ in
     # Useful command line tools
     bat
     betterlockscreen
+    bfs
     bitwarden-cli
     bottom
     broot
