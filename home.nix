@@ -7,7 +7,6 @@
 
 let
   inherit (specialArgs)
-    mlir-nix
     neovim-nightly
     ;
 in
@@ -15,7 +14,6 @@ in
 {
   nixpkgs.overlays = [
     neovim-nightly.overlays.default
-    mlir-nix.overlays.default
   ];
 
   imports = [
@@ -79,12 +77,6 @@ in
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
-    # From github:sabauma/mlir-nix
-    # Since the mlir build includes clang, it can conflict with other
-    # packages which install clang. Set as lowPrio to avoid shadowing an
-    # official build of clang.
-    (pkgs.lowPrio mlir)
-
     (import ./scripts { inherit pkgs; })
 
     # Useful command line tools
