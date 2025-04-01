@@ -9,10 +9,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    mlir-nix = {
-      url = "github:sabauma/mlir.nix";
-    };
-
     neovim-nightly = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -55,7 +51,6 @@
 
         extraSpecialArgs = {
           inherit (inputs)
-            mlir-nix
             neovim-nightly
             nixgl
             ;
@@ -71,7 +66,6 @@
 
         extraSpecialArgs = {
           inherit (inputs)
-            mlir-nix
             neovim-nightly
             nixgl
             ;

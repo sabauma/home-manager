@@ -6,7 +6,6 @@
 
 let
   inherit (specialArgs)
-    mlir-nix
     neovim-nightly
     nixgl
     user-config
@@ -19,7 +18,6 @@ in
 
 {
   nixpkgs.overlays = [
-    mlir-nix.overlays.default
     neovim-nightly.overlays.default
 
     # Needed for nixGLWrap to work properly
@@ -90,12 +88,6 @@ in
   home.packages =
     with pkgs;
     [
-      # From github:sabauma/mlir-nix
-      # Since the mlir build includes clang, it can conflict with other
-      # packages which install clang. Set as lowPrio to avoid shadowing an
-      # official build of clang.
-      # (pkgs.lowPrio mlir)
-
       (import ./scripts { inherit pkgs; })
 
       # Useful command line tools

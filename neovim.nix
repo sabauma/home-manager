@@ -15,6 +15,7 @@
 
     # Contains the clangd language server
     llvmPackages_latest.clang-tools
+    llvmPackages_19.mlir
   ];
 
   programs.neovim = {
@@ -41,8 +42,9 @@
       bigfile-nvim
 
       # Treesitter
-      nvim-treesitter.withAllGrammars
       nvim-treesitter-refactor
+      nvim-treesitter-textobjects
+      nvim-treesitter.withAllGrammars
 
       # Colorschemes
       gruvbox-material
