@@ -79,9 +79,6 @@
       telescope-nvim
       telescope-fzf-native-nvim
 
-      # Obsidian notes
-      obsidian-nvim
-
       # Nice popup messages
       popup-nvim
 
