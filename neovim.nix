@@ -42,8 +42,9 @@
       bigfile-nvim
 
       # Treesitter
-      nvim-treesitter.withAllGrammars
       nvim-treesitter-refactor
+      nvim-treesitter-textobjects
+      nvim-treesitter.withAllGrammars
 
       # Colorschemes
       gruvbox-material
