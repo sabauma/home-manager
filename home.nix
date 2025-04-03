@@ -111,6 +111,7 @@ in
       htop
       hyperfine
       light
+      moreutils
       mosh
       pipx
       ranger
