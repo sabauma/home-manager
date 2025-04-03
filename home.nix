@@ -244,6 +244,14 @@ in
   services.notify-osd.enable = true;
   services.ssh-agent.enable = true;
 
+  services.home-manager.autoExpire = {
+    enable = true;
+    frequency = "daily";
+    timestamp = "-14 days";
+    store.cleanup = true;
+    store.options = "--delete-older-than 14d";
+  };
+
   xsession = {
     enable = true;
 
