@@ -310,6 +310,20 @@ require("nvim-treesitter.configs").setup({
   },
 })
 
+require("nvim-treesitter.configs").setup({
+  textobjects = {
+    swap = {
+      enable = true,
+      swap_next = {
+        ["<leader>a"] = "@parameter.inner",
+      },
+      swap_previous = {
+        ["<leader>A"] = "@parameter.inner",
+      },
+    },
+  },
+})
+
 -------------------------------------------------------------------------------
 -- nvim-cmp
 -------------------------------------------------------------------------------
@@ -419,4 +433,63 @@ require("outline").setup({})
 require("gitsigns").setup({
   current_line_blame = true,
   trouble = true,
+})
+
+-------------------------------------------------------------------------------
+-- bigfile.nvim
+-------------------------------------------------------------------------------
+
+require("bigfile").setup({
+  filesize = 10, -- 10MB file size
+})
+
+-------------------------------------------------------------------------------
+-- codecompanion.nvim
+-------------------------------------------------------------------------------
+
+require("codecompanion").setup({
+  adapters = {
+    ollama = function()
+      return require("codecompanion.adapters").extend("ollama", {
+        schema = {
+          model = {
+            default = "qwen2.5-coder:7b",
+          },
+          num_ctx = {
+            default = 20000,
+          },
+        },
+      })
+    end,
+  },
+
+  strategies = {
+    chat = {
+      adapter = "ollama",
+    },
+
+    inline = {
+      adapter = "ollama",
+    },
+  },
+
+  display = {
+    diff = {
+      enabled = true,
+      -- Close an open chat buffer if the total columns of your display are less than...
+      close_chat_at = 240,
+
+      -- vertical|horizontal split for default provider
+      layout = "vertical",
+      opts = {
+        "internal",
+        "filler",
+        "closeoff",
+        "algorithm:histogram",
+        "followwrap",
+        "linematch:120",
+      },
+      provider = "default", -- default|mini_diff
+    },
+  },
 })

@@ -18,6 +18,9 @@
     };
 
     extraConfig = {
+      # Automatically update submodules when performing git pull
+      submodule.recurse = true;
+
       # Sort branches by commit date rather than alphabetically
       branch.sort = "-committerdate";
 
@@ -44,6 +47,12 @@
       fetch.fsckobjects = true;
       receive.fsckObjects = true;
       transfer.fsckobjects = true;
+
+      help.autocorrect = 1;
+      column.ui = "auto";
+      commit.verbose = true;
+      core.fsmonitor = true;
+      core.untrackedcache = true;
     };
   };
 }
