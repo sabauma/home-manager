@@ -327,6 +327,15 @@ lspconfig.nixd.setup({
 
 lspconfig.pyright.setup({
   on_attach = on_attach,
+  settings = {
+    python = {
+      analysis = {
+        strictListInference = true,
+        strictDictionaryInference = true,
+        strictSetInference = true,
+      },
+    },
+  },
 })
 
 lspconfig.ruff.setup({
