@@ -93,6 +93,7 @@ in
       # Useful command line tools
       awscli2
       bat
+      bazel-watcher
       bfs
       bottom
       broot
