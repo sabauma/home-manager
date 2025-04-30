@@ -381,6 +381,20 @@ require("nvim-treesitter.configs").setup({
 
 require("nvim-treesitter.configs").setup({
   textobjects = {
+    select = {
+      enable = true,
+      lookahead = true,
+
+      keymaps = {
+        -- Built-in captures.
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+
+        ["ap"] = "@parameter.outer",
+        ["ip"] = "@parameter.inner",
+      },
+    },
+
     swap = {
       enable = true,
       swap_next = {
