@@ -51,7 +51,7 @@ in
   nixpkgs.config.allowUnfree = true;
 
   home.sessionVariables = {
-    BROWSER = "firefox-beta";
+    BROWSER = "librewolf";
 
     GTK_THEME = "Adwaita:dark";
 
@@ -65,17 +65,17 @@ in
     mimeApps.defaultApplications = {
       "application/pdf" = [ "org.gnome.Evince.desktop" ];
 
-      # Register firefox-beta as the default handler for web related files
-      "x-scheme-handler/http" = [ "firefox-beta.desktop" ];
-      "x-scheme-handler/https" = [ "firefox-beta.desktop" ];
-      "x-scheme-handler/chrome" = [ "firefox-beta.desktop" ];
-      "text/html" = [ "firefox-beta.desktop" ];
-      "application/x-extension-htm" = [ "firefox-beta.desktop" ];
-      "application/x-extension-html" = [ "firefox-beta.desktop" ];
-      "application/x-extension-shtml" = [ "firefox-beta.desktop" ];
-      "application/xhtml+xml" = [ "firefox-beta.desktop" ];
-      "application/x-extension-xhtml" = [ "firefox-beta.desktop" ];
-      "application/x-extension-xht" = [ "firefox-beta.desktop" ];
+      # Register librewolf as the default handler for web related files
+      "x-scheme-handler/http" = [ "librewolf.desktop" ];
+      "x-scheme-handler/https" = [ "librewolf.desktop" ];
+      "x-scheme-handler/chrome" = [ "librewolf.desktop" ];
+      "text/html" = [ "librewolf.desktop" ];
+      "application/x-extension-htm" = [ "librewolf.desktop" ];
+      "application/x-extension-html" = [ "librewolf.desktop" ];
+      "application/x-extension-shtml" = [ "librewolf.desktop" ];
+      "application/xhtml+xml" = [ "librewolf.desktop" ];
+      "application/x-extension-xhtml" = [ "librewolf.desktop" ];
+      "application/x-extension-xht" = [ "librewolf.desktop" ];
     };
 
     configFile = {
@@ -108,7 +108,6 @@ in
       eza
       fd
       ffmpeg
-      fzf
       htop
       hyperfine
       light
@@ -222,9 +221,9 @@ in
     };
 
     fzf = {
-      enable = true;
-      enableFishIntegration = true;
-      enableBashIntegration = true;
+      enable = false;
+      enableFishIntegration = false;
+      enableBashIntegration = false;
 
       defaultOptions = [ ];
     };
@@ -244,6 +243,16 @@ in
         sidebar-mode = true;
         sorting-method = "fzf";
         terminal = "alacritty";
+      };
+    };
+
+    television = {
+      enable = true;
+      enableBashIntegration = false;
+      enableFishIntegration = false;
+
+      settings = {
+        ui.theme = "gruvbox-dark";
       };
     };
   };

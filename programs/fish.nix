@@ -4,14 +4,22 @@
     enable = true;
     plugins = [
       {
-        name = "fzf-fish";
-        src = pkgs.fishPlugins.fzf-fish.src;
-      }
-      {
         name = "z";
         src = pkgs.fishPlugins.z.src;
       }
     ];
+
+    # Not a fan of the default shell bindings for tv.
+    # Configure it to use the same bindings as fzf.
+    interactiveShellInit = ''
+      ${pkgs.television}/bin/tv init fish | source
+      bind -M insert \ct tv_smart_autocomplete
+      bind -M insert \cr tv_shell_history
+      bind -M visual \ct tv_smart_autocomplete
+      bind -M visual \cr tv_shell_history
+
+      fish_add_path ~/.modular/bin
+    '';
 
     functions = {
       fish_greeting = "";
@@ -24,9 +32,5 @@
         end
       '';
     };
-
-    interactiveShellInit = ''
-      fish_add_path ~/.modular/bin
-    '';
   };
 }
