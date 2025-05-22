@@ -133,6 +133,7 @@ in
         [
           # Graphical programs
           blueman
+          discord
           gnome-control-center
           obsidian
           rofi
