@@ -14,6 +14,8 @@ let
   nixGLWrapOverlay = final: prev: {
     nixGLWrap = import ./nixGLWrap.nix { pkgs = prev; };
   };
+
+  mojoOverlay = import ./packages/overlay.nix;
 in
 
 {
@@ -23,6 +25,7 @@ in
     # Needed for nixGLWrap to work properly
     nixgl.overlay
     nixGLWrapOverlay
+    mojoOverlay
   ];
 
   imports = [
@@ -89,6 +92,8 @@ in
     with pkgs;
     [
       (import ./scripts { inherit pkgs; })
+
+      mojo
 
       # Useful command line tools
       awscli2
