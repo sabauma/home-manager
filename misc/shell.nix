@@ -1,4 +1,6 @@
-{ pkgs ? import <nixpkgs> {} }:
+{
+  pkgs ? import <nixpkgs> { },
+}:
 let
   # Function to create script
   mkScript = pkgs.writeShellScriptBin;
@@ -30,12 +32,12 @@ let
     (mkScript "model" ''${bazelCmd} run -- //GenericML/tool/model:modeltool "$@"'')
   ];
 in
-  pkgs.mkShell {
-    name = "Development shell";
+pkgs.mkShell {
+  name = "Development shell";
 
-    nativeBuildInputs = [ ] ++ scripts;
+  nativeBuildInputs = [ ] ++ scripts;
 
-    shellHook = ''
-      source ./utils/start-modular.sh
-    '';
-  }
+  shellHook = ''
+    source ./utils/start-modular.sh
+  '';
+}
