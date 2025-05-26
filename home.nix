@@ -131,13 +131,12 @@ in
     ]
     ++ (
       if user-config.graphical then
-        [
+        map config.lib.nixGL.wrap [
           # Graphical programs
           blueman
           discord
           gnome-control-center
           obsidian
-          rofi
           signal-desktop
           slack
           thunderbird
