@@ -1,6 +1,7 @@
 {
   pkgs,
   specialArgs,
+  config,
   ...
 }:
 
@@ -11,20 +12,12 @@ let
     user-config
     ;
 
-  nixGLWrapOverlay = final: prev: {
-    nixGLWrap = import ./nixGLWrap.nix { pkgs = prev; };
-  };
-
   mojoOverlay = import ./packages/overlay.nix;
 in
 
 {
   nixpkgs.overlays = [
     neovim-nightly.overlays.default
-
-    # Needed for nixGLWrap to work properly
-    nixgl.overlay
-    nixGLWrapOverlay
     mojoOverlay
   ];
 
@@ -35,6 +28,9 @@ in
     ./neovim.nix
     ./xmonad/xmonad.nix
   ];
+
+  # Configure nixgl
+  nixGL.packages = nixgl.packages;
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -267,7 +263,7 @@ in
 
   services.picom = {
     enable = true;
-    package = (pkgs.nixGLWrap pkgs.picom);
+    package = (config.lib.nixGL.wrap pkgs.picom);
     backend = "glx";
     fade = false;
     vSync = true;

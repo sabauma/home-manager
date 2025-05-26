@@ -1,9 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   programs.alacritty = {
     enable = true;
-    package = pkgs.nixGLWrap pkgs.alacritty;
+    package = config.lib.nixGL.wrap pkgs.alacritty;
     settings = {
       font = {
         size = 8;
