@@ -115,6 +115,7 @@ in
     calibre
     chromium
     discord
+    grayjay
     kitty
     libreoffice
     obsidian
