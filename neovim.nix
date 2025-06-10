@@ -15,7 +15,7 @@
 
     # Contains the clangd language server
     llvmPackages_latest.clang-tools
-    llvmPackages_19.mlir
+    llvmPackages_latest.mlir
   ];
 
   programs.neovim = {
