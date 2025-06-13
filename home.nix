@@ -86,6 +86,7 @@ in
     bitwarden-cli
     bottom
     broot
+    claude-code
     coder
     coreutils
     delta
