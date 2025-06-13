@@ -98,6 +98,7 @@ in
       bfs
       bottom
       broot
+      claude-code
       cmake
       coder
       coreutils
