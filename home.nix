@@ -176,7 +176,8 @@ in
   programs = {
     atuin = {
       enable = true;
-      daemon.enable = true;
+      # Daemon does not work well on remote dev machines
+      daemon.enable = false;
       settings = {
         inline_height = 0;
         style = "full";
