@@ -115,7 +115,7 @@ in
     # Graphical programs
     calibre
     chromium
-    discord
+    discord-canary
     grayjay
     kitty
     libreoffice
