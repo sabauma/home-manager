@@ -79,7 +79,6 @@
 
       # Telescope
       telescope-nvim
-      telescope-fzf-native-nvim
 
       # Nice popup messages
       popup-nvim
@@ -93,8 +92,6 @@
       # Trouble.nvim
       trouble-nvim
       nvim-web-devicons
-
-      codecompanion-nvim
     ];
   };
 }
