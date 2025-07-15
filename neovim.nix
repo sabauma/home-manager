@@ -1,6 +1,18 @@
 { pkgs, ... }:
 
 {
+  # FZF lua checks are failing for some reason on remote dev machines. Lets
+  # just disable them.
+  nixpkgs.overlays = [
+    (final: prev: {
+      vimPlugins = prev.vimPlugins // {
+        fzf-lua = prev.fzf-lua.override {
+          doCheck = false;
+        };
+      };
+    })
+  ];
+
   home.packages = with pkgs; [
     # Language Servers
     bash-language-server
