@@ -195,7 +195,7 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 -- Plugin Configuration
 -------------------------------------------------------------------------------
 
-vim.notify = require("notify")
+-- vim.notify = require("notify")
 
 require("pqf").setup({})
 require("nvim-surround").setup({})
