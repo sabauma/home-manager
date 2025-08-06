@@ -6,7 +6,7 @@ mkdir -p .local/bin
 cd .local/bin
 
 # Download nix-portable
-curl -L "https://github.com/DavHau/nix-portable/releases/latest/download/nix-portable-$(uname -m)" > ./nix-portable
+curl -L "https://github.com/DavHau/nix-portable/releases/latest/download/nix-portable-$(uname -m)" >./nix-portable
 
 # Generate symlinks for seamless integration
 chmod +x nix-portable
