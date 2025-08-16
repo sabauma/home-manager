@@ -113,6 +113,7 @@ in
     fish
 
     # Graphical programs
+    bitwarden
     calibre
     chromium
     discord-canary
