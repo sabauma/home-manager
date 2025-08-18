@@ -1,4 +1,6 @@
-{ pkgs ? import <nixpkgs> {} }:
+{
+  pkgs ? import <nixpkgs> { },
+}:
 let
   # Function to create script
   mkScript = pkgs.writeShellScriptBin;
@@ -32,23 +34,23 @@ let
     (mkScript "model" ''${bazelCmd} run -- //GenericML/tool/model:modeltool "$@"'')
     (mkScript "update-llvm" ''
       BASE_DIR=${getBaseDir}/bin/baseDir
-      $BASE_DIR/utils/update_llvm.py "$@"''
-    )
+      $BASE_DIR/utils/update_llvm.py "$@"'')
   ];
 in
-  pkgs.mkShell {
-    name = "modular-dev";
+pkgs.mkShell {
+  name = "modular-dev";
 
-    nativeBuildInputs = [
-      pkgs.bashInteractive
-      pkgs.bazelisk
-      pkgs.bazel-watcher
-    ] ++ scripts;
+  nativeBuildInputs = [
+    pkgs.bashInteractive
+    pkgs.bazelisk
+    pkgs.bazel-watcher
+  ]
+  ++ scripts;
 
-    shellHook = ''
-      # This will set up the relevant environment variables, but
-      # will not be able to export the aliases defined in `aliases.sh` through
-      # direnv.
-      source ./utils/start-modular.sh
-    '';
-  }
+  shellHook = ''
+    # This will set up the relevant environment variables, but
+    # will not be able to export the aliases defined in `aliases.sh` through
+    # direnv.
+    source ./utils/start-modular.sh
+  '';
+}
