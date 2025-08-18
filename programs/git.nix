@@ -1,4 +1,11 @@
 { pkgs, ... }:
+let
+  # List of global excludes for .gitignore
+  excludesFile = pkgs.writeText "gitignore" ''
+    .envrc
+    .direnv/*
+  '';
+in
 {
   home.packages = with pkgs; [
     git-absorb
@@ -54,6 +61,7 @@
       commit.verbose = true;
       core.fsmonitor = true;
       core.untrackedcache = true;
+      core.excludesfile = "${excludesFile}";
     };
   };
 }
