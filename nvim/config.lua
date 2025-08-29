@@ -16,7 +16,7 @@ vim.opt.ignorecase = true
 vim.opt.inccommand = "nosplit"
 vim.opt.incsearch = true
 vim.opt.laststatus = 2
-vim.opt.lazyredraw = true
+-- vim.opt.lazyredraw = true
 vim.opt.modelines = 0
 vim.opt.number = true
 vim.opt.ruler = true
@@ -214,7 +214,6 @@ require("noice").setup({
     lsp_doc_border = false, -- add a border to hover docs and signature help
   },
 })
-
 
 require("pqf").setup({})
 require("nvim-surround").setup({})
