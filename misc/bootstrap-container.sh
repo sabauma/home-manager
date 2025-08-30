@@ -29,42 +29,24 @@ rm -rf /homeless-shelter
 rm -rf ~/.nix-portable/emptyroot/homeless-shelter
 
 # Init home-manager
-NP_RUNTIME=bwrap nix-portable nix --option sandbox false shell nixpkgs#{bashInteractive,nix} <<EOF
+NP_RUNTIME=bwrap nix-portable nix shell nixpkgs#{bashInteractive,nix} <<EOF
 nix --option sandbox false run github:nix-community/home-manager -- init
 EOF
 
-rm -rf /homeless-shelter
-rm -rf ~/.nix-portable/emptyroot/homeless-shelter
+rm -rf /homeless-shelter || true
+rm -rf ~/.nix-portable/emptyroot/homeless-shelter || true
 
 # Add home-manager to its own path
 echo 'Add the following in your home.nix file: `home.sessionVariables.PATH = "$HOME/.nix-profile/bin:$PATH";`'
 # sed -i '/home.sessionVariables = {/a\    PATH = "$HOME/.nix-profile/bin:$PATH";' ~/.config/home-manager/home.nix
 
 # home manager switch
-NP_RUNTIME=bwrap nix-portable nix --option sandbox false shell nixpkgs#{bashInteractive,nix} <<EOF
+NP_RUNTIME=bwrap nix-portable nix shell nixpkgs#{bashInteractive,nix} <<EOF
 nix --option sandbox false run github:nix-community/home-manager -- switch -b backup
 EOF
 
-rm -rf /homeless-shelter
-rm -rf ~/.nix-portable/emptyroot/homeless-shelter
+rm -rf /homeless-shelter || true
+rm -rf ~/.nix-portable/emptyroot/homeless-shelter || true
 
 # Make new sessions use the shell automatically
-cat >~/.bashrc <<EOF
-export PATH=\$PATH:\$HOME/.local/bin
-
-if [ -z "\$__NIX_PORTABLE_ACTIVATED" ]; then
-        export __NIX_PORTABLE_ACTIVATED=1
-        NP_RUNTIME=bwrap nix-portable nix --option sandbox false run nixpkgs#bashInteractive --offline
-        exit
-else
-        . \$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
-fi
-
-# If not running interactively, don't do anything
-[[ \$- != *i* ]] && return
-
-# Set something for the cmd line
-PS1='[\u@\h \W]\\\$ '
-EOF
-
-echo 'Please remember to relogin so that the environment gets activated'
+NP_RUNTIME=bwrap nix-portable nix run nixpkgs#bashInteractive --offline
