@@ -2,6 +2,9 @@
 
 {
   home.packages = with pkgs; [
+    # Needed for haskell-language-server
+    ghc
+
     # Language Servers
     bash-language-server
     cmake-language-server
