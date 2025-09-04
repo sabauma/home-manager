@@ -224,7 +224,7 @@ require("trouble").setup({})
 -------------------------------------------------------------------------------
 
 -- The logs get long very quickly, so disable them
-vim.lsp.log.set_level("off")
+vim.lsp.log.set_level("error")
 
 local goto_prev = function(opts)
   vim.diagnostic.jump({ count = -1, float = true })
@@ -308,7 +308,7 @@ if vim.env.MODULAR_PATH then
   })
 
   local modular_path = vim.env.MODULAR_PATH
-  local stdlib = modular_path .. "/open-source/mojo/stdlib"
+  local stdlib = modular_path .. "/open-source/max/mojo/stdlib"
   local max = modular_path .. "/SDK/lib/API/mojo"
   local kernels = modular_path .. "/Kernels/mojo"
 
