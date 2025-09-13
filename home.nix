@@ -80,6 +80,7 @@ in
     (import ./scripts { inherit pkgs; })
 
     # Useful command line tools
+    awscli2
     bat
     betterlockscreen
     bfs
