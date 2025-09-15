@@ -89,8 +89,6 @@ in
     [
       (import ./scripts { inherit pkgs; })
 
-      mojo
-
       # Useful command line tools
       awscli2
       bat
@@ -113,6 +111,7 @@ in
       htop
       hyperfine
       light
+      magic-wormhole
       moreutils
       mosh
       pipx
