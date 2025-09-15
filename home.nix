@@ -99,6 +99,7 @@ in
     ffmpeg
     htop
     hyperfine
+    magic-wormhole
     mosh
     openconnect
     ranger
