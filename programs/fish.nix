@@ -17,8 +17,6 @@
       bind -M insert \cr tv_shell_history
       bind -M visual \ct tv_smart_autocomplete
       bind -M visual \cr tv_shell_history
-
-      fish_add_path ~/.modular/bin
     '';
 
     functions = {
