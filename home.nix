@@ -251,7 +251,7 @@ in
     television = {
       enable = true;
       enableBashIntegration = false;
-      enableFishIntegration = false;
+      enableFishIntegration = true;
 
       settings = {
         ui.theme = "gruvbox-dark";

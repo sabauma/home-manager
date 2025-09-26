@@ -12,7 +12,6 @@
     # Not a fan of the default shell bindings for tv.
     # Configure it to use the same bindings as fzf.
     interactiveShellInit = ''
-      ${pkgs.television}/bin/tv init fish | source
       bind -M insert \ct tv_smart_autocomplete
       bind -M insert \cr tv_shell_history
       bind -M visual \ct tv_smart_autocomplete
