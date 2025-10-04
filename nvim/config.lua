@@ -181,7 +181,6 @@ require("noice").setup({
   },
 })
 
-
 require("pqf").setup({})
 require("nvim-surround").setup({})
 require("trouble").setup({})
