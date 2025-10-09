@@ -71,6 +71,7 @@
           inherit (inputs)
             neovim-nightly
             nixgl
+            nix-gl-host
             ;
 
           user-config.username = "ubuntu";
