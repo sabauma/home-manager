@@ -55,7 +55,7 @@
       nvim-pqf
 
       # Neovim-notify
-      # nvim-notify
+      nvim-notify
       noice-nvim
       snacks-nvim
 

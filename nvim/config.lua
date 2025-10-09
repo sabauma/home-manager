@@ -195,7 +195,7 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
 -- Plugin Configuration
 -------------------------------------------------------------------------------
 
--- vim.notify = require("notify")
+vim.notify = require("notify")
 require("noice").setup({
   lsp = {
     -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
@@ -252,26 +252,28 @@ local on_attach = function(client, bufnr)
   vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
 end
 
-local lspconfig = require("lspconfig")
+local lspconfig = vim.lsp.config
 
-lspconfig.bashls.setup({
-  on_attach = on_attach,
+vim.lsp.enable({
+  "bash_ls",
+  "clangd",
+  "cmake",
+  "hls",
+  "mlir_lsp_server",
+  "mojo",
+  "nil_ls",
+  "nixd",
+  "pyright",
+  "ruff",
+  "tablegen_lsp_server",
 })
 
-lspconfig.clangd.setup({
+lspconfig("clangd", {
   cmd = { "clangd", "--completion-style=detailed", "--background-index", "--background-index-priority=low" },
   on_attach = on_attach,
 })
 
-lspconfig.cmake.setup({
-  on_attach = on_attach,
-})
-
-lspconfig.hls.setup({
-  on_attach = on_attach,
-})
-
-lspconfig.lua_ls.setup({
+lspconfig("lua_ls", {
   on_attach = on_attach,
   on_init = function(client)
     local path = client.workspace_folders[1].name
@@ -302,7 +304,7 @@ lspconfig.lua_ls.setup({
 })
 
 if vim.env.MODULAR_PATH then
-  lspconfig.mlir_lsp_server.setup({
+  lspconfig("mlir_lsp_server", {
     cmd = { "modular-lsp-server" },
     on_attach = on_attach,
   })
@@ -312,7 +314,7 @@ if vim.env.MODULAR_PATH then
   local max = modular_path .. "/SDK/lib/API/mojo"
   local kernels = modular_path .. "/Kernels/mojo"
 
-  lspconfig.mojo.setup({
+  lspconfig("mojo", {
     cmd = {
       "mojo-lsp-server",
       "-I",
@@ -325,7 +327,7 @@ if vim.env.MODULAR_PATH then
     on_attach = on_attach,
   })
 else
-  lspconfig.mlir_lsp_server.setup({
+  lspconfig("mlir_lsp_server", {
     cmd = { "mlir-lsp-server" },
     on_attach = on_attach,
   })
@@ -334,35 +336,6 @@ else
     on_attach = on_attach,
   })
 end
-
-lspconfig.nil_ls.setup({
-  on_attach = on_attach,
-})
-
-lspconfig.nixd.setup({
-  on_attach = on_attach,
-})
-
-lspconfig.pyright.setup({
-  on_attach = on_attach,
-  settings = {
-    python = {
-      analysis = {
-        strictListInference = true,
-        strictDictionaryInference = true,
-        strictSetInference = true,
-      },
-    },
-  },
-})
-
-lspconfig.ruff.setup({
-  on_attach = on_attach,
-})
-
-lspconfig.tblgen_lsp_server.setup({
-  on_attach = on_attach,
-})
 
 -------------------------------------------------------------------------------
 -- Treesitter Configuration
