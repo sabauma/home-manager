@@ -19,6 +19,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-gl-host.url = "github:numtide/nix-gl-host";
+
     treefmt-nix.url = "github:numtide/treefmt-nix";
   };
 
@@ -53,6 +55,7 @@
           inherit (inputs)
             neovim-nightly
             nixgl
+            nix-gl-host
             ;
 
           user-config.username = "spenser";

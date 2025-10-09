@@ -9,6 +9,7 @@ let
   inherit (specialArgs)
     neovim-nightly
     nixgl
+    nix-gl-host
     user-config
     ;
 
@@ -88,6 +89,8 @@ in
     with pkgs;
     [
       (import ./scripts { inherit pkgs; })
+
+      nix-gl-host.defaultPackage.x86_64-linux
 
       # Useful command line tools
       awscli2
