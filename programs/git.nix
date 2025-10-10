@@ -21,7 +21,7 @@ in
     # Enable difftastic integration
     difftastic = {
       enable = true;
-      background = "dark";
+      options.background = "dark";
     };
 
     extraConfig = {
