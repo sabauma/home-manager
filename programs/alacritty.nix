@@ -8,19 +8,19 @@
       font = {
         size = 8;
         normal = {
-          family = "Berkeley Mono";
+          family = "Development";
           style = "Regular";
         };
         bold = {
-          family = "Berkeley Mono";
+          family = "Development";
           style = "Bold";
         };
         italic = {
-          family = "Berkeley Mono";
+          family = "Development";
           style = "Italic";
         };
         bold_italic = {
-          family = "Berkeley Mono";
+          family = "Development";
           style = "Bold Italic";
         };
       };
