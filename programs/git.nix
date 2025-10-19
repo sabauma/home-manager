@@ -11,20 +11,19 @@ in
     git-absorb
   ];
 
+  programs.difftastic = {
+    enable = true;
+    options.background = "dark";
+  };
+
   programs.git = {
     enable = true;
-    userEmail = "sabauma@fastmail.com";
-    userName = "Spenser Bauman";
+    settings.user.email = "sabauma@fastmail.com";
+    settings.user.name = "Spenser Bauman";
 
     lfs.enable = true;
 
-    # Enable difftastic integration
-    difftastic = {
-      enable = true;
-      options.background = "dark";
-    };
-
-    extraConfig = {
+    settings = {
       # Automatically update submodules when performing git pull
       submodule.recurse = true;
 
