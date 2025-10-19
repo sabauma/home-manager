@@ -12,20 +12,20 @@ in
     git-lfs
   ];
 
+  programs.difftastic = {
+    enable = true;
+    options.background = "dark";
+  };
+
   programs.git = {
     enable = true;
-    userEmail = "spenser@modular.com";
-    userName = "Spenser Bauman";
+
+    settings.user.email = "spenser@modular.com";
+    settings.user.name = "Spenser Bauman";
 
     lfs.enable = true;
 
-    # Enable difftastic integration
-    difftastic = {
-      enable = true;
-      background = "dark";
-    };
-
-    extraConfig = {
+    settings = {
       # Automatically update submodules when performing git pull
       submodule.recurse = true;
 
