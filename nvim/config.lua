@@ -332,7 +332,7 @@ else
     on_attach = on_attach,
   })
 
-  lspconfig.mojo.setup({
+  lspconfig("mojo", {
     on_attach = on_attach,
   })
 end
