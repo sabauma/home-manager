@@ -229,18 +229,17 @@ vim.lsp.enable({
   "mojo",
   "nil_ls",
   "nixd",
-  "pyright",
+  "basedpyright",
+  --"pyright",
   "ruff",
   "tablegen_lsp_server",
 })
 
 lspconfig("clangd", {
   cmd = { "clangd", "--completion-style=detailed", "--background-index", "--background-index-priority=low" },
-  on_attach = on_attach,
 })
 
 lspconfig("lua_ls", {
-  on_attach = on_attach,
   on_init = function(client)
     local path = client.workspace_folders[1].name
     if vim.loop.fs_stat(path .. "/.luarc.json") or vim.loop.fs_stat(path .. "/.luarc.jsonc") then

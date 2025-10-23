@@ -6,6 +6,7 @@
     ghc
 
     # Language Servers
+    basedpyright
     bash-language-server
     cmake-language-server
     haskell-language-server
