@@ -240,18 +240,17 @@ vim.lsp.enable({
   "mojo",
   "nil_ls",
   "nixd",
-  "pyright",
+  "basedpyright",
+  --"pyright",
   "ruff",
   "tablegen_lsp_server",
 })
 
 lspconfig("clangd", {
   cmd = { "clangd", "--completion-style=detailed", "--background-index", "--background-index-priority=low" },
-  -- on_attach = on_attach,
 })
 
 lspconfig("lua_ls", {
-  -- on_attach = on_attach,
   on_init = function(client)
     local path = client.workspace_folders[1].name
     if vim.loop.fs_stat(path .. "/.luarc.json") or vim.loop.fs_stat(path .. "/.luarc.jsonc") then
@@ -283,7 +282,6 @@ lspconfig("lua_ls", {
 if vim.env.MODULAR_PATH then
   lspconfig("mlir_lsp_server", {
     cmd = { "modular-lsp-server" },
-    -- on_attach = on_attach,
   })
 
   local modular_path = vim.env.MODULAR_PATH
@@ -301,16 +299,6 @@ if vim.env.MODULAR_PATH then
       "-I",
       kernels,
     },
-    -- on_attach = on_attach,
-  })
-else
-  lspconfig("mlir_lsp_server", {
-    cmd = { "mlir-lsp-server" },
-    -- on_attach = on_attach,
-  })
-
-  lspconfig("mojo", {
-    -- on_attach = on_attach,
   })
 end
 
