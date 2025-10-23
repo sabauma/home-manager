@@ -19,6 +19,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    systems.url = "github:nix-systems/default";
+
     nix-gl-host.url = "github:numtide/nix-gl-host";
 
     treefmt-nix.url = "github:numtide/treefmt-nix";
