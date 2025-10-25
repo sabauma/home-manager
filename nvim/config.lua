@@ -197,6 +197,7 @@ vim.diagnostic.config({ virtual_lines = true })
 local lspconfig = vim.lsp.config
 
 vim.lsp.enable({
+  "basedpyright",
   "bash_ls",
   "clangd",
   "cmake",
@@ -206,8 +207,6 @@ vim.lsp.enable({
   "mojo",
   "nil_ls",
   "nixd",
-  "basedpyright",
-  --"pyright",
   "ruff",
   "tablegen_lsp_server",
 })
