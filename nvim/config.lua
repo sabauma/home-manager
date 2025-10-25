@@ -201,6 +201,7 @@ vim.lsp.enable({
   "clangd",
   "cmake",
   "hls",
+  "lua_ls",
   "mlir_lsp_server",
   "mojo",
   "nil_ls",
