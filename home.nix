@@ -93,7 +93,7 @@ in
     delta
     diff-so-fancy
     difftastic
-    du-dust
+    dust
     eza
     fd
     ffmpeg
@@ -104,7 +104,7 @@ in
     openconnect
     ranger
     ripgrep
-    vim_configurable
+    vim-full
     xclip
     yt-dlp
 
@@ -115,7 +115,7 @@ in
     fish
 
     # Graphical programs
-    bitwarden
+    bitwarden-desktop
     calibre
     chromium
     discord-canary
