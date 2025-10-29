@@ -107,7 +107,7 @@ in
       delta
       diff-so-fancy
       difftastic
-      du-dust
+      dust
       eza
       fd
       ffmpeg
@@ -124,7 +124,7 @@ in
       starship
       tmux
       ueberzugpp
-      vim_configurable
+      vim-full
       xclip
       xmobar
       yazi
