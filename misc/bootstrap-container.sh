@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# RUN: git clone https://github.com/sabauma/home-manager.git
+
 set -ex
 export PATH=$PATH:$HOME/.local/bin
 mkdir -p .local/bin
