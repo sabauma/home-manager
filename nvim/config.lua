@@ -240,8 +240,7 @@ vim.lsp.enable({
   "mojo",
   "nil_ls",
   "nixd",
-  "basedpyright",
-  --"pyright",
+  "pyright",
   "ruff",
   "tablegen_lsp_server",
 })
