@@ -99,6 +99,7 @@ in
       bfs
       bottom
       broot
+      btop
       claude-code
       cmake
       coder
