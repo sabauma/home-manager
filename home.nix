@@ -87,6 +87,7 @@ in
     bitwarden-cli
     bottom
     broot
+    btop
     claude-code
     coder
     coreutils
