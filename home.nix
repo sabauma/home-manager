@@ -227,9 +227,9 @@ in
     };
 
     fzf = {
-      enable = false;
-      enableFishIntegration = false;
-      enableBashIntegration = false;
+      enable = true;
+      enableFishIntegration = true;
+      enableBashIntegration = true;
 
       defaultOptions = [ ];
     };
@@ -249,16 +249,6 @@ in
         sidebar-mode = true;
         sorting-method = "fzf";
         terminal = "alacritty";
-      };
-    };
-
-    television = {
-      enable = true;
-      enableBashIntegration = false;
-      enableFishIntegration = true;
-
-      settings = {
-        ui.theme = "gruvbox-dark";
       };
     };
   };
