@@ -1,5 +1,23 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
+let
+  # Read all files in the fonts directory
+  fontFiles = builtins.readDir ./.;
+
+  # Filter for .ttf and .otf files only
+  isFontFile =
+    name: type: type == "regular" && (lib.hasSuffix ".ttf" name || lib.hasSuffix ".otf" name);
+
+  # Create home.file entries for each font file
+  mkFontLinks =
+    basePath:
+    lib.mapAttrs' (
+      name: type:
+      lib.nameValuePair "${basePath}/${name}" {
+        source = ./. + "/${name}";
+      }
+    ) (lib.filterAttrs isFontFile fontFiles);
+in
 {
   fonts.fontconfig.enable = true;
 
@@ -18,11 +36,11 @@
       <accept><family>Symbols Nerd Font</family></accept>
       </alias>
     '';
-
-    # Link in the fonts directories with personal fonts
-    ".fonts/".source = ./.;
-    ".local/share/fonts".source = ./.;
-  };
+  }
+  # Link individual font files to .fonts/
+  // mkFontLinks ".fonts"
+  # Also link to .local/share/fonts
+  // mkFontLinks ".local/share/fonts";
 
   home.packages = with pkgs.nerd-fonts; [
     fira-code
