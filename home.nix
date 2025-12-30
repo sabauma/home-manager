@@ -13,13 +13,11 @@ let
     user-config
     ;
 
-  mojoOverlay = import ./packages/overlay.nix;
 in
 
 {
   nixpkgs.overlays = [
     neovim-nightly.overlays.default
-    mojoOverlay
   ];
 
   imports = [
