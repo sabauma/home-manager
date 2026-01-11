@@ -46,7 +46,9 @@
       bigfile-nvim
 
       # Treesitter
-      nvim-treesitter-refactor
+
+      # Disable due to version conflict
+      # nvim-treesitter-refactor
       nvim-treesitter-textobjects
       nvim-treesitter.withAllGrammars
 

@@ -248,7 +248,7 @@ lspconfig("lua_ls", {
 -- Treesitter Configuration
 -------------------------------------------------------------------------------
 
-require("nvim-treesitter.configs").setup({
+require("nvim-treesitter").setup({
   -- Grammars are managed by nix
   -- ensure_installed = "all",
   -- ignore_install = {},
@@ -277,7 +277,7 @@ require("nvim-treesitter.configs").setup({
   },
 })
 
-require("nvim-treesitter.configs").setup({
+require("nvim-treesitter").setup({
   textobjects = {
     swap = {
       enable = true,
