@@ -42,7 +42,7 @@
       bigfile-nvim
 
       # Treesitter
-      nvim-treesitter-refactor
+      # nvim-treesitter-refactor
       nvim-treesitter-textobjects
       nvim-treesitter.withAllGrammars
 
