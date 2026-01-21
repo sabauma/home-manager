@@ -41,6 +41,8 @@
       # bigfile.nvim
       bigfile-nvim
 
+      diffview-nvim
+
       # Treesitter
       # nvim-treesitter-refactor
       nvim-treesitter-textobjects
