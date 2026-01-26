@@ -22,7 +22,7 @@
     enable = true;
     package = pkgs.neovim;
 
-    extraLuaConfig = builtins.readFile ./nvim/config.lua;
+    initLua = builtins.readFile ./nvim/config.lua;
 
     # Manage treesitter parsers through nix to avoid issues with libc
     plugins = with pkgs.vimPlugins; [
