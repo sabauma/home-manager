@@ -54,6 +54,9 @@ in
     GTK_THEME = "Adwaita:dark";
 
     XDG_CURRENT_DESKTOP = "ubuntu:GNOME";
+
+    # Improved input handling
+    MOZ_USE_XINPUT2 = "1";
   };
 
   xdg = {
