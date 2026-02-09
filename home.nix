@@ -295,7 +295,7 @@ in
 
     initExtra = ''
       ${pkgs.feh}/bin/feh --bg-fill ${./wallpapers/occ384clcjg51.jpg}
-      ${pkgs.xorg.setxkbmap}/bin/setxkbmap -option caps:escape
+      ${pkgs.setxkbmap}/bin/setxkbmap -option caps:escape
       gnome-screensaver&
     '';
   };
