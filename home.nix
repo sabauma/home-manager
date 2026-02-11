@@ -235,6 +235,8 @@ in
       defaultOptions = [ ];
     };
 
+    lazyworktree.enable = true;
+
     readline = {
       enable = true;
       extraConfig = ''
