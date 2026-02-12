@@ -235,7 +235,12 @@ in
       defaultOptions = [ ];
     };
 
-    lazyworktree.enable = true;
+    lazyworktree = {
+      enable = true;
+      settings = {
+        theme = "gruvbox-dark";
+      };
+    };
 
     readline = {
       enable = true;
