@@ -275,8 +275,8 @@ in
       nvidia-settings --assign CurrentMetaMode="DP-0: nvidia-auto-select +2160+840, HDMI-0: nvidia-auto-select +0+0 {rotation=left}"
 
       ${pkgs.feh}/bin/feh --bg-fill ${./wallpapers/occ384clcjg51.jpg}
-      ${pkgs.xorg.xset}/bin/xset dpms 3600 3600 3600
-      ${pkgs.xorg.xset}/bin/xset s off
+      ${pkgs.xset}/bin/xset dpms 3600 3600 3600
+      ${pkgs.xset}/bin/xset s off
     '';
   };
 
