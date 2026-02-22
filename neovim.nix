@@ -17,6 +17,8 @@
     ruff
     shellcheck
 
+    tree-sitter
+
     # Contains the clangd language server
     llvmPackages_latest.clang-tools
     llvmPackages_latest.mlir
