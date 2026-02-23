@@ -242,7 +242,7 @@ vim.lsp.enable({
   "nixd",
   "pyright",
   "ruff",
-  "tablegen_lsp_server",
+  "tblgen_lsp_server",
 })
 
 lspconfig("clangd", {
