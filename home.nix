@@ -94,11 +94,13 @@ in
       nix-gl-host.defaultPackage.x86_64-linux
 
       # Useful command line tools
+      acpilight
       awscli2
       bat
       bazel-watcher
       bfs
       bottom
+      brightnessctl
       broot
       btop
       claude-code
@@ -115,7 +117,6 @@ in
       ffmpeg
       htop
       hyperfine
-      light
       magic-wormhole
       moreutils
       mosh
