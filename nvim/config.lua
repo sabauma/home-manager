@@ -191,6 +191,13 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
   end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "tablegen",
+  callback = function()
+    vim.treesitter.start()
+  end,
+})
+
 -------------------------------------------------------------------------------
 -- Plugin Configuration
 -------------------------------------------------------------------------------
@@ -334,30 +341,27 @@ require("nvim-treesitter").setup({
   },
 })
 
-require("nvim-treesitter").setup({
-  textobjects = {
-    select = {
-      enable = true,
-      lookahead = true,
+require("nvim-treesitter-textobjects").setup({
+  select = {
+    enable = true,
+    lookahead = true,
 
-      keymaps = {
-        -- Built-in captures.
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
+    keymaps = {
+      -- Built-in captures.
+      ["af"] = "@function.outer",
+      ["if"] = "@function.inner",
 
-        ["ap"] = "@parameter.outer",
-        ["ip"] = "@parameter.inner",
-      },
+      ["ap"] = "@parameter.outer",
+      ["ip"] = "@parameter.inner",
     },
-
-    swap = {
-      enable = true,
-      swap_next = {
-        ["<leader>a"] = "@parameter.inner",
-      },
-      swap_previous = {
-        ["<leader>A"] = "@parameter.inner",
-      },
+  },
+  swap = {
+    enable = true,
+    swap_next = {
+      ["<leader>a"] = "@parameter.inner",
+    },
+    swap_previous = {
+      ["<leader>A"] = "@parameter.inner",
     },
   },
 })
