@@ -2,6 +2,7 @@ _: {
   imports = [
     ./alacritty.nix
     ./broot.nix
+    ./claude.nix
     ./firefox.nix
     ./fish.nix
     ./gdb.nix

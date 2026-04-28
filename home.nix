@@ -88,7 +88,6 @@ in
     bottom
     broot
     btop-cuda
-    claude-code
     coder
     coreutils
     delta
