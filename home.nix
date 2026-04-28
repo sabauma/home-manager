@@ -103,7 +103,6 @@ in
       brightnessctl
       broot
       btop
-      claude-code
       cmake
       coder
       coreutils
