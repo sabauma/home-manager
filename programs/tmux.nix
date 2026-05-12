@@ -17,6 +17,7 @@
     plugins = with pkgs.tmuxPlugins; [
       gruvbox
       prefix-highlight
+      sensible
     ];
 
     extraConfig = ''
