@@ -22,6 +22,8 @@
     extraConfig = ''
       set -as terminal-overrides ",*:Tc"
 
+      set -g focus-events on
+
       bind '"' split-window -c "#{pane_current_path}"
       bind % split-window -h -c "#{pane_current_path}"
 
