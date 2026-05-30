@@ -5,7 +5,6 @@ import           XMonad
 import           XMonad.Actions.CopyWindow
 import           XMonad.Actions.CycleWS
 import           XMonad.Actions.DynamicWorkspaces
-import           XMonad.Actions.GridSelect
 import           XMonad.Actions.Navigation2D
 import           XMonad.Actions.SpawnOn
 import           XMonad.Actions.SwapWorkspaces
@@ -39,6 +38,7 @@ import           FindEmptyWorkspace
 import           Gruvbox                          as Colors
 import           PerWorkspaceDirs                 (currentWorkspace, getDir)
 import           PromptConfig
+import           System.Environment               (setEnv)
 import           System.Exit
 import           System.IO
 import           Text.Printf                      (printf)
@@ -328,7 +328,7 @@ myLogHook xmproc = do
 --
 -- By default, do nothing.
 myStartupHook :: X ()
-myStartupHook = return ()
+myStartupHook = io (setEnv "XDG_SESSION_TYPE" "x11")
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
