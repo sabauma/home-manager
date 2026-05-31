@@ -1,0 +1,159 @@
+/* V2 theme — adapted from github.com/HANCORE-linux/waybar-themes
+   Gruvbox dark color scheme, Berkeley Mono font */
+
+* {
+  font-family: 'Berkeley Mono', 'Symbols Nerd Font Mono';
+  font-size: 20px;
+  font-weight: bold;
+  min-height: 0px;
+}
+
+window#waybar {
+  background-color: transparent;
+  transition-property: background-color;
+  transition-duration: .5s;
+}
+
+window#waybar.empty #window {
+  background: transparent;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  color: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+#waybar.empty .modules-center {
+  opacity: 0;
+}
+
+tooltip {
+  opacity: 1;
+}
+
+/* --- Workspaces --- */
+#workspaces {
+  border-radius: 2px;
+  margin: 6px 3px;
+}
+
+#workspaces button {
+  padding: 0px 2px;
+  margin: 0 3px 0 0;
+  border-radius: 2px;
+  background-color: #3c3836;
+  box-shadow: 0 1px 2px rgba(10, 10, 10, 0.8);
+  color: #ebdbb2;
+}
+
+#workspaces button.active {
+  background-color: #fabd2f;
+  color: #282828;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(10, 10, 10, 0.8);
+}
+
+#workspaces button:hover {
+  background-color: #504945;
+  color: #fabd2f;
+}
+
+/* --- General Modules --- */
+#tray,
+#window,
+#cpu,
+#clock,
+#network,
+#memory,
+#pulseaudio,
+#submap {
+  min-width: 14px;
+  margin: 6px 3px 6px 3px;
+  padding-left: 6px;
+  padding-right: 6px;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(10, 10, 10, 0.8);
+}
+
+/* --- Hover states --- */
+#clock:hover,
+#tray:hover,
+#cpu:hover,
+#memory:hover,
+#network:hover,
+#pulseaudio:hover {
+  border-radius: 2px;
+  opacity: 0.9;
+  background-color: #504945;
+  color: #fabd2f;
+}
+
+/* --- Module colors (Gruvbox) --- */
+#window {
+  background-color: #eadbb2;
+  color: #282828;
+}
+
+#clock {
+  background-color: #3c3836;
+  color: #ebdbb2;
+}
+
+#tray {
+  background-color: #3c3836;
+}
+
+#cpu {
+  background-color: #fabd2f;
+  color: #282828;
+}
+
+#memory {
+  background-color: #076678;
+  color: #ebdbb2;
+}
+
+#network {
+  background-color: #689d6a;
+  color: #282828;
+}
+
+#pulseaudio {
+  background-color: #fb4934;
+  color: #282828;
+}
+
+#submap {
+  background-color: #b16286;
+  color: #282828;
+}
+
+/* --- Tray --- */
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+}
+
+/* --- Warnings / Critical --- */
+#cpu.critical,
+#memory.critical {
+  background-color: #fe8019;
+  color: #282828;
+}
+
+tooltip {
+  padding: 4px;
+  background-color: #3c3836;
+  border: 1px solid rgba(235, 219, 178, 0.8);
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+tooltip label {
+  color: #ebdbb2;
+  font-weight: normal;
+}

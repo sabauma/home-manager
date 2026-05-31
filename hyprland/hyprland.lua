@@ -24,6 +24,8 @@ hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
 hl.env("NIXOS_OZONE_WL", "1")
 hl.env("MOZ_ENABLE_WAYLAND", "1")
+-- Scale Steam's client UI to match monitor scale after force_zero_scaling
+hl.env("STEAM_FORCE_DESKTOPUI_SCALING", "1.2")
 
 -- ── Autostart ─────────────────────────────────────────────────────────────────
 hl.on("hyprland.start", function()
@@ -72,6 +74,9 @@ hl.config({
 
   xwayland = {
     enabled = true,
+    -- Render at native resolution so Hyprland doesn't upscale XWayland output.
+    -- Without this, scale=1.2 causes compositor upscaling → blurry fonts.
+    force_zero_scaling = true,
   },
 })
 

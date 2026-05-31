@@ -1,0 +1,104 @@
+{
+  "reload_style_on_change": true,
+  "layer": "top",
+  "position": "top",
+  "spacing": 0,
+  "height": 36,
+
+  "modules-left": [
+    "group/left1",
+    "group/left2"
+  ],
+  "modules-center": ["clock"],
+  "modules-right": [
+    "group/right2",
+    "group/right3"
+  ],
+
+  "group/left1": {
+    "orientation": "inherit",
+    "modules": [
+      "hyprland/workspaces",
+      "hyprland/submap"
+    ]
+  },
+  "group/left2": {
+    "orientation": "inherit",
+    "modules": ["hyprland/window"]
+  },
+  "group/right2": {
+    "orientation": "inherit",
+    "modules": ["tray", "memory"]
+  },
+  "group/right3": {
+    "orientation": "inherit",
+    "modules": ["network", "pulseaudio", "cpu"]
+  },
+
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": false,
+    "cursor": true,
+    "format": "{name}",
+    "on-scroll-up": "hyprctl dispatch workspace e-1",
+    "on-scroll-down": "hyprctl dispatch workspace e+1"
+  },
+
+  "hyprland/submap": {
+    "format": "{}",
+    "max-length": 8,
+    "tooltip": false
+  },
+
+  "hyprland/window": {
+    "format": "{}",
+    "max-length": 45,
+    "separate-outputs": true
+  },
+
+  "cpu": {
+    "interval": 5,
+    "format": "󰍛 {usage}%"
+  },
+
+  "memory": {
+    "format": " {used:0.1f}G",
+    "interval": 2
+  },
+
+  "clock": {
+    "format": "{:%I:%M %p}",
+    "format-alt": "{:%A %d/%m/%Y}",
+    "tooltip-format": "<span>{calendar}</span>"
+  },
+
+  "network": {
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "format": "{icon}",
+    "format-wifi": "{icon} {essid}",
+    "format-ethernet": "󰀂",
+    "format-disconnected": "󰤮",
+    "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-disconnected": "Disconnected",
+    "interval": 3
+  },
+
+  "pulseaudio": {
+    "format": "{icon}",
+    "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "tooltip-format": "{volume}%",
+    "scroll-step": 5,
+    "format-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "headset": "",
+      "default": ["", "", ""]
+    }
+  },
+
+  "tray": {
+    "icon-size": 14,
+    "spacing": 6
+  }
+}
