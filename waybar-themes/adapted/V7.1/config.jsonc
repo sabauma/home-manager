@@ -19,7 +19,8 @@
     "orientation": "inherit",
     "modules": [
       "hyprland/workspaces",
-      "hyprland/submap"
+      "hyprland/submap",
+      "custom/layout"
     ]
   },
   "group/left2": {
@@ -47,6 +48,13 @@
   "hyprland/submap": {
     "format": "{}",
     "max-length": 8,
+    "tooltip": false
+  },
+
+  "custom/layout": {
+    "exec": "hyprctl activeworkspace -j | jq -r .tiledLayout",
+    "interval": 1,
+    "format": "{}",
     "tooltip": false
   },
 

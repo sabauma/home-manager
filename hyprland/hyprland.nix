@@ -4,6 +4,8 @@ let
   wallpaper = ../wallpapers/occ384clcjg51.jpg;
 in
 {
+  home.packages = [ pkgs.jq ];
+
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;

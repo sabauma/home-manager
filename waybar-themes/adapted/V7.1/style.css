@@ -108,7 +108,8 @@ window#waybar.empty #window {
 #cpu,
 #network,
 #pulseaudio,
-#submap {
+#submap,
+#custom-layout {
   background-color: rgba(235, 219, 178, 0.6);
   color: #1d2021;
   padding: 5px 12px;

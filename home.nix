@@ -283,7 +283,7 @@ in
   dconf = {
     enable = true;
     settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
-    settings."org/gnome/desktop/interface".gtk-theme = "Adwaita";
+    settings."org/gnome/desktop/interface".gtk-theme = "Adwaita-dark";
   };
 
   targets.genericLinux.enable = true;

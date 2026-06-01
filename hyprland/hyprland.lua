@@ -23,6 +23,7 @@ hl.env("XCURSOR_THEME", "Adwaita")
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
 hl.env("NIXOS_OZONE_WL", "1")
+hl.env("GTK_THEME", "Adwaita:dark")
 hl.env("MOZ_ENABLE_WAYLAND", "1")
 -- Scale Steam's client UI to match monitor scale after force_zero_scaling
 hl.env("STEAM_FORCE_DESKTOPUI_SCALING", "1.2")
@@ -72,6 +73,10 @@ hl.config({
     force_default_wallpaper = 0,
   },
 
+  cursor = {
+    no_hardware_cursors = 0,
+  },
+
   xwayland = {
     enabled = true,
     -- Render at native resolution so Hyprland doesn't upscale XWayland output.
@@ -80,14 +85,68 @@ hl.config({
   },
 })
 
+-- ── Custom layouts ───────────────────────────────────────────────────────────
+-- Source: https://github.com/hyprwm/Hyprland/tree/main/example/layouts
+
+hl.layout.register("grid", {
+  recalculate = function(ctx)
+    local n = #ctx.targets
+    if n == 0 then return end
+    local cols = math.ceil(math.sqrt(n))
+    for i, target in ipairs(ctx.targets) do
+      target:place(ctx:grid_cell(i, cols))
+    end
+  end,
+})
+
+hl.layout.register("columns", {
+  recalculate = function(ctx)
+    local n = #ctx.targets
+    if n == 0 then return end
+    for i, target in ipairs(ctx.targets) do
+      target:place(ctx:column(i, n))
+    end
+  end,
+})
+
+local spiral_state = { ratio = 0.58, offset = 0 }
+local spiral_sides    = { "left", "top", "right", "bottom" }
+local spiral_opposite = { left = "right", right = "left", top = "bottom", bottom = "top" }
+hl.layout.register("spiral", {
+  recalculate = function(ctx)
+    local n = #ctx.targets
+    if n == 0 then return end
+    local area = ctx.area
+    for i, target in ipairs(ctx.targets) do
+      if i == n then
+        target:place(area)
+      else
+        local side = spiral_sides[((i - 1 + spiral_state.offset) % #spiral_sides) + 1]
+        target:place(ctx:split(area, side, spiral_state.ratio))
+        area = ctx:split(area, spiral_opposite[side], 1.0 - spiral_state.ratio)
+      end
+    end
+  end,
+  layout_msg = function(ctx, msg)
+    local cmd, arg = msg:match("^(%S+)%s*(.*)$")
+    if cmd == "ratio" then
+      spiral_state.ratio = math.max(0.1, math.min(0.9, tonumber(arg) or spiral_state.ratio))
+    elseif cmd == "grow"   then spiral_state.ratio  = math.min(0.9, spiral_state.ratio + 0.05)
+    elseif cmd == "shrink" then spiral_state.ratio  = math.max(0.1, spiral_state.ratio - 0.05)
+    elseif cmd == "rotate" then spiral_state.offset = (spiral_state.offset + 1) % #spiral_sides
+    else return "spiral: expected ratio <0.1..0.9>, grow, shrink, or rotate" end
+    return true
+  end,
+})
+
 -- ── Workspace rules ───────────────────────────────────────────────────────────
 hl.workspace_rule({ workspace = "1", default_name = "1:web" })
 hl.workspace_rule({ workspace = "2", default_name = "2:email" })
 hl.workspace_rule({ workspace = "3", default_name = "3:code" })
 
 -- ── Window rules ──────────────────────────────────────────────────────────────
-hl.window_rule({ name = "float-mplayer", match = { class = "^MPlayer$" }, float = true })
-hl.window_rule({ name = "float-steam", match = { class = "^steam$", title = "^Steam$" }, float = true })
+-- hl.window_rule({ name = "float-mplayer", match = { class = "^MPlayer$" }, float = true })
+-- hl.window_rule({ name = "float-steam", match = { class = "^steam$", title = "^Steam$" }, float = true })
 
 -- ── Keybindings ───────────────────────────────────────────────────────────────
 
@@ -99,9 +158,29 @@ hl.bind(mod .. " + SHIFT + C", hl.dsp.window.close())
 hl.bind(mod .. " + T", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mod .. " + F", hl.dsp.window.fullscreen({ mode = 1 }))
 
--- Layout cycling (left→top→right→bottom, approximates Tall|Mirror|Grid|Full)
+-- Layout cycling within master (left→top→right→bottom)
 hl.bind(mod .. " + Space", hl.dsp.layout("orientationnext"))
 hl.bind(mod .. " + SHIFT + Space", hl.dsp.layout("orientationleft"))
+
+-- Cycle layouts on the focused workspace only (mod+grave)
+local cycle_layouts = { "master", "grid", "columns", "spiral", "dwindle" }
+local ws_layout_idx = {}  -- tracks current layout index per workspace id
+
+-- Restore per-workspace layout when switching workspaces
+hl.on("workspace.active", function()
+  local ws = hl.get_active_workspace()
+  if ws and ws_layout_idx[ws.id] then
+    hl.config({ general = { layout = cycle_layouts[ws_layout_idx[ws.id]] } })
+  end
+end)
+
+hl.bind(mod .. " + grave", function()
+  local ws = hl.get_active_workspace()
+  if not ws then return end
+  local idx = (ws_layout_idx[ws.id] or 1) % #cycle_layouts + 1
+  ws_layout_idx[ws.id] = idx
+  hl.config({ general = { layout = cycle_layouts[idx] } })
+end)
 
 -- Master layout operations
 hl.bind(mod .. " + Return", hl.dsp.layout("swapwithmaster"))
