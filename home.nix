@@ -119,8 +119,8 @@ in
       magic-wormhole
       moreutils
       mosh
-      pipx
-      ranger
+      # Remove pipx due to some upstream issues building the package
+      # pipx
       ripgrep
       shellcheck
       starship
