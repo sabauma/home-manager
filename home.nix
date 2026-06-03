@@ -41,6 +41,9 @@ in
 
   # Allow unfree software to be installed
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-39.8.10"
+  ];
 
   home.sessionVariables = {
     BROWSER = "librewolf";
@@ -103,7 +106,6 @@ in
     magic-wormhole
     mosh
     openconnect
-    ranger
     ripgrep
     vim-full
     xclip
