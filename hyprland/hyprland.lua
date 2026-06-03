@@ -31,7 +31,6 @@ hl.env("STEAM_FORCE_DESKTOPUI_SCALING", "1.2")
 -- ── Autostart ─────────────────────────────────────────────────────────────────
 hl.on("hyprland.start", function()
   hl.exec_cmd("waybar")
-  hl.exec_cmd("mako")
 end)
 
 -- ── Config ────────────────────────────────────────────────────────────────────

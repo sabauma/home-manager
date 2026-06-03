@@ -21,16 +21,22 @@ in
   xdg.configFile."waybar/config.jsonc".source = ../waybar-themes/adapted/V7.1/config.jsonc;
   xdg.configFile."waybar/style.css".source    = ../waybar-themes/adapted/V7.1/style.css;
 
-  # ── Mako (replaces notify-osd) ───────────────────────────────────────────────
-  services.mako = {
+  # ── Dunst (replaces notify-osd / mako) ──────────────────────────────────────
+  services.dunst = {
     enable = true;
     settings = {
-      background-color = "#1d2021";
-      text-color = "#ebdbb2";
-      border-color = "#458588";
-      border-size = 2;
-      font = "Berkeley Mono 14";
-      timeout = 5000;
+      global = {
+        font = "Berkeley Mono 14";
+        background = "#1d2021";
+        foreground = "#ebdbb2";
+        frame_color = "#458588";
+        frame_width = 2;
+        corner_radius = 0;
+        timeout = 5;
+        layer = "overlay";
+        monitor = "DP-2";
+        follow = "keyboard";
+      };
     };
   };
 
