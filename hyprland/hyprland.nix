@@ -19,7 +19,7 @@ in
   programs.waybar.enable = true;
 
   xdg.configFile."waybar/config.jsonc".source = ../waybar-themes/adapted/V7.1/config.jsonc;
-  xdg.configFile."waybar/style.css".source    = ../waybar-themes/adapted/V7.1/style.css;
+  xdg.configFile."waybar/style.css".source = ../waybar-themes/adapted/V7.1/style.css;
 
   # ── Dunst (replaces notify-osd / mako) ──────────────────────────────────────
   services.dunst = {

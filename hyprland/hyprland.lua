@@ -12,8 +12,8 @@ local sup = "SUPER"
 -- Both monitors are 3840x2160, scale=1.2 → logical 3200x1800 each.
 -- HDMI-A-2 with transform=1 (portrait): logical 1800x3200.
 -- DP-2 x-offset = 1800, y-offset = (3200-1800)/2 = 700 to center it vertically.
-hl.monitor({ output = "HDMI-A-2", mode = "3840x2160@60", position = "0x0",    scale = 1.2, transform = 1 })
-hl.monitor({ output = "DP-2",    mode = "3840x2160@60", position = "1800x700", scale = 1.2 })
+hl.monitor({ output = "HDMI-A-2", mode = "3840x2160@60", position = "0x0", scale = 1.2, transform = 1 })
+hl.monitor({ output = "DP-2", mode = "3840x2160@60", position = "1800x700", scale = 1.2 })
 
 -- ── Nvidia env vars ───────────────────────────────────────────────────────────
 hl.env("LIBVA_DRIVER_NAME", "nvidia")
@@ -90,7 +90,9 @@ hl.config({
 hl.layout.register("grid", {
   recalculate = function(ctx)
     local n = #ctx.targets
-    if n == 0 then return end
+    if n == 0 then
+      return
+    end
     local cols = math.ceil(math.sqrt(n))
     for i, target in ipairs(ctx.targets) do
       target:place(ctx:grid_cell(i, cols))
@@ -101,7 +103,9 @@ hl.layout.register("grid", {
 hl.layout.register("columns", {
   recalculate = function(ctx)
     local n = #ctx.targets
-    if n == 0 then return end
+    if n == 0 then
+      return
+    end
     for i, target in ipairs(ctx.targets) do
       target:place(ctx:column(i, n))
     end
@@ -109,12 +113,14 @@ hl.layout.register("columns", {
 })
 
 local spiral_state = { ratio = 0.58, offset = 0 }
-local spiral_sides    = { "left", "top", "right", "bottom" }
+local spiral_sides = { "left", "top", "right", "bottom" }
 local spiral_opposite = { left = "right", right = "left", top = "bottom", bottom = "top" }
 hl.layout.register("spiral", {
   recalculate = function(ctx)
     local n = #ctx.targets
-    if n == 0 then return end
+    if n == 0 then
+      return
+    end
     local area = ctx.area
     for i, target in ipairs(ctx.targets) do
       if i == n then
@@ -130,10 +136,15 @@ hl.layout.register("spiral", {
     local cmd, arg = msg:match("^(%S+)%s*(.*)$")
     if cmd == "ratio" then
       spiral_state.ratio = math.max(0.1, math.min(0.9, tonumber(arg) or spiral_state.ratio))
-    elseif cmd == "grow"   then spiral_state.ratio  = math.min(0.9, spiral_state.ratio + 0.05)
-    elseif cmd == "shrink" then spiral_state.ratio  = math.max(0.1, spiral_state.ratio - 0.05)
-    elseif cmd == "rotate" then spiral_state.offset = (spiral_state.offset + 1) % #spiral_sides
-    else return "spiral: expected ratio <0.1..0.9>, grow, shrink, or rotate" end
+    elseif cmd == "grow" then
+      spiral_state.ratio = math.min(0.9, spiral_state.ratio + 0.05)
+    elseif cmd == "shrink" then
+      spiral_state.ratio = math.max(0.1, spiral_state.ratio - 0.05)
+    elseif cmd == "rotate" then
+      spiral_state.offset = (spiral_state.offset + 1) % #spiral_sides
+    else
+      return "spiral: expected ratio <0.1..0.9>, grow, shrink, or rotate"
+    end
     return true
   end,
 })
@@ -163,7 +174,7 @@ hl.bind(mod .. " + SHIFT + Space", hl.dsp.layout("orientationleft"))
 
 -- Cycle layouts on the focused workspace only (mod+grave)
 local cycle_layouts = { "master", "grid", "columns", "spiral", "dwindle" }
-local ws_layout_idx = {}  -- tracks current layout index per workspace id
+local ws_layout_idx = {} -- tracks current layout index per workspace id
 
 -- Restore per-workspace layout when switching workspaces
 hl.on("workspace.active", function()
@@ -175,7 +186,9 @@ end)
 
 hl.bind(mod .. " + grave", function()
   local ws = hl.get_active_workspace()
-  if not ws then return end
+  if not ws then
+    return
+  end
   local idx = (ws_layout_idx[ws.id] or 1) % #cycle_layouts + 1
   ws_layout_idx[ws.id] = idx
   hl.config({ general = { layout = cycle_layouts[idx] } })
