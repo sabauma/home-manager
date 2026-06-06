@@ -91,7 +91,6 @@ in
     bitwarden-cli
     bottom
     broot
-    btop-cuda
     coder
     coreutils
     delta
@@ -192,6 +191,14 @@ in
         flags = {
           color = "gruvbox";
         };
+      };
+    };
+
+    btop = {
+      enable = true;
+      package = pkgs.btop-cuda;
+      settings = {
+        color_theme = "gruvbox_dark";
       };
     };
 
