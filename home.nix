@@ -265,7 +265,17 @@ in
     acceleration = "cuda";
   };
 
-  services.flameshot.enable = true;
+  services.flameshot = {
+    enable = true;
+    settings = {
+      General = {
+        useGrimAdapter = true;
+        # Stops warnings for using Grim
+        disabledGrimWarning = true;
+      };
+    };
+  };
+
   services.notify-osd.enable = true;
   services.ssh-agent.enable = true;
 
