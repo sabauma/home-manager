@@ -120,6 +120,7 @@ in
     bitwarden-desktop
     calibre
     chromium
+    discord-ptb
     discord-canary
     grayjay
     kitty
