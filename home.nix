@@ -81,6 +81,7 @@ in
 
     configFile = {
       "clangd/config.yaml".text = builtins.readFile ./clangd-config.yaml;
+      "mimeapps.list".force = true;
     };
   };
 
