@@ -298,12 +298,12 @@ if vim.env.MODULAR_PATH then
   lspconfig("mojo", {
     cmd = {
       "mojo-lsp-server",
-      -- "-I",
-      -- stdlib,
-      -- "-I",
-      -- max,
-      -- "-I",
-      -- kernels,
+      "-I",
+      stdlib,
+      "-I",
+      max,
+      "-I",
+      kernels,
     },
   })
 end
