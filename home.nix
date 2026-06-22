@@ -43,6 +43,8 @@ in
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
     "electron-39.8.10"
+    "librewolf-151.0.2-1"
+    "librewolf-unwrapped-151.0.2-1"
   ];
 
   home.sessionVariables = {
