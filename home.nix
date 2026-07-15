@@ -270,7 +270,7 @@ in
   };
 
   services.flameshot = {
-    enable = true;
+    enable = false;
     settings = {
       General = {
         useGrimAdapter = true;
