@@ -231,7 +231,7 @@ require("trouble").setup({})
 -------------------------------------------------------------------------------
 
 -- The logs get long very quickly, so disable them
-vim.lsp.log.set_level("error")
+vim.lsp.log.set_level("off")
 
 vim.diagnostic.config({ virtual_lines = true })
 
