@@ -8,7 +8,7 @@
       nerdFontsVersion = "3";
 
       git.commit.autoWrapCommitMessage = false;
-      git.pagers = [ { externalDiffCommand = "difft --color=always"; } ];
+      git.diffRenderers = [ { command = "difft --color=always"; type = "extDiff"; } ];
     };
   };
 
