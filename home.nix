@@ -262,6 +262,9 @@ in
             };
 
             models = {
+              "zai-org/glm-5.3" = {
+                name = "GLM 5.3";
+              };
               "z-ai/glm-5.2" = {
                 name = "GLM 5.2";
               };
