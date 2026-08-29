@@ -244,6 +244,9 @@ in
               "z-ai/glm-5.2" = {
                 name = "GLM 5.2";
               };
+              "zai-org/glm-5.3" = {
+                name = "GLM 5.3";
+              };
               "minimax/minimax-m3" = {
                 name = "Minimax m3";
               };
