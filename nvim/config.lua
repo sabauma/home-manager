@@ -482,4 +482,3 @@ require("gitsigns").setup({
 require("bigfile").setup({
   filesize = 10, -- 10MB file size
 })
-

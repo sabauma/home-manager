@@ -10,10 +10,10 @@ let
   # particularly bazelw, which inspecs the directory the script is in to figure
   # out where to store things.
   # baseDir = toString ./.;
-  getBaseDir = mkScript "baseDir" ''git rev-parse --show-toplevel'';
+  getBaseDir = mkScript "baseDir" "git rev-parse --show-toplevel";
 
   # Execute the bazel command.
-  bazelCmd = ''${pkgs.bazelisk}/bin/bazelisk'';
+  bazelCmd = "${pkgs.bazelisk}/bin/bazelisk";
 
   # The root bazel commands that we will execute.
   bazel = mkScript "bazel" ''${bazelCmd} "$@"'';
