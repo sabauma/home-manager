@@ -11,6 +11,7 @@ _: {
     ./htop.nix
     ./lazygit.nix
     ./librewolf.nix
+    ./opencode.nix
     ./starship.nix
     ./tmux.nix
     ./zellij.nix
