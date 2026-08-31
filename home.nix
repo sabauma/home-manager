@@ -275,6 +275,10 @@ in
           };
         };
       };
+
+      tui = {
+        theme = "gruvbox";
+      };
     };
 
     readline = {
