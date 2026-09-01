@@ -4,6 +4,8 @@
     enable = true;
 
     settings = {
+      lsp = true;
+
       provider = {
         modular = {
           npm = "@ai-sdk/openai-compatible";
