@@ -10,8 +10,8 @@
       git.commit.autoWrapCommitMessage = false;
       git.diffRenderers = [
         {
+          type = "extDiff";
           command = "difft --color=always";
-          external = true;
         }
       ];
     };
