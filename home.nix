@@ -238,8 +238,8 @@ in
     rofi = {
       enable = true;
       theme = "gruvbox-dark-hard";
-      font = "Berkeley Mono 14";
-      extraConfig = {
+      settings = {
+        font = "Berkeley Mono 14";
         sidebar-mode = true;
         sorting-method = "fzf";
         terminal = "alacritty";
