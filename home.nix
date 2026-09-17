@@ -272,8 +272,8 @@ in
     rofi = {
       enable = true;
       theme = "gruvbox-dark-hard";
-      font = "Fira Mono 12";
-      extraConfig = {
+      settings = {
+        font = "Fira Mono 12";
         sidebar-mode = true;
         sorting-method = "fzf";
         terminal = "alacritty";
