@@ -99,6 +99,7 @@ in
     diff-so-fancy
     difftastic
     dust
+    evince
     eza
     fd
     ffmpeg
@@ -140,7 +141,7 @@ in
     yazi
     zathura
     zoom-us
-    zotero
+    # zotero
   ];
 
   home.pointerCursor = {
