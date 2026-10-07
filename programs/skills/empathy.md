@@ -16,7 +16,7 @@ If there are one or more open pull requests related to this branch or workspace,
 - DO NOT format the description with a limited character width like a commit message.
 - DO NOT use em dash characters. Prefer complete sentences, or a spaced hyphen ( - ) where a pause is genuinely needed.
 
-This file covers what goes in the description. For how the sentences should sound, also read `~/.dotfiles/config/shared/writing-voice.md`.
+This file covers what goes in the description. For how the sentences should sound, load the `writing-voice` skill.
 
 The reviewer will ask for more details if they need to know them, and we can provide details via comments when they do ask.
 

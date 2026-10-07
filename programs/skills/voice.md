@@ -1,8 +1,8 @@
 ---
-description: Rewrite existing prose so it sounds like Josh wrote it, using the rules in writing-voice.md.
+description: Rewrite existing prose so it sounds like Spenser wrote it, using the rules in writing-voice.md.
 ---
 
-Read `~/.dotfiles/config/shared/writing-voice.md` first. Everything below
+Consult the `writing-voice` skill first. Everything below
 depends on it, so do not skip it or work from memory of it.
 
 ## Find the target
@@ -24,12 +24,11 @@ Work out what you are being asked to rewrite, in this order:
   that out to the user rather than inventing one.
 - **Apply the genre notes.** A PR body and a Notion doc get different amounts of
   the voice. Check which genre you are in before you start.
-- **For a pull request body, also read and apply
-  `~/.claude/commands/empathy.md`.** It owns the structure and the length
-  budget. This file owns how the sentences sound.
+- **For a pull request body, also read and apply `empathy` skill.** It owns the
+  structure and the length budget. This file owns how the sentences sound.
 - **Leave these alone, verbatim:** code blocks, command output, benchmark
-  numbers, links, image references, Linear closing keywords such as
-  `Fixes ENG-1234`, and any BEGIN_PUBLIC/END_PUBLIC block markers. You may
+  numbers, links, image references, Linear closing keywords such as `Fixes
+  ENG-1234`, and any BEGIN_PUBLIC/END_PUBLIC block markers. You may
   rewrite prose *inside* a public block, since it still needs to read well.
 - Run the self check from `writing-voice.md` before you show anything.
 
@@ -40,7 +39,7 @@ changed and which rule drove each change, so the user can push back where you
 guessed wrong. Keep that list to the substantive changes. Do not itemize every
 comma.
 
-If the original is already in Josh's voice, say so and change nothing. Do not
+If the original is already in Spenser's voice, say so and change nothing. Do not
 churn text just because the command was invoked.
 
 ## Do not publish without approval
