@@ -2,7 +2,7 @@
 {
   programs.firefox = {
     enable = true;
-    package = pkgs.firefox-beta;
+    package = pkgs.firefox;
 
     policies = {
       # Disable private attribution, Mozilla's "privacy preserving"
