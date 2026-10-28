@@ -54,7 +54,9 @@ in
     };
 
     cli = {
-      theme = "gruvbox";
+      theme = {
+        name = "gruvbox";
+      };
     };
   };
 }
