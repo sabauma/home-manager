@@ -188,11 +188,15 @@ in
     atuin = {
       enable = true;
       # Daemon does not work well on remote dev machines
-      daemon.enable = false;
+      daemon.enable = true;
       settings = {
         inline_height = 0;
         style = "full";
         sync.records = true;
+        threads = {
+          capture = true;
+          capture_tools = true;
+        };
       };
     };
 
