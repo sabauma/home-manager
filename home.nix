@@ -176,6 +176,11 @@ in
         inline_height = 0;
         style = "full";
         sync.records = true;
+
+        threads = {
+          capture = true;
+          capture_tools = true;
+        };
       };
     };
 
