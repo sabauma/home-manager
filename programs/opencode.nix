@@ -28,8 +28,10 @@
       };
     };
 
-    tui = {
-      theme = "gruvbox";
+    cli = {
+      theme = {
+        name = "gruvbox";
+      };
     };
   };
 }
