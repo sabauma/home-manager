@@ -7,3 +7,4 @@ Diagnostics:
     Remove: [modernize-use-nodiscard, modernize-use-trailing-return-type]
     Add: performance-*
     Add: readability-*
+    Add: clang-analyzer-*
