@@ -30,6 +30,9 @@ in
           };
 
           models = {
+            "deepseek/deepseek-v4.1-flash-1017" = {
+              name = "DeepSeek V4.1 Flash";
+            };
             "zai-org/glm-5.3" = {
               name = "GLM 5.3";
             };
